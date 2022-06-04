@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="790f1bed8b674559935d8865680ddb11" Name="Diagram1">
+        <EntityTypeShape EntityType="OrdersHandlingModel.Category" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.CoatingGroup" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Codes" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.MU" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.OrderLines" Width="1.5" PointX="8.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Orders" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Partners" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Roles" Width="1.5" PointX="3.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.SubTypes" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Surface" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Systems" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Types" Width="1.5" PointX="0.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Users" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_CoatingGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_DefaultMU" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_DefaultSupplier" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_SubType" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_System" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_OrderLines_CodeID" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Surface_ItemCode" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_OrderLines_OrderID" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_OrderLines_SurfaceID" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Orders_Customer_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Users_PartnerID" ManuallyRouted="false" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Users_RoleID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
