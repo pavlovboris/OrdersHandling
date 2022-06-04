@@ -117,9 +117,9 @@ namespace OrdersHandling
 
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button btnLogin;
+        public System.Windows.Forms.TextBox txtPassword;
     }
 }
 
