@@ -10,38 +10,35 @@ using System.Windows.Forms;
 
 namespace OrdersHandling
 {
-    public partial class frmTypes : Form
+    public partial class frmCategory : Form
     {
-        public frmTypes()
+        public frmCategory()
         {
             InitializeComponent();
         }
-
         OrdersHandlingEntities db;
-
-        private void frmTypes_Load(object sender, EventArgs e)
+        private void frmCategory_Load(object sender, EventArgs e)
         {
             db = new OrdersHandlingEntities();
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
 
-            typesBindingSource.DataSource = db.Types.ToList();
+            categoryBindingSource.DataSource = db.Category.ToList();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            Types types = new Types();
+            Category category = new Category();
+            categoryBindingSource.Add(category);
+            categoryBindingSource.MoveLast();
+            db.Category.Add(category);
 
-            typesBindingSource.Add(types);
-            typesBindingSource.MoveLast();
-            db.Types.Add(types);
-
-            if (dgvTypes.ReadOnly == true)
+            if (dgvCategory.ReadOnly == true)
             {
-                dgvTypes.ReadOnly = false;
+                dgvCategory.ReadOnly = false;
 
-                for (int i = 0; i < dgvTypes.Rows.Count - 1; i++)
+                for (int i = 0; i < dgvCategory.Rows.Count - 1; i++)
                 {
-                    dgvTypes.Rows[i].ReadOnly = true;
+                    dgvCategory.Rows[i].ReadOnly = true;
                 }
             }
         }
@@ -52,9 +49,9 @@ namespace OrdersHandling
             {
                 try
                 {
-                    dgvTypes.EndEdit();
+                    dgvCategory.EndEdit();
                     await db.SaveChangesAsync();
-                    dgvTypes.Refresh();
+                    dgvCategory.Refresh();
                     MessageBox.Show("Промените са успешно запаметени.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -62,31 +59,6 @@ namespace OrdersHandling
                     if (MessageBox.Show("Вероятно въведените данни са некоректни, искате ли да разгледате детайли?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
                     {
                         MessageBox.Show(ex.Source + " : " + ex.Message + " : " + ex.InnerException + " : " + ex.StackTrace + " : " + ex.Data);
-                    }
-                }
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Сигурни ли сте, че искате да изтриете записа?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                if (dgvTypes.CurrentRow.Cells[0].Value.ToString() == "Profiles-Coating")
-                {
-                    MessageBox.Show("Записа не може да бъде изтрит.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } else
-                {
-                    try
-                    {
-                        db.Types.Remove(typesBindingSource.Current as Types);
-                        typesBindingSource.RemoveCurrent();
-
-                        MessageBox.Show("Записа е успешно изтрит.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

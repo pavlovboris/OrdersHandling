@@ -1,7 +1,7 @@
 ﻿
 namespace OrdersHandling
 {
-    partial class frmSystems
+    partial class frmMU
     {
         /// <summary>
         /// Required designer variable.
@@ -30,45 +30,66 @@ namespace OrdersHandling
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dgvSystems = new System.Windows.Forms.DataGridView();
+            this.dgvMU = new System.Windows.Forms.DataGridView();
+            this.mUBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.muCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.muNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.systemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.systemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSystems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMU)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mUBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvSystems
+            // dgvMU
             // 
-            this.dgvSystems.AllowUserToAddRows = false;
-            this.dgvSystems.AllowUserToDeleteRows = false;
-            this.dgvSystems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSystems.AutoGenerateColumns = false;
-            this.dgvSystems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSystems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.systemNameDataGridViewTextBoxColumn});
-            this.dgvSystems.DataSource = this.systemsBindingSource;
-            this.dgvSystems.Location = new System.Drawing.Point(13, 13);
-            this.dgvSystems.Name = "dgvSystems";
-            this.dgvSystems.ReadOnly = true;
-            this.dgvSystems.RowHeadersWidth = 20;
-            this.dgvSystems.Size = new System.Drawing.Size(276, 249);
-            this.dgvSystems.TabIndex = 0;
+            this.dgvMU.AllowUserToAddRows = false;
+            this.dgvMU.AllowUserToDeleteRows = false;
+            this.dgvMU.AutoGenerateColumns = false;
+            this.dgvMU.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMU.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.muCodeDataGridViewTextBoxColumn,
+            this.muNameDataGridViewTextBoxColumn});
+            this.dgvMU.DataSource = this.mUBindingSource;
+            this.dgvMU.Location = new System.Drawing.Point(13, 13);
+            this.dgvMU.Name = "dgvMU";
+            this.dgvMU.ReadOnly = true;
+            this.dgvMU.RowHeadersWidth = 20;
+            this.dgvMU.Size = new System.Drawing.Size(327, 332);
+            this.dgvMU.TabIndex = 0;
+            // 
+            // mUBindingSource
+            // 
+            this.mUBindingSource.DataSource = typeof(OrdersHandling.MU);
+            // 
+            // muCodeDataGridViewTextBoxColumn
+            // 
+            this.muCodeDataGridViewTextBoxColumn.DataPropertyName = "MuCode";
+            this.muCodeDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.muCodeDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.muCodeDataGridViewTextBoxColumn.Name = "muCodeDataGridViewTextBoxColumn";
+            this.muCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.muCodeDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // muNameDataGridViewTextBoxColumn
+            // 
+            this.muNameDataGridViewTextBoxColumn.DataPropertyName = "MuName";
+            this.muNameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.muNameDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.muNameDataGridViewTextBoxColumn.Name = "muNameDataGridViewTextBoxColumn";
+            this.muNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.muNameDataGridViewTextBoxColumn.Width = 150;
             // 
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(12, 282);
+            this.btnAdd.Location = new System.Drawing.Point(13, 356);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 61);
-            this.btnAdd.TabIndex = 10;
+            this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "&Добави";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -80,70 +101,57 @@ namespace OrdersHandling
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(84, 282);
+            this.btnDelete.Location = new System.Drawing.Point(85, 356);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(63, 61);
-            this.btnDelete.TabIndex = 11;
+            this.btnDelete.TabIndex = 14;
             this.btnDelete.Text = "&Изтрий";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(222, 282);
+            this.btnSave.Location = new System.Drawing.Point(275, 356);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(65, 61);
-            this.btnSave.TabIndex = 12;
+            this.btnSave.TabIndex = 15;
             this.btnSave.Text = "&Запази";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // systemNameDataGridViewTextBoxColumn
-            // 
-            this.systemNameDataGridViewTextBoxColumn.DataPropertyName = "SystemName";
-            this.systemNameDataGridViewTextBoxColumn.HeaderText = "Име на системата";
-            this.systemNameDataGridViewTextBoxColumn.MaxInputLength = 50;
-            this.systemNameDataGridViewTextBoxColumn.Name = "systemNameDataGridViewTextBoxColumn";
-            this.systemNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.systemNameDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // systemsBindingSource
-            // 
-            this.systemsBindingSource.DataSource = typeof(OrdersHandling.Systems);
-            // 
-            // frmSystems
+            // frmMU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 356);
+            this.ClientSize = new System.Drawing.Size(353, 430);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.dgvSystems);
-            this.Name = "frmSystems";
+            this.Controls.Add(this.dgvMU);
+            this.Name = "frmMU";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Systems";
-            this.Load += new System.EventHandler(this.frmSystems_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSystems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).EndInit();
+            this.Text = "Measurement Units";
+            this.Load += new System.EventHandler(this.frmMU_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMU)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mUBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvSystems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn systemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource systemsBindingSource;
+        private System.Windows.Forms.DataGridView dgvMU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn muCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn muNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource mUBindingSource;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;

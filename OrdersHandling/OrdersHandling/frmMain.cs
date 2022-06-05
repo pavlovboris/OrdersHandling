@@ -16,6 +16,7 @@ namespace OrdersHandling
         {
             InitializeComponent();
         }
+        public OrdersHandlingEntities db;
         private bool _isLogout { get; set; }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -64,6 +65,62 @@ namespace OrdersHandling
         {
             frmSystems frmsystems = new frmSystems();
             frmsystems.Show();
+        }
+
+        private void codesListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCodesList frmcodeslist = new frmCodesList();
+            frmcodeslist.Show();
+        }
+
+        private void codeSubTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSubTypes frmSubtypes = new frmSubTypes();
+            frmSubtypes.Show();
+        }
+
+        private void ordersListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmOrdersList frmorderslist = new frmOrdersList();
+            frmorderslist.Show();
+        }
+
+        private void surfacesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSurfaces frmsurfaces = new frmSurfaces();
+            frmsurfaces.Show();
+        }
+
+        private void mUToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMU frmmu = new frmMU();
+            frmmu.Show();
+        }
+
+        private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmColors frmcolors = new frmColors();
+            frmcolors.Show();
+        }
+
+        private void codesCategoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCategory frmcategory = new frmCategory();
+            frmcategory.Show();
+        }
+
+        private void newOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            db = new OrdersHandlingEntities();
+            Orders orders = new Orders();
+            frmOrderEdit neworder = new frmOrderEdit();
+            orders.Customer_ID = frmLogin.Instance.UserInfo.PartnerID;
+            orders.Orddate = DateTime.Today;
+            db.Orders.Add(orders);
+            neworder.order = orders;
+            neworder.db = db;
+            neworder.Show();
+            
         }
     }
 }

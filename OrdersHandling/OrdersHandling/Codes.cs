@@ -35,6 +35,8 @@ namespace OrdersHandling
         public string SecondCode { get; set; }
         public Nullable<int> DefaultSupplier { get; set; }
         public Nullable<int> CoatingGroup { get; set; }
+        public Nullable<double> DefaultLength { get; set; }
+        public Nullable<int> DefaultSurface { get; set; }
     
         public virtual Category Category1 { get; set; }
         public virtual CoatingGroup CoatingGroup1 { get; set; }
@@ -47,5 +49,6 @@ namespace OrdersHandling
         public virtual ICollection<OrderLines> OrderLines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Surface> Surface { get; set; }
+        public virtual Surface Surface1 { get; set; }
     }
 }

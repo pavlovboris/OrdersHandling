@@ -37,6 +37,16 @@
           <Property Name="SecondCode" Type="varchar" MaxLength="100" />
           <Property Name="DefaultSupplier" Type="int" />
           <Property Name="CoatingGroup" Type="int" />
+          <Property Name="DefaultLength" Type="float" />
+          <Property Name="DefaultSurface" Type="int" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefaultMaterial" Type="int" />
         </EntityType>
         <EntityType Name="MU">
           <Key>
@@ -70,6 +80,7 @@
           <Property Name="ProtectionFilmPrice" Type="float" />
           <Property Name="Perimeter" Type="float" />
           <Property Name="Weight" Type="float" />
+          <Property Name="MU" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -222,6 +233,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Codes_Surface">
+          <End Role="Surface" Type="Self.Surface" Multiplicity="0..1" />
+          <End Role="Codes" Type="Self.Codes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surface">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Codes">
+              <PropertyRef Name="DefaultSurface" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Codes_System">
           <End Role="Systems" Type="Self.Systems" Multiplicity="0..1" />
           <End Role="Codes" Type="Self.Codes" Multiplicity="*" />
@@ -243,6 +266,18 @@
             </Principal>
             <Dependent Role="Codes">
               <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colors_Colors">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Colors1" Type="Self.Colors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Colors1">
+              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -279,6 +314,18 @@
             </Principal>
             <Dependent Role="OrderLines">
               <PropertyRef Name="SurfaceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Colors">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="RALID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -334,6 +381,7 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoatingGroup" EntityType="Self.CoatingGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Codes" EntityType="Self.Codes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MU" EntityType="Self.MU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -364,6 +412,10 @@
             <End Role="SubTypes" EntitySet="SubTypes" />
             <End Role="Codes" EntitySet="Codes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Codes_Surface" Association="Self.FK_Codes_Surface">
+            <End Role="Surface" EntitySet="Surface" />
+            <End Role="Codes" EntitySet="Codes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Codes_System" Association="Self.FK_Codes_System">
             <End Role="Systems" EntitySet="Systems" />
             <End Role="Codes" EntitySet="Codes" />
@@ -371,6 +423,10 @@
           <AssociationSet Name="FK_Codes_Type" Association="Self.FK_Codes_Type">
             <End Role="Types" EntitySet="Types" />
             <End Role="Codes" EntitySet="Codes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colors_Colors" Association="Self.FK_Colors_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Colors1" EntitySet="Colors" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderLines_CodeID" Association="Self.FK_OrderLines_CodeID">
             <End Role="Codes" EntitySet="Codes" />
@@ -383,6 +439,10 @@
           <AssociationSet Name="FK_OrderLines_SurfaceID" Association="Self.FK_OrderLines_SurfaceID">
             <End Role="Surface" EntitySet="Surface" />
             <End Role="OrderLines" EntitySet="OrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Colors" Association="Self.FK_Orders_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Customer_ID" Association="Self.FK_Orders_Customer_ID">
             <End Role="Partners" EntitySet="Partners" />
@@ -448,6 +508,9 @@
           <NavigationProperty Name="Types" Relationship="Self.FK_Codes_Type" FromRole="Codes" ToRole="Types" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLines_CodeID" FromRole="Codes" ToRole="OrderLines" />
           <NavigationProperty Name="Surface" Relationship="Self.FK_Surface_ItemCode" FromRole="Codes" ToRole="Surface" />
+          <Property Name="DefaultLength" Type="Double" />
+          <Property Name="DefaultSurface" Type="Int32" />
+          <NavigationProperty Name="Surface1" Relationship="OrdersHandlingModel.FK_Codes_Surface" FromRole="Codes" ToRole="Surface" />
         </EntityType>
         <EntityType Name="MU">
           <Key>
@@ -485,6 +548,7 @@
           <NavigationProperty Name="Codes" Relationship="Self.FK_OrderLines_CodeID" FromRole="OrderLines" ToRole="Codes" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_OrderLines_OrderID" FromRole="OrderLines" ToRole="Orders" />
           <NavigationProperty Name="Surface" Relationship="Self.FK_OrderLines_SurfaceID" FromRole="OrderLines" ToRole="Surface" />
+          <Property Name="MU" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -514,6 +578,7 @@
           <Property Name="ExpectedMatDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLines_OrderID" FromRole="Orders" ToRole="OrderLines" />
           <NavigationProperty Name="Partners" Relationship="Self.FK_Orders_Customer_ID" FromRole="Orders" ToRole="Partners" />
+          <NavigationProperty Name="Colors" Relationship="OrdersHandlingModel.FK_Orders_Colors" FromRole="Orders" ToRole="Colors" />
         </EntityType>
         <EntityType Name="Partners">
           <Key>
@@ -560,6 +625,7 @@
           <Property Name="ItemCode" Type="Int32" />
           <NavigationProperty Name="Codes" Relationship="Self.FK_Surface_ItemCode" FromRole="Surface" ToRole="Codes" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLines_SurfaceID" FromRole="Surface" ToRole="OrderLines" />
+          <NavigationProperty Name="Codes1" Relationship="OrdersHandlingModel.FK_Codes_Surface" FromRole="Surface" ToRole="Codes" />
         </EntityType>
         <EntityType Name="Systems">
           <Key>
@@ -828,7 +894,67 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="Colors" EntityType="OrdersHandlingModel.Colors" />
+          <AssociationSet Name="FK_Colors_Colors" Association="OrdersHandlingModel.FK_Colors_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Colors1" EntitySet="Colors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Colors" Association="OrdersHandlingModel.FK_Orders_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Codes_Surface" Association="OrdersHandlingModel.FK_Codes_Surface">
+            <End Role="Surface" EntitySet="Surface" />
+            <End Role="Codes" EntitySet="Codes" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DefaultMaterial" Type="Int32" />
+          <NavigationProperty Name="Colors1" Relationship="OrdersHandlingModel.FK_Colors_Colors" FromRole="Colors" ToRole="Colors1" />
+          <NavigationProperty Name="Colors2" Relationship="OrdersHandlingModel.FK_Colors_Colors" FromRole="Colors1" ToRole="Colors" />
+          <NavigationProperty Name="Orders" Relationship="OrdersHandlingModel.FK_Orders_Colors" FromRole="Colors" ToRole="Orders" />
+        </EntityType>
+        <Association Name="FK_Colors_Colors">
+          <End Type="OrdersHandlingModel.Colors" Role="Colors" Multiplicity="1" />
+          <End Type="OrdersHandlingModel.Colors" Role="Colors1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Colors1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Colors">
+          <End Type="OrdersHandlingModel.Colors" Role="Colors" Multiplicity="1" />
+          <End Type="OrdersHandlingModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="RALID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Codes_Surface">
+          <End Type="OrdersHandlingModel.Surface" Role="Surface" Multiplicity="0..1" />
+          <End Type="OrdersHandlingModel.Codes" Role="Codes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Surface">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Codes">
+              <PropertyRef Name="DefaultSurface" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -854,6 +980,8 @@
           <EntitySetMapping Name="Codes">
             <EntityTypeMapping TypeName="OrdersHandlingModel.Codes">
               <MappingFragment StoreEntitySet="Codes">
+                <ScalarProperty Name="DefaultSurface" ColumnName="DefaultSurface" />
+                <ScalarProperty Name="DefaultLength" ColumnName="DefaultLength" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -883,6 +1011,7 @@
           <EntitySetMapping Name="OrderLines">
             <EntityTypeMapping TypeName="OrdersHandlingModel.OrderLines">
               <MappingFragment StoreEntitySet="OrderLines">
+                <ScalarProperty Name="MU" ColumnName="MU" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="CodeID" ColumnName="CodeID" />
@@ -1002,6 +1131,15 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="OrdersHandlingModel.Colors">
+              <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="DefaultMaterial" ColumnName="DefaultMaterial" />
+                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

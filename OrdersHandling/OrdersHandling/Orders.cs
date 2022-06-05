@@ -46,5 +46,6 @@ namespace OrdersHandling
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLines> OrderLines { get; set; }
         public virtual Partners Partners { get; set; }
+        public virtual Colors Colors { get; set; }
     }
 }

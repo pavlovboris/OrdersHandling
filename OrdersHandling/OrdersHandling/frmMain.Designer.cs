@@ -43,6 +43,11 @@ namespace OrdersHandling
             this.codesCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.codeSubTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.surfacesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,6 +98,9 @@ namespace OrdersHandling
             // 
             // ordersToolStripMenuItem
             // 
+            this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ordersListToolStripMenuItem,
+            this.newOrderToolStripMenuItem});
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
             this.ordersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.ordersToolStripMenuItem.Text = "Orders";
@@ -100,7 +108,10 @@ namespace OrdersHandling
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.codesToolStripMenuItem});
+            this.codesToolStripMenuItem,
+            this.surfacesToolStripMenuItem,
+            this.mUToolStripMenuItem,
+            this.colorsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -129,6 +140,7 @@ namespace OrdersHandling
             this.codesListToolStripMenuItem.Name = "codesListToolStripMenuItem";
             this.codesListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.codesListToolStripMenuItem.Text = "Codes List";
+            this.codesListToolStripMenuItem.Click += new System.EventHandler(this.codesListToolStripMenuItem_Click);
             // 
             // codesTypesToolStripMenuItem
             // 
@@ -142,12 +154,14 @@ namespace OrdersHandling
             this.codesCategoryToolStripMenuItem.Name = "codesCategoryToolStripMenuItem";
             this.codesCategoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.codesCategoryToolStripMenuItem.Text = "Codes Category";
+            this.codesCategoryToolStripMenuItem.Click += new System.EventHandler(this.codesCategoryToolStripMenuItem_Click);
             // 
             // codeSubTypeToolStripMenuItem
             // 
             this.codeSubTypeToolStripMenuItem.Name = "codeSubTypeToolStripMenuItem";
             this.codeSubTypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.codeSubTypeToolStripMenuItem.Text = "Codes Sub-Types";
+            this.codeSubTypeToolStripMenuItem.Click += new System.EventHandler(this.codeSubTypeToolStripMenuItem_Click);
             // 
             // systemsToolStripMenuItem
             // 
@@ -155,6 +169,41 @@ namespace OrdersHandling
             this.systemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.systemsToolStripMenuItem.Text = "Systems";
             this.systemsToolStripMenuItem.Click += new System.EventHandler(this.systemsToolStripMenuItem_Click);
+            // 
+            // ordersListToolStripMenuItem
+            // 
+            this.ordersListToolStripMenuItem.Name = "ordersListToolStripMenuItem";
+            this.ordersListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ordersListToolStripMenuItem.Text = "Orders List";
+            this.ordersListToolStripMenuItem.Click += new System.EventHandler(this.ordersListToolStripMenuItem_Click);
+            // 
+            // surfacesToolStripMenuItem
+            // 
+            this.surfacesToolStripMenuItem.Name = "surfacesToolStripMenuItem";
+            this.surfacesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.surfacesToolStripMenuItem.Text = "Surfaces";
+            this.surfacesToolStripMenuItem.Click += new System.EventHandler(this.surfacesToolStripMenuItem_Click);
+            // 
+            // mUToolStripMenuItem
+            // 
+            this.mUToolStripMenuItem.Name = "mUToolStripMenuItem";
+            this.mUToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mUToolStripMenuItem.Text = "MU";
+            this.mUToolStripMenuItem.Click += new System.EventHandler(this.mUToolStripMenuItem_Click);
+            // 
+            // colorsToolStripMenuItem
+            // 
+            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorsToolStripMenuItem.Text = "Colors";
+            this.colorsToolStripMenuItem.Click += new System.EventHandler(this.colorsToolStripMenuItem_Click);
+            // 
+            // newOrderToolStripMenuItem
+            // 
+            this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
+            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newOrderToolStripMenuItem.Text = "New Order";
+            this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.newOrderToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -192,5 +241,10 @@ namespace OrdersHandling
         private System.Windows.Forms.ToolStripMenuItem codesCategoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem codeSubTypeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ordersListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem surfacesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mUToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
     }
 }

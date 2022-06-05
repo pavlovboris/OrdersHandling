@@ -32,6 +32,10 @@
         <AssociationConnector Association="OrdersHandlingModel.FK_Orders_Customer_ID" ManuallyRouted="false" />
         <AssociationConnector Association="OrdersHandlingModel.FK_Users_PartnerID" ManuallyRouted="false" />
         <AssociationConnector Association="OrdersHandlingModel.FK_Users_RoleID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.Colors" Width="1.5" PointX="6.375" PointY="0.875" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Colors_Colors" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Orders_Colors" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Codes_Surface" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

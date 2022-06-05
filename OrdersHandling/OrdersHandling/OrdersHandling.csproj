@@ -64,6 +64,33 @@
     <Compile Include="Codes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Colors.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="frmCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCategory.Designer.cs">
+      <DependentUpon>frmCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCodesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCodesList.Designer.cs">
+      <DependentUpon>frmCodesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmColors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmColors.Designer.cs">
+      <DependentUpon>frmColors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDatePicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDatePicker.Designer.cs">
+      <DependentUpon>frmDatePicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +102,30 @@
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMU.Designer.cs">
+      <DependentUpon>frmMU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrderEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrderEdit.Designer.cs">
+      <DependentUpon>frmOrderEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOrdersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrdersList.Designer.cs">
+      <DependentUpon>frmOrdersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSubTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSubTypes.Designer.cs">
+      <DependentUpon>frmSubTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSystems.cs">
       <SubType>Form</SubType>
@@ -126,6 +177,12 @@
     <Compile Include="Surface.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="frmSurfaces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSurfaces.Designer.cs">
+      <DependentUpon>frmSurfaces.cs</DependentUpon>
+    </Compile>
     <Compile Include="Systems.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -135,11 +192,35 @@
     <Compile Include="Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmCategory.resx">
+      <DependentUpon>frmCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCodesList.resx">
+      <DependentUpon>frmCodesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmColors.resx">
+      <DependentUpon>frmColors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDatePicker.resx">
+      <DependentUpon>frmDatePicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMU.resx">
+      <DependentUpon>frmMU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrderEdit.resx">
+      <DependentUpon>frmOrderEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOrdersList.resx">
+      <DependentUpon>frmOrdersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSubTypes.resx">
+      <DependentUpon>frmSubTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSystems.resx">
       <DependentUpon>frmSystems.cs</DependentUpon>
@@ -156,6 +237,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmSurfaces.resx">
+      <DependentUpon>frmSurfaces.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -164,6 +248,15 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Category.datasource" />
+    <None Include="Properties\DataSources\Codes.datasource" />
+    <None Include="Properties\DataSources\Colors.datasource" />
+    <None Include="Properties\DataSources\MU.datasource" />
+    <None Include="Properties\DataSources\OrderLines.datasource" />
+    <None Include="Properties\DataSources\Orders.datasource" />
+    <None Include="Properties\DataSources\Partners.datasource" />
+    <None Include="Properties\DataSources\SubTypes.datasource" />
+    <None Include="Properties\DataSources\Surface.datasource" />
     <None Include="Properties\DataSources\Systems.datasource" />
     <None Include="Properties\DataSources\Types.datasource" />
     <None Include="Properties\Settings.settings">

@@ -1,7 +1,7 @@
 ﻿
 namespace OrdersHandling
 {
-    partial class frmSystems
+    partial class frmSubTypes
     {
         /// <summary>
         /// Required designer variable.
@@ -30,41 +30,45 @@ namespace OrdersHandling
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dgvSystems = new System.Windows.Forms.DataGridView();
+            this.dgvSubTypes = new System.Windows.Forms.DataGridView();
+            this.subTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.systemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.systemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSystems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).BeginInit();
+            this.subTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubTypes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subTypesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvSystems
+            // dgvSubTypes
             // 
-            this.dgvSystems.AllowUserToAddRows = false;
-            this.dgvSystems.AllowUserToDeleteRows = false;
-            this.dgvSystems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvSubTypes.AllowUserToAddRows = false;
+            this.dgvSubTypes.AllowUserToDeleteRows = false;
+            this.dgvSubTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvSystems.AutoGenerateColumns = false;
-            this.dgvSystems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSystems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.systemNameDataGridViewTextBoxColumn});
-            this.dgvSystems.DataSource = this.systemsBindingSource;
-            this.dgvSystems.Location = new System.Drawing.Point(13, 13);
-            this.dgvSystems.Name = "dgvSystems";
-            this.dgvSystems.ReadOnly = true;
-            this.dgvSystems.RowHeadersWidth = 20;
-            this.dgvSystems.Size = new System.Drawing.Size(276, 249);
-            this.dgvSystems.TabIndex = 0;
+            this.dgvSubTypes.AutoGenerateColumns = false;
+            this.dgvSubTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSubTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.subTypeNameDataGridViewTextBoxColumn});
+            this.dgvSubTypes.DataSource = this.subTypesBindingSource;
+            this.dgvSubTypes.Location = new System.Drawing.Point(13, 13);
+            this.dgvSubTypes.Name = "dgvSubTypes";
+            this.dgvSubTypes.ReadOnly = true;
+            this.dgvSubTypes.RowHeadersWidth = 20;
+            this.dgvSubTypes.Size = new System.Drawing.Size(276, 273);
+            this.dgvSubTypes.TabIndex = 0;
+            // 
+            // subTypesBindingSource
+            // 
+            this.subTypesBindingSource.DataSource = typeof(OrdersHandling.SubTypes);
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(12, 282);
+            this.btnAdd.Location = new System.Drawing.Point(12, 293);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(66, 61);
@@ -77,10 +81,10 @@ namespace OrdersHandling
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(84, 282);
+            this.btnDelete.Location = new System.Drawing.Point(84, 293);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(63, 61);
@@ -93,10 +97,10 @@ namespace OrdersHandling
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(222, 282);
+            this.btnSave.Location = new System.Drawing.Point(224, 293);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(65, 61);
@@ -107,45 +111,41 @@ namespace OrdersHandling
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // systemNameDataGridViewTextBoxColumn
+            // subTypeNameDataGridViewTextBoxColumn
             // 
-            this.systemNameDataGridViewTextBoxColumn.DataPropertyName = "SystemName";
-            this.systemNameDataGridViewTextBoxColumn.HeaderText = "Име на системата";
-            this.systemNameDataGridViewTextBoxColumn.MaxInputLength = 50;
-            this.systemNameDataGridViewTextBoxColumn.Name = "systemNameDataGridViewTextBoxColumn";
-            this.systemNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.systemNameDataGridViewTextBoxColumn.Width = 250;
+            this.subTypeNameDataGridViewTextBoxColumn.DataPropertyName = "SubTypeName";
+            this.subTypeNameDataGridViewTextBoxColumn.HeaderText = "Sub-Type Name";
+            this.subTypeNameDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.subTypeNameDataGridViewTextBoxColumn.Name = "subTypeNameDataGridViewTextBoxColumn";
+            this.subTypeNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.subTypeNameDataGridViewTextBoxColumn.Width = 250;
             // 
-            // systemsBindingSource
-            // 
-            this.systemsBindingSource.DataSource = typeof(OrdersHandling.Systems);
-            // 
-            // frmSystems
+            // frmSubTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 356);
+            this.ClientSize = new System.Drawing.Size(304, 367);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.dgvSystems);
-            this.Name = "frmSystems";
+            this.Controls.Add(this.dgvSubTypes);
+            this.Name = "frmSubTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Systems";
-            this.Load += new System.EventHandler(this.frmSystems_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSystems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).EndInit();
+            this.Text = "Sub-Types";
+            this.Load += new System.EventHandler(this.frmSubTypes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubTypes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subTypesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvSystems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn systemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource systemsBindingSource;
+        private System.Windows.Forms.DataGridView dgvSubTypes;
+        private System.Windows.Forms.BindingSource subTypesBindingSource;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subTypeNameDataGridViewTextBoxColumn;
     }
 }

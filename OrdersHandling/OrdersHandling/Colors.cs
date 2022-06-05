@@ -12,23 +12,21 @@ namespace OrdersHandling
     using System;
     using System.Collections.Generic;
     
-    public partial class Surface
+    public partial class Colors
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Surface()
+        public Colors()
         {
-            this.OrderLines = new HashSet<OrderLines>();
-            this.Codes1 = new HashSet<Codes>();
+            this.Orders = new HashSet<Orders>();
         }
     
         public int ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> ItemCode { get; set; }
+        public string ColorName { get; set; }
+        public Nullable<int> DefaultMaterial { get; set; }
     
-        public virtual Codes Codes { get; set; }
+        public virtual Colors Colors1 { get; set; }
+        public virtual Colors Colors2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderLines> OrderLines { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Codes> Codes1 { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

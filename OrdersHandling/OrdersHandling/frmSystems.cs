@@ -63,5 +63,24 @@ namespace OrdersHandling
                 }
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Сигурни ли сте, че искате да изтриете записа?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    db.Systems.Remove(systemsBindingSource.Current as Systems);
+                    systemsBindingSource.RemoveCurrent();
+
+                    MessageBox.Show("Записа е успешно изтрит.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
