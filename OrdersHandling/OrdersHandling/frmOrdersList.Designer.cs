@@ -59,6 +59,10 @@ namespace OrdersHandling
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbCustomer = new System.Windows.Forms.ComboBox();
             this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.lstFilterCompleted = new System.Windows.Forms.ListBox();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.cmbFilter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdersList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorsBindingSource)).BeginInit();
@@ -332,11 +336,58 @@ namespace OrdersHandling
             // 
             this.partnersBindingSource.DataSource = typeof(OrdersHandling.Partners);
             // 
+            // txtFilter
+            // 
+            this.txtFilter.Location = new System.Drawing.Point(464, 13);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(200, 20);
+            this.txtFilter.TabIndex = 2;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            // 
+            // lstFilterCompleted
+            // 
+            this.lstFilterCompleted.FormattingEnabled = true;
+            this.lstFilterCompleted.Items.AddRange(new object[] {
+            "Completed",
+            "Not Completed",
+            "All"});
+            this.lstFilterCompleted.Location = new System.Drawing.Point(1167, 12);
+            this.lstFilterCompleted.Name = "lstFilterCompleted";
+            this.lstFilterCompleted.Size = new System.Drawing.Size(120, 43);
+            this.lstFilterCompleted.TabIndex = 3;
+            this.lstFilterCompleted.SelectedIndexChanged += new System.EventHandler(this.lblFilterCompleted_SelectedIndexChanged);
+            // 
+            // lblFilter
+            // 
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(423, 15);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(35, 13);
+            this.lblFilter.TabIndex = 4;
+            this.lblFilter.Text = "Filter :";
+            // 
+            // cmbFilter
+            // 
+            this.cmbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFilter.FormattingEnabled = true;
+            this.cmbFilter.Items.AddRange(new object[] {
+            "Orders",
+            "Offers"});
+            this.cmbFilter.Location = new System.Drawing.Point(256, 13);
+            this.cmbFilter.Name = "cmbFilter";
+            this.cmbFilter.Size = new System.Drawing.Size(121, 21);
+            this.cmbFilter.TabIndex = 5;
+            this.cmbFilter.SelectedIndexChanged += new System.EventHandler(this.cmbFilter_SelectedIndexChanged);
+            // 
             // frmOrdersList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1303, 564);
+            this.Controls.Add(this.cmbFilter);
+            this.Controls.Add(this.lblFilter);
+            this.Controls.Add(this.lstFilterCompleted);
+            this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.cmbCustomer);
             this.Controls.Add(this.dgvOrdersList);
             this.Name = "frmOrdersList";
@@ -350,6 +401,7 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -384,5 +436,9 @@ namespace OrdersHandling
         private System.Windows.Forms.DataGridViewTextBoxColumn deliverydateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn matDate2DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn expectedMatDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.ListBox lstFilterCompleted;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.ComboBox cmbFilter;
     }
 }

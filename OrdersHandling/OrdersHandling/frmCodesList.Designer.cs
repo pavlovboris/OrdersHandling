@@ -33,6 +33,7 @@ namespace OrdersHandling
             this.dgvCodesList = new System.Windows.Forms.DataGridView();
             this.typesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.surfaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.subTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mUBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.systemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,7 +44,6 @@ namespace OrdersHandling
             this.btnSave = new System.Windows.Forms.Button();
             this.cmbFilterType = new System.Windows.Forms.ComboBox();
             this.btnClearTypeFilter = new System.Windows.Forms.Button();
-            this.surfaceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -55,6 +55,8 @@ namespace OrdersHandling
             this.subTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.defaultMUDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.PF = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TF = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.secondCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defaultSupplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.coatingGroupDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,12 +64,12 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.dgvCodesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.typesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfaceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subTypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mUBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.surfaceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvCodesList
@@ -88,6 +90,8 @@ namespace OrdersHandling
             this.subTypeDataGridViewTextBoxColumn,
             this.defaultMUDataGridViewTextBoxColumn,
             this.systemDataGridViewTextBoxColumn,
+            this.PF,
+            this.TF,
             this.secondCodeDataGridViewTextBoxColumn,
             this.defaultSupplierDataGridViewTextBoxColumn,
             this.coatingGroupDataGridViewTextBoxColumn,
@@ -106,6 +110,10 @@ namespace OrdersHandling
             // categoryBindingSource
             // 
             this.categoryBindingSource.DataSource = typeof(OrdersHandling.Category);
+            // 
+            // surfaceBindingSource
+            // 
+            this.surfaceBindingSource.DataSource = typeof(OrdersHandling.Surface);
             // 
             // subTypesBindingSource
             // 
@@ -198,10 +206,6 @@ namespace OrdersHandling
             this.btnClearTypeFilter.Text = "Clear Filter";
             this.btnClearTypeFilter.UseVisualStyleBackColor = true;
             this.btnClearTypeFilter.Click += new System.EventHandler(this.btnClearTypeFilter_Click);
-            // 
-            // surfaceBindingSource
-            // 
-            this.surfaceBindingSource.DataSource = typeof(OrdersHandling.Surface);
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -308,6 +312,26 @@ namespace OrdersHandling
             this.systemDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.systemDataGridViewTextBoxColumn.ValueMember = "SystemID";
             // 
+            // PF
+            // 
+            this.PF.DataPropertyName = "PF";
+            this.PF.FalseValue = "0";
+            this.PF.HeaderText = "Protective Film";
+            this.PF.Name = "PF";
+            this.PF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.PF.TrueValue = "1";
+            // 
+            // TF
+            // 
+            this.TF.DataPropertyName = "TF";
+            this.TF.FalseValue = "0";
+            this.TF.HeaderText = "Thermo Film";
+            this.TF.Name = "TF";
+            this.TF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.TF.TrueValue = "1";
+            // 
             // secondCodeDataGridViewTextBoxColumn
             // 
             this.secondCodeDataGridViewTextBoxColumn.DataPropertyName = "SecondCode";
@@ -358,12 +382,12 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.dgvCodesList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.typesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.surfaceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subTypesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mUBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.surfaceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -383,6 +407,7 @@ namespace OrdersHandling
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbFilterType;
         private System.Windows.Forms.Button btnClearTypeFilter;
+        private System.Windows.Forms.BindingSource surfaceBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn typeDataGridViewTextBoxColumn;
@@ -391,10 +416,11 @@ namespace OrdersHandling
         private System.Windows.Forms.DataGridViewTextBoxColumn weigthDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DefaultLength;
         private System.Windows.Forms.DataGridViewComboBoxColumn DefaultSurface;
-        private System.Windows.Forms.BindingSource surfaceBindingSource;
         private System.Windows.Forms.DataGridViewComboBoxColumn subTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn defaultMUDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn systemDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn PF;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn TF;
         private System.Windows.Forms.DataGridViewTextBoxColumn secondCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn defaultSupplierDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn coatingGroupDataGridViewTextBoxColumn;

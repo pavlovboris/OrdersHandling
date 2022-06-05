@@ -24,6 +24,15 @@ namespace OrdersHandling
 
             OrdersHandlingEntities db = new OrdersHandlingEntities();
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
+            
+            if (frmLogin.Instance.UserInfo.RoleID==1)
+            {
+                adminSettingsToolStripMenuItem.Visible = true;
+            } else
+            {
+                adminSettingsToolStripMenuItem.Visible = false;
+            }
+        
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -116,11 +125,24 @@ namespace OrdersHandling
             frmOrderEdit neworder = new frmOrderEdit();
             orders.Customer_ID = frmLogin.Instance.UserInfo.PartnerID;
             orders.Orddate = DateTime.Today;
+            orders.IsOffer = 1;
             db.Orders.Add(orders);
             neworder.order = orders;
             neworder.db = db;
             neworder.Show();
             
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUsers frmusers = new frmUsers();
+            frmusers.Show();
+        }
+
+        private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRoles frmroles = new frmRoles();
+            frmroles.Show();
         }
     }
 }

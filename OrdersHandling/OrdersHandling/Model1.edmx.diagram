@@ -36,6 +36,7 @@
         <AssociationConnector Association="OrdersHandlingModel.FK_Colors_Colors" />
         <AssociationConnector Association="OrdersHandlingModel.FK_Orders_Colors" />
         <AssociationConnector Association="OrdersHandlingModel.FK_Codes_Surface" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Orders_Codes" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,6 +19,7 @@ namespace OrdersHandling
         {
             this.OrderLines = new HashSet<OrderLines>();
             this.Surface = new HashSet<Surface>();
+            this.Orders = new HashSet<Orders>();
         }
     
         public int ID { get; set; }
@@ -37,6 +38,8 @@ namespace OrdersHandling
         public Nullable<int> CoatingGroup { get; set; }
         public Nullable<double> DefaultLength { get; set; }
         public Nullable<int> DefaultSurface { get; set; }
+        public int PF { get; set; }
+        public int TF { get; set; }
     
         public virtual Category Category1 { get; set; }
         public virtual CoatingGroup CoatingGroup1 { get; set; }
@@ -50,5 +53,7 @@ namespace OrdersHandling
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Surface> Surface { get; set; }
         public virtual Surface Surface1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

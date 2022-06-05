@@ -73,6 +73,12 @@
     <Compile Include="frmCategory.Designer.cs">
       <DependentUpon>frmCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCodeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCodeSelector.Designer.cs">
+      <DependentUpon>frmCodeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCodesList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,12 @@
     <Compile Include="frmOrdersList.Designer.cs">
       <DependentUpon>frmOrdersList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRoles.Designer.cs">
+      <DependentUpon>frmRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSubTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +150,12 @@
     </Compile>
     <Compile Include="frmTypes.Designer.cs">
       <DependentUpon>frmTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -195,6 +213,9 @@
     <EmbeddedResource Include="frmCategory.resx">
       <DependentUpon>frmCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCodeSelector.resx">
+      <DependentUpon>frmCodeSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCodesList.resx">
       <DependentUpon>frmCodesList.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +240,9 @@
     <EmbeddedResource Include="frmOrdersList.resx">
       <DependentUpon>frmOrdersList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRoles.resx">
+      <DependentUpon>frmRoles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSubTypes.resx">
       <DependentUpon>frmSubTypes.cs</DependentUpon>
     </EmbeddedResource>
@@ -227,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTypes.resx">
       <DependentUpon>frmTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -255,10 +282,12 @@
     <None Include="Properties\DataSources\OrderLines.datasource" />
     <None Include="Properties\DataSources\Orders.datasource" />
     <None Include="Properties\DataSources\Partners.datasource" />
+    <None Include="Properties\DataSources\Roles.datasource" />
     <None Include="Properties\DataSources\SubTypes.datasource" />
     <None Include="Properties\DataSources\Surface.datasource" />
     <None Include="Properties\DataSources\Systems.datasource" />
     <None Include="Properties\DataSources\Types.datasource" />
+    <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -48,6 +48,9 @@ namespace OrdersHandling
             this.mUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +69,8 @@ namespace OrdersHandling
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.ordersToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.adminSettingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1003, 24);
@@ -205,6 +209,30 @@ namespace OrdersHandling
             this.newOrderToolStripMenuItem.Text = "New Order";
             this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.newOrderToolStripMenuItem_Click);
             // 
+            // adminSettingsToolStripMenuItem
+            // 
+            this.adminSettingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usersToolStripMenuItem,
+            this.rolesToolStripMenuItem});
+            this.adminSettingsToolStripMenuItem.Name = "adminSettingsToolStripMenuItem";
+            this.adminSettingsToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.adminSettingsToolStripMenuItem.Text = "Admin Settings";
+            this.adminSettingsToolStripMenuItem.Visible = false;
+            // 
+            // usersToolStripMenuItem
+            // 
+            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usersToolStripMenuItem.Text = "Users";
+            this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
+            // 
+            // rolesToolStripMenuItem
+            // 
+            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rolesToolStripMenuItem.Text = "Roles";
+            this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,5 +274,8 @@ namespace OrdersHandling
         private System.Windows.Forms.ToolStripMenuItem mUToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
     }
 }

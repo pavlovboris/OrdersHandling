@@ -20,12 +20,14 @@ namespace OrdersHandling
         public OrdersHandlingEntities db;
         private void frmOrderEdit_Load(object sender, EventArgs e)
         {
-            if (frmLogin.Instance.UserInfo.UserName=="admin")
+            if (frmLogin.Instance.UserInfo.RoleID==1)
             {
-                cmbPartnerName.Visible = true;
+                cmbPartnerName.Enabled = true;
+                chkboxOffer.Enabled = true;
+                chkBoxCompleated.Enabled = true;
             } else
             {
-                cmbPartnerName.Visible = false;
+                cmbPartnerName.Enabled = false;
             }
             //db = new OrdersHandlingEntities();
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
@@ -39,6 +41,45 @@ namespace OrdersHandling
             surfaceBindingSource.DataSource = db.Surface.ToList();
             mUBindingSource.DataSource = db.MU.ToList();
             orderLinesBindingSource.DataSource = db.OrderLines.Where(o => o.OrderID == order.ID).ToList();
+
+            //Update order infor panel starts here 
+            double sqm = 0;
+            double kgr = 0;
+
+            foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
+            {
+                if (dgvr != null)
+                {
+                    OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
+                    double tmpsqm = 0;
+                    double tmpkgr = 0;
+                    try
+                    {
+                        tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                        tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                    }
+                    catch
+                    {
+
+                    }
+
+
+
+                    if (tmpsqm.ToString() != "")
+                    {
+                        sqm += tmpsqm;
+                    }
+                    if (tmpkgr.ToString() != "")
+                    {
+                        kgr += tmpkgr;
+                    }
+                }
+            }
+            lblSqmSum.Text = Math.Round(sqm, 2).ToString();
+            lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+            
+            //Update order info panel ends here
+
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -47,6 +88,8 @@ namespace OrdersHandling
             {
                 try
                 {
+                    order.OrderSQM =Convert.ToDouble( lblSqmSum.Text);
+                    order.Orderkgr = Convert.ToDouble(lblKgrSum.Text);
                     dgvOrderLines.EndEdit();
                     ordersBindingSource.EndEdit();
                     await db.SaveChangesAsync();
@@ -82,9 +125,13 @@ namespace OrdersHandling
             orderline.OrderID = order.ID;
             orderline.CodeID = 6;
             Codes code = (from codes in db.Codes where codes.ID == orderline.CodeID select codes).SingleOrDefault();
+            Partners partner = cmbPartnerName.SelectedItem as Partners;
             orderline.MU = code.DefaultMU;
             orderline.Length = code.DefaultLength;
             orderline.SurfaceID = (int)code.DefaultSurface;
+            orderline.Perimeter = code.Perimeter;
+            orderline.Weight = code.Weigth;
+            orderline.ProtectiveFilm = partner.DefaultPF*code.PF;
             if (orderline.SurfaceID.ToString()==null)
             {
                 orderline.SurfaceID = 1;
@@ -96,6 +143,24 @@ namespace OrdersHandling
             orderLinesBindingSource.Add(orderline);
             orderLinesBindingSource.MoveLast();
             db.OrderLines.Add(orderline);
+
+            frmCodeSelector frmcodeselector = new frmCodeSelector();
+            frmcodeselector.FormClosing += Frmcodeselector_FormClosing;
+            frmcodeselector.Show();
+        }
+
+        private void Frmcodeselector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmCodeSelector frmcodeselector = (frmCodeSelector)sender;
+
+            if(frmcodeselector.dgvCodeSelector.CurrentRow!=null && frmcodeselector.cancel==false)
+            {
+                if (frmcodeselector.xclicked!=true)
+                {
+                    Codes code = frmcodeselector.dgvCodeSelector.CurrentRow.DataBoundItem as Codes;
+                    dgvOrderLines.CurrentRow.Cells[2].Value = code.ID;
+                }
+            } 
         }
 
         private void dgvOrderLines_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -105,11 +170,16 @@ namespace OrdersHandling
                 OrderLines orderline = dgvOrderLines.Rows[e.RowIndex].DataBoundItem as OrderLines;
                 Codes code = (from codes in db.Codes where codes.ID == orderline.CodeID select codes).SingleOrDefault();
                 Types type = (from types in db.Types where types.TypeID == code.Type select types).SingleOrDefault();
+                Partners partner = cmbPartnerName.SelectedItem as Partners;
+
                 if (e.ColumnIndex == 2 | e.ColumnIndex == 3)
                 {
                     orderline.MU = code.DefaultMU;
                     orderline.Length = code.DefaultLength;
-                   
+                    orderline.Perimeter = code.Perimeter;
+                    orderline.Weight = code.Weigth;
+                    orderline.ProtectiveFilm = partner.DefaultPF * code.PF;
+
                     if (code.DefaultSurface != null)
                     {
                         orderline.SurfaceID = (int)code.DefaultSurface;
@@ -125,10 +195,45 @@ namespace OrdersHandling
                     {
                         orderline.Length = 1;
                     }
+
+                    orderline.QTY = Math.Round((double)(orderline.Pcs * orderline.Length), 2);
                 } else if (e.ColumnIndex == 5 | e.ColumnIndex ==6  ) 
                 {
                     orderline.QTY = Math.Round((double)(orderline.Pcs * orderline.Length),2);
                 }
+
+                //Update order infor panel starts here 
+                double sqm = 0;
+                double kgr = 0;
+
+                foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
+                {
+                    if (dgvr != null)
+                    {
+                        OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
+                        double tmpsqm = 0;
+                        double tmpkgr = 0;
+                        try
+                        {
+                            tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                            tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                        }
+                        catch
+                        {
+                        }
+                        if (tmpsqm.ToString() != "")
+                        {
+                            sqm += tmpsqm;
+                        }
+                        if (tmpkgr.ToString() != "")
+                        {
+                            kgr += tmpkgr;
+                        }
+                    }
+                }
+                lblSqmSum.Text = Math.Round(sqm, 2).ToString();
+                lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+                //Update order info panel ends here
             }
         }
 
@@ -149,6 +254,56 @@ namespace OrdersHandling
             if (datepicker.isClosed==0)
             {
                 dgvOrderLines.CurrentCell.Value = datepicker.cldrDatePick.SelectionStart;
+            }
+        }
+
+        private void dateTimeExpectedDate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker datetime = (DateTimePicker)sender;
+
+            foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
+            {
+                OrderLines orderLines = dgvr.DataBoundItem as OrderLines;
+                orderLines.DeliveryDate = datetime.Value; 
+            }
+        }
+
+        private void dgvOrderLines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2 || e.ColumnIndex==3)
+            {
+                frmCodeSelector frmcodeselector = new frmCodeSelector();
+                frmcodeselector.FormClosing += Frmcodeselector_FormClosing;
+                frmcodeselector.Show();
+            }
+        }
+
+        private void dgvOrderLines_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button==MouseButtons.Right)
+            {
+                if (e.RowIndex != -1 && dgvOrderLines.Rows[e.RowIndex].DataBoundItem!=null  )
+                {
+                    dgvOrderLines.Rows[e.RowIndex].Selected = true;
+                }
+            }
+        }
+
+        private void dgvContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "Delete")
+            {
+                if (MessageBox.Show("Сигурни ли сте, че искате да изтриете маркираните изцяло редове?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow dgr in dgvOrderLines.Rows)
+                    {
+                        if (dgr.DataBoundItem!=null && dgr.Selected==true)
+                        {
+                            orderLinesBindingSource.Remove(dgr.DataBoundItem);
+                            db.OrderLines.Remove((OrderLines)dgr.DataBoundItem);
+                        }
+                    }
+                }
             }
         }
     }

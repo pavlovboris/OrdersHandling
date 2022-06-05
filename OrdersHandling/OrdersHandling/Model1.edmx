@@ -39,6 +39,8 @@
           <Property Name="CoatingGroup" Type="int" />
           <Property Name="DefaultLength" Type="float" />
           <Property Name="DefaultSurface" Type="int" />
+          <Property Name="PF" Type="int" Nullable="false" />
+          <Property Name="TF" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Colors">
           <Key>
@@ -317,6 +319,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_Codes">
+          <End Role="Codes" Type="Self.Codes" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Codes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Powder_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Colors">
           <End Role="Colors" Type="Self.Colors" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -440,6 +454,10 @@
             <End Role="Surface" EntitySet="Surface" />
             <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_Codes" Association="Self.FK_Orders_Codes">
+            <End Role="Codes" EntitySet="Codes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK_Orders_Colors" Association="Self.FK_Orders_Colors">
             <End Role="Colors" EntitySet="Colors" />
             <End Role="Orders" EntitySet="Orders" />
@@ -511,6 +529,9 @@
           <Property Name="DefaultLength" Type="Double" />
           <Property Name="DefaultSurface" Type="Int32" />
           <NavigationProperty Name="Surface1" Relationship="OrdersHandlingModel.FK_Codes_Surface" FromRole="Codes" ToRole="Surface" />
+          <NavigationProperty Name="Orders" Relationship="OrdersHandlingModel.FK_Orders_Codes" FromRole="Codes" ToRole="Orders" />
+          <Property Name="PF" Type="Int32" Nullable="false" />
+          <Property Name="TF" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="MU">
           <Key>
@@ -579,6 +600,7 @@
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLines_OrderID" FromRole="Orders" ToRole="OrderLines" />
           <NavigationProperty Name="Partners" Relationship="Self.FK_Orders_Customer_ID" FromRole="Orders" ToRole="Partners" />
           <NavigationProperty Name="Colors" Relationship="OrdersHandlingModel.FK_Orders_Colors" FromRole="Orders" ToRole="Colors" />
+          <NavigationProperty Name="Codes" Relationship="OrdersHandlingModel.FK_Orders_Codes" FromRole="Orders" ToRole="Codes" />
         </EntityType>
         <EntityType Name="Partners">
           <Key>
@@ -907,6 +929,10 @@
             <End Role="Surface" EntitySet="Surface" />
             <End Role="Codes" EntitySet="Codes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Orders_Codes" Association="OrdersHandlingModel.FK_Orders_Codes">
+            <End Role="Codes" EntitySet="Codes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Colors">
           <Key>
@@ -955,6 +981,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Orders_Codes">
+          <End Type="OrdersHandlingModel.Codes" Role="Codes" Multiplicity="1" />
+          <End Type="OrdersHandlingModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Codes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Powder_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -980,6 +1018,8 @@
           <EntitySetMapping Name="Codes">
             <EntityTypeMapping TypeName="OrdersHandlingModel.Codes">
               <MappingFragment StoreEntitySet="Codes">
+                <ScalarProperty Name="TF" ColumnName="TF" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
                 <ScalarProperty Name="DefaultSurface" ColumnName="DefaultSurface" />
                 <ScalarProperty Name="DefaultLength" ColumnName="DefaultLength" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

@@ -47,5 +47,6 @@ namespace OrdersHandling
         public virtual ICollection<OrderLines> OrderLines { get; set; }
         public virtual Partners Partners { get; set; }
         public virtual Colors Colors { get; set; }
+        public virtual Codes Codes { get; set; }
     }
 }
