@@ -293,17 +293,58 @@ namespace OrdersHandling
         {
             if (e.ClickedItem.Text == "Delete")
             {
-                if (MessageBox.Show("Сигурни ли сте, че искате да изтриете маркираните изцяло редове?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                /*if (MessageBox.Show("Сигурни ли сте, че искате да изтриете маркираните изцяло редове?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    foreach (DataGridViewRow dgr in dgvOrderLines.Rows)
+                    
+                }*/
+
+                foreach(DataGridViewRow dr in dgvOrderLines.Rows)
+                {
+                    if (dr.DataBoundItem!=null && dr.Selected==true)
                     {
-                        if (dgr.DataBoundItem!=null && dgr.Selected==true)
+                        if(MessageBox.Show("Сигурни ли сте, че искате да изтриете избраните редове?","",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            orderLinesBindingSource.Remove(dgr.DataBoundItem);
-                            db.OrderLines.Remove((OrderLines)dgr.DataBoundItem);
+                            OrderLines orders = new OrderLines();
+                            orders = dr.DataBoundItem as OrderLines;
+                            ordersBindingSource.Remove(orders);
+                            dgvOrderLines.Rows.Remove(dr);
+                            db.OrderLines.Remove(orders);
                         }
                     }
                 }
+                //Update order infor panel starts here 
+                double sqm = 0;
+                double kgr = 0;
+
+                foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
+                {
+                    if (dgvr != null)
+                    {
+                        OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
+                        double tmpsqm = 0;
+                        double tmpkgr = 0;
+                        try
+                        {
+                            tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                            tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                        }
+                        catch
+                        {
+                        }
+                        if (tmpsqm.ToString() != "")
+                        {
+                            sqm += tmpsqm;
+                        }
+                        if (tmpkgr.ToString() != "")
+                        {
+                            kgr += tmpkgr;
+                        }
+                    }
+                }
+                lblSqmSum.Text = Math.Round(sqm, 2).ToString();
+                lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+                //Update order info panel ends here
+
             }
         }
     }
