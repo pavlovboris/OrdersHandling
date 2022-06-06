@@ -18,6 +18,7 @@ namespace OrdersHandling
         public Orders()
         {
             this.OrderLines = new HashSet<OrderLines>();
+            this.UploadedFiles = new HashSet<UploadedFiles>();
         }
     
         public int ID { get; set; }
@@ -48,5 +49,7 @@ namespace OrdersHandling
         public virtual Partners Partners { get; set; }
         public virtual Colors Colors { get; set; }
         public virtual Codes Codes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UploadedFiles> UploadedFiles { get; set; }
     }
 }

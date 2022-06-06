@@ -144,69 +144,69 @@ namespace OrdersHandling
             this.codeSubTypeToolStripMenuItem,
             this.systemsToolStripMenuItem});
             this.codesToolStripMenuItem.Name = "codesToolStripMenuItem";
-            this.codesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.codesToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.codesToolStripMenuItem.Text = "Codes";
             // 
             // newCodeToolStripMenuItem
             // 
             this.newCodeToolStripMenuItem.Name = "newCodeToolStripMenuItem";
-            this.newCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newCodeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.newCodeToolStripMenuItem.Text = "New Code";
             this.newCodeToolStripMenuItem.Click += new System.EventHandler(this.newCodeToolStripMenuItem_Click);
             // 
             // codesListToolStripMenuItem
             // 
             this.codesListToolStripMenuItem.Name = "codesListToolStripMenuItem";
-            this.codesListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.codesListToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.codesListToolStripMenuItem.Text = "Codes List";
             this.codesListToolStripMenuItem.Click += new System.EventHandler(this.codesListToolStripMenuItem_Click);
             // 
             // codesTypesToolStripMenuItem
             // 
             this.codesTypesToolStripMenuItem.Name = "codesTypesToolStripMenuItem";
-            this.codesTypesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.codesTypesToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.codesTypesToolStripMenuItem.Text = "Codes Types";
             this.codesTypesToolStripMenuItem.Click += new System.EventHandler(this.codesTypesToolStripMenuItem_Click);
             // 
             // codesCategoryToolStripMenuItem
             // 
             this.codesCategoryToolStripMenuItem.Name = "codesCategoryToolStripMenuItem";
-            this.codesCategoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.codesCategoryToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.codesCategoryToolStripMenuItem.Text = "Codes Category";
             this.codesCategoryToolStripMenuItem.Click += new System.EventHandler(this.codesCategoryToolStripMenuItem_Click);
             // 
             // codeSubTypeToolStripMenuItem
             // 
             this.codeSubTypeToolStripMenuItem.Name = "codeSubTypeToolStripMenuItem";
-            this.codeSubTypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.codeSubTypeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.codeSubTypeToolStripMenuItem.Text = "Codes Sub-Types";
             this.codeSubTypeToolStripMenuItem.Click += new System.EventHandler(this.codeSubTypeToolStripMenuItem_Click);
             // 
             // systemsToolStripMenuItem
             // 
             this.systemsToolStripMenuItem.Name = "systemsToolStripMenuItem";
-            this.systemsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.systemsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.systemsToolStripMenuItem.Text = "Systems";
             this.systemsToolStripMenuItem.Click += new System.EventHandler(this.systemsToolStripMenuItem_Click);
             // 
             // surfacesToolStripMenuItem
             // 
             this.surfacesToolStripMenuItem.Name = "surfacesToolStripMenuItem";
-            this.surfacesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.surfacesToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.surfacesToolStripMenuItem.Text = "Surfaces";
             this.surfacesToolStripMenuItem.Click += new System.EventHandler(this.surfacesToolStripMenuItem_Click);
             // 
             // mUToolStripMenuItem
             // 
             this.mUToolStripMenuItem.Name = "mUToolStripMenuItem";
-            this.mUToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mUToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.mUToolStripMenuItem.Text = "MU";
             this.mUToolStripMenuItem.Click += new System.EventHandler(this.mUToolStripMenuItem_Click);
             // 
             // colorsToolStripMenuItem
             // 
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.colorsToolStripMenuItem.Text = "Colors";
             this.colorsToolStripMenuItem.Click += new System.EventHandler(this.colorsToolStripMenuItem_Click);
             // 
@@ -223,14 +223,14 @@ namespace OrdersHandling
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // rolesToolStripMenuItem
             // 
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.rolesToolStripMenuItem.Text = "Roles";
             this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
             // 

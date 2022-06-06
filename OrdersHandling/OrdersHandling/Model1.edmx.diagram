@@ -37,6 +37,8 @@
         <AssociationConnector Association="OrdersHandlingModel.FK_Orders_Colors" />
         <AssociationConnector Association="OrdersHandlingModel.FK_Codes_Surface" />
         <AssociationConnector Association="OrdersHandlingModel.FK_Orders_Codes" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.UploadedFiles" Width="1.5" PointX="5.25" PointY="18" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_UploadedFiles_Orders" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,7 @@ namespace OrdersHandling
             //db = new OrdersHandlingEntities();
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
 
+            uploadedFilesBindingSource.DataSource = db.UploadedFiles.Where(u => u.OrderID==order.ID).ToList();
             partnersBindingSource.DataSource = db.Partners.ToList();
             codesBindingSource.DataSource = db.Codes.Where(c => c.Type == 5).ToList();
             colorsBindingSource.DataSource = db.Colors.ToList();
@@ -348,6 +350,74 @@ namespace OrdersHandling
                 lblKgrSum.Text = Math.Round(kgr, 2).ToString();
                 //Update order info panel ends here
             }
+        }
+
+        private void uploadFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+           /* OrdersHandlingEntities db = new OrdersHandlingEntities();
+            db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";*/
+            FileDialog dialog = (FileDialog)sender;
+
+            if (dialog.CheckFileExists == true)
+            {
+                try
+                {
+                    string filename = Path.GetFileName(dialog.FileName);
+                    byte[] data = File.ReadAllBytes(dialog.FileName);
+
+                    UploadedFiles uploadedFiles = new UploadedFiles();
+                    uploadedFiles.FileName = filename;
+                    uploadedFiles.File = data;
+                    uploadedFiles.OrderID = order.ID;
+                    uploadedFilesBindingSource.Add(uploadedFiles);
+                    db.UploadedFiles.Add(uploadedFiles);
+
+                    MessageBox.Show("Файлът е качен успешно","",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            uploadFileDialog.ShowDialog();
+        }
+
+        private void dgvAttachments_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            UploadedFiles uploadedFiles = new UploadedFiles();
+            uploadedFiles = dgvAttachments.Rows[e.RowIndex].DataBoundItem as UploadedFiles;
+            byte[] bytes = uploadedFiles.File;
+           
+            saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.FileName = uploadedFiles.FileName;
+            if(saveFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+                saveFileDialog1.FileName = saveFileDialog1.FileName;
+            }
+            try
+            {
+                FileStream fs = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write);
+                fs.Write(bytes, 0, bytes.Length);
+
+                fs.Close();
+
+                MessageBox.Show("Файла е успешно запаметен в : " + saveFileDialog1.FileName, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            } catch
+            {
+
+            }
+
+
+        }
+
+        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
         }
     }
 }

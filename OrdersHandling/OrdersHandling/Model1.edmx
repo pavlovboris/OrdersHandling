@@ -165,6 +165,15 @@
           <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsForCoating" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="UploadedFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="FileName" Type="varchar" MaxLength="256" />
+          <Property Name="File" Type="image" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="ID" />
@@ -367,6 +376,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UploadedFiles_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="UploadedFiles" Type="Self.UploadedFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UploadedFiles">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_PartnerID">
           <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -405,6 +426,7 @@
           <EntitySet Name="Surface" EntityType="Self.Surface" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Systems" EntityType="Self.Systems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UploadedFiles" EntityType="Self.UploadedFiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Codes_Category" Association="Self.FK_Codes_Category">
             <End Role="Category" EntitySet="Category" />
@@ -469,6 +491,10 @@
           <AssociationSet Name="FK_Surface_ItemCode" Association="Self.FK_Surface_ItemCode">
             <End Role="Codes" EntitySet="Codes" />
             <End Role="Surface" EntitySet="Surface" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UploadedFiles_Orders" Association="Self.FK_UploadedFiles_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="UploadedFiles" EntitySet="UploadedFiles" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_PartnerID" Association="Self.FK_Users_PartnerID">
             <End Role="Partners" EntitySet="Partners" />
@@ -601,6 +627,7 @@
           <NavigationProperty Name="Partners" Relationship="Self.FK_Orders_Customer_ID" FromRole="Orders" ToRole="Partners" />
           <NavigationProperty Name="Colors" Relationship="OrdersHandlingModel.FK_Orders_Colors" FromRole="Orders" ToRole="Colors" />
           <NavigationProperty Name="Codes" Relationship="OrdersHandlingModel.FK_Orders_Codes" FromRole="Orders" ToRole="Codes" />
+          <NavigationProperty Name="UploadedFiles" Relationship="OrdersHandlingModel.FK_UploadedFiles_Orders" FromRole="Orders" ToRole="UploadedFiles" />
         </EntityType>
         <EntityType Name="Partners">
           <Key>
@@ -933,6 +960,11 @@
             <End Role="Codes" EntitySet="Codes" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
+          <EntitySet Name="UploadedFiles" EntityType="OrdersHandlingModel.UploadedFiles" />
+          <AssociationSet Name="FK_UploadedFiles_Orders" Association="OrdersHandlingModel.FK_UploadedFiles_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="UploadedFiles" EntitySet="UploadedFiles" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Colors">
           <Key>
@@ -990,6 +1022,28 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="Powder_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UploadedFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="File" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Orders" Relationship="OrdersHandlingModel.FK_UploadedFiles_Orders" FromRole="UploadedFiles" ToRole="Orders" />
+        </EntityType>
+        <Association Name="FK_UploadedFiles_Orders">
+          <End Type="OrdersHandlingModel.Orders" Role="Orders" Multiplicity="0..1" />
+          <End Type="OrdersHandlingModel.UploadedFiles" Role="UploadedFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UploadedFiles">
+              <PropertyRef Name="OrderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1179,6 +1233,16 @@
               <MappingFragment StoreEntitySet="Colors">
                 <ScalarProperty Name="DefaultMaterial" ColumnName="DefaultMaterial" />
                 <ScalarProperty Name="ColorName" ColumnName="ColorName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadedFiles">
+            <EntityTypeMapping TypeName="OrdersHandlingModel.UploadedFiles">
+              <MappingFragment StoreEntitySet="UploadedFiles">
+                <ScalarProperty Name="File" ColumnName="File" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

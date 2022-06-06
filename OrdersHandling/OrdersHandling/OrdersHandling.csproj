@@ -207,6 +207,9 @@
     <Compile Include="Types.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="UploadedFiles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -287,6 +290,7 @@
     <None Include="Properties\DataSources\Surface.datasource" />
     <None Include="Properties\DataSources\Systems.datasource" />
     <None Include="Properties\DataSources\Types.datasource" />
+    <None Include="Properties\DataSources\UploadedFiles.datasource" />
     <None Include="Properties\DataSources\Users.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

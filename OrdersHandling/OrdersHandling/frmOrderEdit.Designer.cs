@@ -96,6 +96,12 @@ namespace OrdersHandling
             this.lblKgr = new System.Windows.Forms.Label();
             this.lblSqmSum = new System.Windows.Forms.Label();
             this.lblSQM = new System.Windows.Forms.Label();
+            this.dgvAttachments = new System.Windows.Forms.DataGridView();
+            this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uploadedFilesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.uploadFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -111,6 +117,8 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.orderLinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             this.grpInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uploadedFilesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOrderNumber
@@ -768,11 +776,62 @@ namespace OrdersHandling
             this.lblSQM.TabIndex = 0;
             this.lblSQM.Text = "Square Meters :";
             // 
+            // dgvAttachments
+            // 
+            this.dgvAttachments.AllowUserToAddRows = false;
+            this.dgvAttachments.AllowUserToDeleteRows = false;
+            this.dgvAttachments.AutoGenerateColumns = false;
+            this.dgvAttachments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.fileNameDataGridViewTextBoxColumn});
+            this.dgvAttachments.DataSource = this.uploadedFilesBindingSource;
+            this.dgvAttachments.Location = new System.Drawing.Point(1160, 101);
+            this.dgvAttachments.Name = "dgvAttachments";
+            this.dgvAttachments.ReadOnly = true;
+            this.dgvAttachments.RowHeadersWidth = 20;
+            this.dgvAttachments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAttachments.Size = new System.Drawing.Size(174, 150);
+            this.dgvAttachments.TabIndex = 20;
+            this.dgvAttachments.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAttachments_CellDoubleClick);
+            // 
+            // fileNameDataGridViewTextBoxColumn
+            // 
+            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
+            this.fileNameDataGridViewTextBoxColumn.HeaderText = "FileName";
+            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
+            this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fileNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // uploadedFilesBindingSource
+            // 
+            this.uploadedFilesBindingSource.DataSource = typeof(OrdersHandling.UploadedFiles);
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(1160, 258);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 21;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // uploadFileDialog
+            // 
+            this.uploadFileDialog.FileName = "openFileDialog1";
+            this.uploadFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.uploadFileDialog_FileOk);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+            // 
             // frmOrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1339, 693);
+            this.Controls.Add(this.btnUpload);
+            this.Controls.Add(this.dgvAttachments);
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.cmbPartnerName);
             this.Controls.Add(this.btnEditLines);
@@ -815,6 +874,8 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             this.grpInfo.ResumeLayout(false);
             this.grpInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uploadedFilesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -888,5 +949,11 @@ namespace OrdersHandling
         private System.Windows.Forms.DataGridViewTextBoxColumn perimeterDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn weightDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deliveryDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView dgvAttachments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource uploadedFilesBindingSource;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.OpenFileDialog uploadFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

@@ -39,5 +39,6 @@ namespace OrdersHandling
         public virtual DbSet<Types> Types { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Colors> Colors { get; set; }
+        public virtual DbSet<UploadedFiles> UploadedFiles { get; set; }
     }
 }
