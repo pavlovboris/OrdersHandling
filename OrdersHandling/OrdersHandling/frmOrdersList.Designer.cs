@@ -56,6 +56,8 @@ namespace OrdersHandling
             this.deliverydateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matDate2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expectedMatDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbCustomer = new System.Windows.Forms.ComboBox();
             this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -67,6 +69,7 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -103,6 +106,7 @@ namespace OrdersHandling
             this.deliverydateDataGridViewTextBoxColumn,
             this.matDate2DataGridViewTextBoxColumn,
             this.expectedMatDateDataGridViewTextBoxColumn});
+            this.dgvOrdersList.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvOrdersList.DataSource = this.ordersBindingSource;
             this.dgvOrdersList.Location = new System.Drawing.Point(12, 62);
             this.dgvOrdersList.Name = "dgvOrdersList";
@@ -111,6 +115,7 @@ namespace OrdersHandling
             this.dgvOrdersList.Size = new System.Drawing.Size(1275, 460);
             this.dgvOrdersList.TabIndex = 0;
             this.dgvOrdersList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrdersList_CellDoubleClick);
+            this.dgvOrdersList.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrdersList_CellMouseDown);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -314,6 +319,20 @@ namespace OrdersHandling
             this.expectedMatDateDataGridViewTextBoxColumn.Name = "expectedMatDateDataGridViewTextBoxColumn";
             this.expectedMatDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuDelete});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
+            // contextMenuDelete
+            // 
+            this.contextMenuDelete.Name = "contextMenuDelete";
+            this.contextMenuDelete.Size = new System.Drawing.Size(180, 22);
+            this.contextMenuDelete.Text = "Delete";
+            // 
             // ordersBindingSource
             // 
             this.ordersBindingSource.DataSource = typeof(OrdersHandling.Orders);
@@ -398,6 +417,7 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.colorsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -440,5 +460,7 @@ namespace OrdersHandling
         private System.Windows.Forms.ListBox lstFilterCompleted;
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem contextMenuDelete;
     }
 }

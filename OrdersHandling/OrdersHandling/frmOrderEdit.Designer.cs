@@ -85,6 +85,8 @@ namespace OrdersHandling
             this.perimeterDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deliveryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.orderLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnEditLines = new System.Windows.Forms.Button();
             this.cmbPartnerName = new System.Windows.Forms.ComboBox();
@@ -94,8 +96,6 @@ namespace OrdersHandling
             this.lblKgr = new System.Windows.Forms.Label();
             this.lblSqmSum = new System.Windows.Forms.Label();
             this.lblSQM = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -107,10 +107,10 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mUBindingSource)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderLinesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).BeginInit();
             this.grpInfo.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblOrderNumber
@@ -134,6 +134,7 @@ namespace OrdersHandling
             // dateTimeDate
             // 
             this.dateTimeDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.ordersBindingSource, "Orddate", true));
+            this.dateTimeDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeDate.Location = new System.Drawing.Point(12, 53);
             this.dateTimeDate.Name = "dateTimeDate";
             this.dateTimeDate.Size = new System.Drawing.Size(155, 20);
@@ -361,6 +362,7 @@ namespace OrdersHandling
             // dateTimeExpectedDate
             // 
             this.dateTimeExpectedDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.ordersBindingSource, "ExpectedMatDate", true));
+            this.dateTimeExpectedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeExpectedDate.Location = new System.Drawing.Point(155, 30);
             this.dateTimeExpectedDate.Name = "dateTimeExpectedDate";
             this.dateTimeExpectedDate.Size = new System.Drawing.Size(130, 20);
@@ -380,6 +382,7 @@ namespace OrdersHandling
             // dateTimeReqDate
             // 
             this.dateTimeReqDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.ordersBindingSource, "Req_date", true));
+            this.dateTimeReqDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimeReqDate.Location = new System.Drawing.Point(10, 31);
             this.dateTimeReqDate.Name = "dateTimeReqDate";
             this.dateTimeReqDate.Size = new System.Drawing.Size(135, 20);
@@ -441,16 +444,20 @@ namespace OrdersHandling
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
             this.iDDataGridViewTextBoxColumn.Visible = false;
+            this.iDDataGridViewTextBoxColumn.Width = 50;
             // 
             // orderIDDataGridViewTextBoxColumn
             // 
             this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
             this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
             this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.orderIDDataGridViewTextBoxColumn.Visible = false;
+            this.orderIDDataGridViewTextBoxColumn.Width = 50;
             // 
             // codeIDDataGridViewTextBoxColumn
             // 
@@ -459,6 +466,7 @@ namespace OrdersHandling
             this.codeIDDataGridViewTextBoxColumn.DisplayMember = "Code";
             this.codeIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.codeIDDataGridViewTextBoxColumn.HeaderText = "Code";
+            this.codeIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.codeIDDataGridViewTextBoxColumn.Name = "codeIDDataGridViewTextBoxColumn";
             this.codeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.codeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -475,8 +483,10 @@ namespace OrdersHandling
             this.CodeID.DisplayMember = "Description";
             this.CodeID.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.CodeID.HeaderText = "Description";
+            this.CodeID.MinimumWidth = 10;
             this.CodeID.Name = "CodeID";
             this.CodeID.ValueMember = "ID";
+            this.CodeID.Width = 200;
             // 
             // surfaceIDDataGridViewTextBoxColumn
             // 
@@ -485,10 +495,12 @@ namespace OrdersHandling
             this.surfaceIDDataGridViewTextBoxColumn.DisplayMember = "Name";
             this.surfaceIDDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.surfaceIDDataGridViewTextBoxColumn.HeaderText = "Surface";
+            this.surfaceIDDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.surfaceIDDataGridViewTextBoxColumn.Name = "surfaceIDDataGridViewTextBoxColumn";
             this.surfaceIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.surfaceIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.surfaceIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.surfaceIDDataGridViewTextBoxColumn.Width = 70;
             // 
             // surfaceBindingSource
             // 
@@ -498,20 +510,26 @@ namespace OrdersHandling
             // 
             this.pcsDataGridViewTextBoxColumn.DataPropertyName = "Pcs";
             this.pcsDataGridViewTextBoxColumn.HeaderText = "Pcs";
+            this.pcsDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.pcsDataGridViewTextBoxColumn.Name = "pcsDataGridViewTextBoxColumn";
+            this.pcsDataGridViewTextBoxColumn.Width = 50;
             // 
             // lengthDataGridViewTextBoxColumn
             // 
             this.lengthDataGridViewTextBoxColumn.DataPropertyName = "Length";
             this.lengthDataGridViewTextBoxColumn.HeaderText = "Length";
+            this.lengthDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.lengthDataGridViewTextBoxColumn.Name = "lengthDataGridViewTextBoxColumn";
+            this.lengthDataGridViewTextBoxColumn.Width = 50;
             // 
             // qTYDataGridViewTextBoxColumn
             // 
             this.qTYDataGridViewTextBoxColumn.DataPropertyName = "QTY";
             this.qTYDataGridViewTextBoxColumn.HeaderText = "QTY";
+            this.qTYDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.qTYDataGridViewTextBoxColumn.Name = "qTYDataGridViewTextBoxColumn";
             this.qTYDataGridViewTextBoxColumn.ReadOnly = true;
+            this.qTYDataGridViewTextBoxColumn.Width = 50;
             // 
             // MU
             // 
@@ -520,10 +538,12 @@ namespace OrdersHandling
             this.MU.DisplayMember = "MuName";
             this.MU.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.MU.HeaderText = "MU";
+            this.MU.MinimumWidth = 10;
             this.MU.Name = "MU";
             this.MU.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.MU.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.MU.ValueMember = "MuID";
+            this.MU.Width = 50;
             // 
             // mUBindingSource
             // 
@@ -534,99 +554,139 @@ namespace OrdersHandling
             this.protectiveFilmDataGridViewTextBoxColumn.DataPropertyName = "ProtectiveFilm";
             this.protectiveFilmDataGridViewTextBoxColumn.FalseValue = "0";
             this.protectiveFilmDataGridViewTextBoxColumn.HeaderText = "Protective Film";
+            this.protectiveFilmDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.protectiveFilmDataGridViewTextBoxColumn.Name = "protectiveFilmDataGridViewTextBoxColumn";
             this.protectiveFilmDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.protectiveFilmDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.protectiveFilmDataGridViewTextBoxColumn.TrueValue = "1";
+            this.protectiveFilmDataGridViewTextBoxColumn.Width = 70;
             // 
             // remainingQTYDataGridViewTextBoxColumn
             // 
             this.remainingQTYDataGridViewTextBoxColumn.DataPropertyName = "RemainingQTY";
-            this.remainingQTYDataGridViewTextBoxColumn.HeaderText = "RemainingQTY";
+            this.remainingQTYDataGridViewTextBoxColumn.HeaderText = "Remaining QTY";
+            this.remainingQTYDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.remainingQTYDataGridViewTextBoxColumn.Name = "remainingQTYDataGridViewTextBoxColumn";
             this.remainingQTYDataGridViewTextBoxColumn.ReadOnly = true;
+            this.remainingQTYDataGridViewTextBoxColumn.Width = 70;
             // 
             // priceDataGridViewTextBoxColumn
             // 
             this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.priceDataGridViewTextBoxColumn.Width = 50;
             // 
             // valueDataGridViewTextBoxColumn
             // 
             this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
             this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            this.valueDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             this.valueDataGridViewTextBoxColumn.ReadOnly = true;
+            this.valueDataGridViewTextBoxColumn.Width = 50;
             // 
             // commentDataGridViewTextBoxColumn
             // 
             this.commentDataGridViewTextBoxColumn.DataPropertyName = "Comment";
             this.commentDataGridViewTextBoxColumn.HeaderText = "Comment";
+            this.commentDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.commentDataGridViewTextBoxColumn.Name = "commentDataGridViewTextBoxColumn";
+            this.commentDataGridViewTextBoxColumn.Width = 200;
             // 
             // isForCoatingDataGridViewTextBoxColumn
             // 
             this.isForCoatingDataGridViewTextBoxColumn.DataPropertyName = "IsForCoating";
             this.isForCoatingDataGridViewTextBoxColumn.FalseValue = "0";
             this.isForCoatingDataGridViewTextBoxColumn.HeaderText = "Coating";
+            this.isForCoatingDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.isForCoatingDataGridViewTextBoxColumn.Name = "isForCoatingDataGridViewTextBoxColumn";
             this.isForCoatingDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.isForCoatingDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.isForCoatingDataGridViewTextBoxColumn.TrueValue = "1";
+            this.isForCoatingDataGridViewTextBoxColumn.Width = 50;
             // 
             // thermoFilmDataGridViewTextBoxColumn
             // 
             this.thermoFilmDataGridViewTextBoxColumn.DataPropertyName = "ThermoFilm";
             this.thermoFilmDataGridViewTextBoxColumn.FalseValue = "0";
             this.thermoFilmDataGridViewTextBoxColumn.HeaderText = "Thermo Film";
+            this.thermoFilmDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.thermoFilmDataGridViewTextBoxColumn.Name = "thermoFilmDataGridViewTextBoxColumn";
             this.thermoFilmDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.thermoFilmDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.thermoFilmDataGridViewTextBoxColumn.TrueValue = "1";
+            this.thermoFilmDataGridViewTextBoxColumn.Width = 50;
             // 
             // sqmCorrectionsDataGridViewTextBoxColumn
             // 
             this.sqmCorrectionsDataGridViewTextBoxColumn.DataPropertyName = "SqmCorrections";
             this.sqmCorrectionsDataGridViewTextBoxColumn.HeaderText = "Corrections";
             this.sqmCorrectionsDataGridViewTextBoxColumn.MaxInputLength = 50;
+            this.sqmCorrectionsDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.sqmCorrectionsDataGridViewTextBoxColumn.Name = "sqmCorrectionsDataGridViewTextBoxColumn";
+            this.sqmCorrectionsDataGridViewTextBoxColumn.Width = 70;
             // 
             // thermoFilmPriceDataGridViewTextBoxColumn
             // 
             this.thermoFilmPriceDataGridViewTextBoxColumn.DataPropertyName = "ThermoFilmPrice";
-            this.thermoFilmPriceDataGridViewTextBoxColumn.HeaderText = "ThermoFilmPrice";
+            this.thermoFilmPriceDataGridViewTextBoxColumn.HeaderText = "Thermo Film Price";
+            this.thermoFilmPriceDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.thermoFilmPriceDataGridViewTextBoxColumn.Name = "thermoFilmPriceDataGridViewTextBoxColumn";
             this.thermoFilmPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.thermoFilmPriceDataGridViewTextBoxColumn.Width = 50;
             // 
             // protectionFilmPriceDataGridViewTextBoxColumn
             // 
             this.protectionFilmPriceDataGridViewTextBoxColumn.DataPropertyName = "ProtectionFilmPrice";
-            this.protectionFilmPriceDataGridViewTextBoxColumn.HeaderText = "ProtectionFilmPrice";
+            this.protectionFilmPriceDataGridViewTextBoxColumn.HeaderText = "Protection Film Price";
+            this.protectionFilmPriceDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.protectionFilmPriceDataGridViewTextBoxColumn.Name = "protectionFilmPriceDataGridViewTextBoxColumn";
             this.protectionFilmPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.protectionFilmPriceDataGridViewTextBoxColumn.Width = 70;
             // 
             // perimeterDataGridViewTextBoxColumn
             // 
             this.perimeterDataGridViewTextBoxColumn.DataPropertyName = "Perimeter";
             this.perimeterDataGridViewTextBoxColumn.HeaderText = "Perimeter";
+            this.perimeterDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.perimeterDataGridViewTextBoxColumn.Name = "perimeterDataGridViewTextBoxColumn";
             this.perimeterDataGridViewTextBoxColumn.ReadOnly = true;
+            this.perimeterDataGridViewTextBoxColumn.Width = 70;
             // 
             // weightDataGridViewTextBoxColumn
             // 
             this.weightDataGridViewTextBoxColumn.DataPropertyName = "Weight";
             this.weightDataGridViewTextBoxColumn.HeaderText = "Weight";
+            this.weightDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.weightDataGridViewTextBoxColumn.Name = "weightDataGridViewTextBoxColumn";
             this.weightDataGridViewTextBoxColumn.ReadOnly = true;
+            this.weightDataGridViewTextBoxColumn.Width = 70;
             // 
             // deliveryDateDataGridViewTextBoxColumn
             // 
             this.deliveryDateDataGridViewTextBoxColumn.DataPropertyName = "DeliveryDate";
-            this.deliveryDateDataGridViewTextBoxColumn.HeaderText = "DeliveryDate";
+            this.deliveryDateDataGridViewTextBoxColumn.HeaderText = "Delivery Date";
+            this.deliveryDateDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.deliveryDateDataGridViewTextBoxColumn.Name = "deliveryDateDataGridViewTextBoxColumn";
             this.deliveryDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.dgvContextMenu_ItemClicked);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem1.Text = "Delete";
             // 
             // orderLinesBindingSource
             // 
@@ -708,25 +768,11 @@ namespace OrdersHandling
             this.lblSQM.TabIndex = 0;
             this.lblSQM.Text = "Square Meters :";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
-            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.dgvContextMenu_ItemClicked);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.toolStripMenuItem1.Text = "Delete";
-            // 
             // frmOrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1346, 673);
+            this.ClientSize = new System.Drawing.Size(1339, 693);
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.cmbPartnerName);
             this.Controls.Add(this.btnEditLines);
@@ -764,11 +810,11 @@ namespace OrdersHandling
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.surfaceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mUBindingSource)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.orderLinesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.partnersBindingSource)).EndInit();
             this.grpInfo.ResumeLayout(false);
             this.grpInfo.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -818,6 +864,8 @@ namespace OrdersHandling
         private System.Windows.Forms.Label lblSQM;
         private System.Windows.Forms.Label lblKgrSum;
         private System.Windows.Forms.Label lblKgr;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn codeIDDataGridViewTextBoxColumn;
@@ -840,7 +888,5 @@ namespace OrdersHandling
         private System.Windows.Forms.DataGridViewTextBoxColumn perimeterDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn weightDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deliveryDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

@@ -90,9 +90,12 @@ namespace OrdersHandling
                 {
                     order.OrderSQM =Convert.ToDouble( lblSqmSum.Text);
                     order.Orderkgr = Convert.ToDouble(lblKgrSum.Text);
-                    dgvOrderLines.EndEdit();
+                    
                     ordersBindingSource.EndEdit();
+                    orderLinesBindingSource.EndEdit();
+                    dgvOrderLines.EndEdit();
                     await db.SaveChangesAsync();
+                    
                     MessageBox.Show("Промените са успешно запаметени.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -306,8 +309,8 @@ namespace OrdersHandling
                         {
                             OrderLines orders = new OrderLines();
                             orders = dr.DataBoundItem as OrderLines;
-                            ordersBindingSource.Remove(orders);
                             dgvOrderLines.Rows.Remove(dr);
+                            orderLinesBindingSource.Remove(orders);                            
                             db.OrderLines.Remove(orders);
                         }
                     }
@@ -344,7 +347,6 @@ namespace OrdersHandling
                 lblSqmSum.Text = Math.Round(sqm, 2).ToString();
                 lblKgrSum.Text = Math.Round(kgr, 2).ToString();
                 //Update order info panel ends here
-
             }
         }
     }
