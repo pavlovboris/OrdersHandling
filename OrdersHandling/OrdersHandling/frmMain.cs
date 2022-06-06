@@ -66,83 +66,261 @@ namespace OrdersHandling
 
         private void codesTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmTypes frmtypes = new frmTypes();
-            frmtypes.Show();
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmtypes.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+            if (isOpen==false)
+            {
+                frmtypes.Show();
+            }
         }
 
         private void systemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmSystems frmsystems = new frmSystems();
-            frmsystems.Show();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmsystems.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if(isOpen==false)
+            {
+                frmsystems.Show();
+            }
         }
 
         private void codesListToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmCodesList frmcodeslist = new frmCodesList();
-            frmcodeslist.Show();
+
+            foreach(Form f in Application.OpenForms)
+            {
+                if (f.Name == frmcodeslist.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (!isOpen)
+            {
+                frmcodeslist.Show();
+            }
+
         }
 
         private void codeSubTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmSubTypes frmSubtypes = new frmSubTypes();
-            frmSubtypes.Show();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmSubtypes.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (!isOpen)
+            {
+                frmSubtypes.Show();
+            }
         }
 
         private void ordersListToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
+
             frmOrdersList frmorderslist = new frmOrdersList();
-            frmorderslist.Show();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmorderslist.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if(!isOpen)
+            {
+                frmorderslist.Show();
+            }
         }
 
         private void surfacesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmSurfaces frmsurfaces = new frmSurfaces();
-            frmsurfaces.Show();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmsurfaces.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if(!isOpen)
+            {
+                frmsurfaces.Show();
+            }
         }
 
         private void mUToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmMU frmmu = new frmMU();
-            frmmu.Show();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmmu.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (!isOpen)
+            {
+                frmmu.Show();
+            }
         }
 
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmColors frmcolors = new frmColors();
-            frmcolors.Show();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmcolors.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if(!isOpen)
+            {
+                frmcolors.Show();
+            }
         }
 
         private void codesCategoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmCategory frmcategory = new frmCategory();
-            frmcategory.Show();
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmcategory.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (!isOpen)
+            {
+                frmcategory.Show();
+            }
         }
 
         private void newOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
+
             db = new OrdersHandlingEntities();
             Orders orders = new Orders();
             frmOrderEdit neworder = new frmOrderEdit();
-            orders.Customer_ID = frmLogin.Instance.UserInfo.PartnerID;
-            orders.Orddate = DateTime.Today;
-            orders.IsOffer = 1;
-            db.Orders.Add(orders);
-            neworder.order = orders;
-            neworder.db = db;
-            neworder.Show();
-            
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == neworder.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                orders.Customer_ID = frmLogin.Instance.UserInfo.PartnerID;
+                orders.Orddate = DateTime.Today;
+                orders.IsOffer = 1;
+                db.Orders.Add(orders);
+                neworder.order = orders;
+                neworder.db = db;
+                neworder.Show();
+            } 
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmUsers frmusers = new frmUsers();
-            frmusers.Show();
+
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmusers.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                frmusers.Show();
+            }
         }
 
         private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool isOpen = false;
             frmRoles frmroles = new frmRoles();
-            frmroles.Show();
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Name == frmroles.Name)
+                {
+                    isOpen = true;
+                    f.BringToFront();
+                    break;
+                }
+            }
+
+            if (isOpen == false)
+            {
+                frmroles.Show();
+            }
+        }
+
+        private void newCodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

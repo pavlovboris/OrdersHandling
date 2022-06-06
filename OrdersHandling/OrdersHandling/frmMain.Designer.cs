@@ -35,6 +35,8 @@ namespace OrdersHandling
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.codesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,11 +45,9 @@ namespace OrdersHandling
             this.codesCategoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.codeSubTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ordersListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surfacesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,14 +89,14 @@ namespace OrdersHandling
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -108,6 +108,20 @@ namespace OrdersHandling
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
             this.ordersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.ordersToolStripMenuItem.Text = "Orders";
+            // 
+            // ordersListToolStripMenuItem
+            // 
+            this.ordersListToolStripMenuItem.Name = "ordersListToolStripMenuItem";
+            this.ordersListToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.ordersListToolStripMenuItem.Text = "Orders List";
+            this.ordersListToolStripMenuItem.Click += new System.EventHandler(this.ordersListToolStripMenuItem_Click);
+            // 
+            // newOrderToolStripMenuItem
+            // 
+            this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
+            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.newOrderToolStripMenuItem.Text = "New Order";
+            this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.newOrderToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -138,6 +152,7 @@ namespace OrdersHandling
             this.newCodeToolStripMenuItem.Name = "newCodeToolStripMenuItem";
             this.newCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newCodeToolStripMenuItem.Text = "New Code";
+            this.newCodeToolStripMenuItem.Click += new System.EventHandler(this.newCodeToolStripMenuItem_Click);
             // 
             // codesListToolStripMenuItem
             // 
@@ -174,13 +189,6 @@ namespace OrdersHandling
             this.systemsToolStripMenuItem.Text = "Systems";
             this.systemsToolStripMenuItem.Click += new System.EventHandler(this.systemsToolStripMenuItem_Click);
             // 
-            // ordersListToolStripMenuItem
-            // 
-            this.ordersListToolStripMenuItem.Name = "ordersListToolStripMenuItem";
-            this.ordersListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ordersListToolStripMenuItem.Text = "Orders List";
-            this.ordersListToolStripMenuItem.Click += new System.EventHandler(this.ordersListToolStripMenuItem_Click);
-            // 
             // surfacesToolStripMenuItem
             // 
             this.surfacesToolStripMenuItem.Name = "surfacesToolStripMenuItem";
@@ -201,13 +209,6 @@ namespace OrdersHandling
             this.colorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.colorsToolStripMenuItem.Text = "Colors";
             this.colorsToolStripMenuItem.Click += new System.EventHandler(this.colorsToolStripMenuItem_Click);
-            // 
-            // newOrderToolStripMenuItem
-            // 
-            this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
-            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.newOrderToolStripMenuItem.Text = "New Order";
-            this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.newOrderToolStripMenuItem_Click);
             // 
             // adminSettingsToolStripMenuItem
             // 
