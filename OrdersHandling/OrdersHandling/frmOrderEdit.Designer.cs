@@ -102,6 +102,11 @@ namespace OrdersHandling
             this.btnUpload = new System.Windows.Forms.Button();
             this.uploadFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.grpCurrentRowInfo = new System.Windows.Forms.GroupBox();
+            this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
+            this.lblCurrentSqmValue = new System.Windows.Forms.Label();
+            this.lblCurrentRowKgrValue = new System.Windows.Forms.Label();
+            this.lblCurrentRowKgrLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -119,6 +124,7 @@ namespace OrdersHandling
             this.grpInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uploadedFilesBindingSource)).BeginInit();
+            this.grpCurrentRowInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblOrderNumber
@@ -437,16 +443,17 @@ namespace OrdersHandling
             this.deliveryDateDataGridViewTextBoxColumn});
             this.dgvOrderLines.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvOrderLines.DataSource = this.orderLinesBindingSource;
-            this.dgvOrderLines.Location = new System.Drawing.Point(12, 297);
+            this.dgvOrderLines.Location = new System.Drawing.Point(12, 310);
             this.dgvOrderLines.Name = "dgvOrderLines";
             this.dgvOrderLines.RowHeadersWidth = 20;
-            this.dgvOrderLines.Size = new System.Drawing.Size(1322, 364);
+            this.dgvOrderLines.Size = new System.Drawing.Size(1322, 351);
             this.dgvOrderLines.TabIndex = 16;
             this.dgvOrderLines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellDoubleClick);
             this.dgvOrderLines.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseClick);
             this.dgvOrderLines.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseDown);
             this.dgvOrderLines.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellValueChanged);
             this.dgvOrderLines.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_RowEnter);
+            this.dgvOrderLines.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dgvOrderLines_PreviewKeyDown);
             // 
             // iDDataGridViewTextBoxColumn
             // 
@@ -702,7 +709,7 @@ namespace OrdersHandling
             // 
             // btnEditLines
             // 
-            this.btnEditLines.Location = new System.Drawing.Point(13, 268);
+            this.btnEditLines.Location = new System.Drawing.Point(12, 281);
             this.btnEditLines.Name = "btnEditLines";
             this.btnEditLines.Size = new System.Drawing.Size(75, 23);
             this.btnEditLines.TabIndex = 17;
@@ -735,7 +742,7 @@ namespace OrdersHandling
             this.grpInfo.Controls.Add(this.lblSQM);
             this.grpInfo.Location = new System.Drawing.Point(794, 13);
             this.grpInfo.Name = "grpInfo";
-            this.grpInfo.Size = new System.Drawing.Size(257, 238);
+            this.grpInfo.Size = new System.Drawing.Size(257, 97);
             this.grpInfo.TabIndex = 19;
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Information Panel";
@@ -825,11 +832,61 @@ namespace OrdersHandling
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
+            // grpCurrentRowInfo
+            // 
+            this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowKgrValue);
+            this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowKgrLabel);
+            this.grpCurrentRowInfo.Controls.Add(this.lblCurrentSqmValue);
+            this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowSqmLabel);
+            this.grpCurrentRowInfo.Location = new System.Drawing.Point(118, 258);
+            this.grpCurrentRowInfo.Name = "grpCurrentRowInfo";
+            this.grpCurrentRowInfo.Size = new System.Drawing.Size(354, 46);
+            this.grpCurrentRowInfo.TabIndex = 22;
+            this.grpCurrentRowInfo.TabStop = false;
+            this.grpCurrentRowInfo.Text = "Current Row Information Panel";
+            // 
+            // lblCurrentRowSqmLabel
+            // 
+            this.lblCurrentRowSqmLabel.AutoSize = true;
+            this.lblCurrentRowSqmLabel.Location = new System.Drawing.Point(7, 20);
+            this.lblCurrentRowSqmLabel.Name = "lblCurrentRowSqmLabel";
+            this.lblCurrentRowSqmLabel.Size = new System.Drawing.Size(84, 13);
+            this.lblCurrentRowSqmLabel.TabIndex = 0;
+            this.lblCurrentRowSqmLabel.Text = "Square meters : ";
+            // 
+            // lblCurrentSqmValue
+            // 
+            this.lblCurrentSqmValue.AutoSize = true;
+            this.lblCurrentSqmValue.Location = new System.Drawing.Point(93, 20);
+            this.lblCurrentSqmValue.Name = "lblCurrentSqmValue";
+            this.lblCurrentSqmValue.Size = new System.Drawing.Size(13, 13);
+            this.lblCurrentSqmValue.TabIndex = 1;
+            this.lblCurrentSqmValue.Text = "?";
+            // 
+            // lblCurrentRowKgrValue
+            // 
+            this.lblCurrentRowKgrValue.AutoSize = true;
+            this.lblCurrentRowKgrValue.Location = new System.Drawing.Point(224, 20);
+            this.lblCurrentRowKgrValue.Name = "lblCurrentRowKgrValue";
+            this.lblCurrentRowKgrValue.Size = new System.Drawing.Size(13, 13);
+            this.lblCurrentRowKgrValue.TabIndex = 3;
+            this.lblCurrentRowKgrValue.Text = "?";
+            // 
+            // lblCurrentRowKgrLabel
+            // 
+            this.lblCurrentRowKgrLabel.AutoSize = true;
+            this.lblCurrentRowKgrLabel.Location = new System.Drawing.Point(157, 20);
+            this.lblCurrentRowKgrLabel.Name = "lblCurrentRowKgrLabel";
+            this.lblCurrentRowKgrLabel.Size = new System.Drawing.Size(61, 13);
+            this.lblCurrentRowKgrLabel.TabIndex = 2;
+            this.lblCurrentRowKgrLabel.Text = "Kilograms : ";
+            // 
             // frmOrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1339, 693);
+            this.ClientSize = new System.Drawing.Size(1345, 693);
+            this.Controls.Add(this.grpCurrentRowInfo);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.dgvAttachments);
             this.Controls.Add(this.grpInfo);
@@ -876,6 +933,8 @@ namespace OrdersHandling
             this.grpInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttachments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uploadedFilesBindingSource)).EndInit();
+            this.grpCurrentRowInfo.ResumeLayout(false);
+            this.grpCurrentRowInfo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -955,5 +1014,10 @@ namespace OrdersHandling
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.OpenFileDialog uploadFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.GroupBox grpCurrentRowInfo;
+        private System.Windows.Forms.Label lblCurrentRowKgrValue;
+        private System.Windows.Forms.Label lblCurrentRowKgrLabel;
+        private System.Windows.Forms.Label lblCurrentSqmValue;
+        private System.Windows.Forms.Label lblCurrentRowSqmLabel;
     }
 }

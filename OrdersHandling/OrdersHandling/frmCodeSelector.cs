@@ -27,6 +27,7 @@ namespace OrdersHandling
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
 
             codesBindingSource.DataSource = db.Codes.ToList();
+            systemsBindingSource.DataSource = db.Systems.ToList();
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
@@ -81,6 +82,15 @@ namespace OrdersHandling
             {
                 dgvCodeSelector.Focus();
             }
+        }
+
+        private void frmCodeSelector_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            /*if (e.KeyCode == Keys.Escape)
+            {
+                cancel = true;
+                e.IsInputKey = true;
+            }*/
         }
     }
 }

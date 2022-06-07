@@ -34,9 +34,11 @@ namespace OrdersHandling
             this.dgvCodeSelector = new System.Windows.Forms.DataGridView();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.systemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCodeSelector)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,9 +91,19 @@ namespace OrdersHandling
             // systemDataGridViewTextBoxColumn
             // 
             this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
+            this.systemDataGridViewTextBoxColumn.DataSource = this.systemsBindingSource;
+            this.systemDataGridViewTextBoxColumn.DisplayMember = "SystemName";
+            this.systemDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.systemDataGridViewTextBoxColumn.HeaderText = "System";
             this.systemDataGridViewTextBoxColumn.Name = "systemDataGridViewTextBoxColumn";
             this.systemDataGridViewTextBoxColumn.ReadOnly = true;
+            this.systemDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.systemDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.systemDataGridViewTextBoxColumn.ValueMember = "SystemID";
+            // 
+            // systemsBindingSource
+            // 
+            this.systemsBindingSource.DataSource = typeof(OrdersHandling.Systems);
             // 
             // codesBindingSource
             // 
@@ -112,7 +124,9 @@ namespace OrdersHandling
             this.Text = "frmCodeSelector";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmCodeSelector_Load);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.frmCodeSelector_PreviewKeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCodeSelector)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.systemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -122,10 +136,11 @@ namespace OrdersHandling
         #endregion
 
         private System.Windows.Forms.TextBox txtFilter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn systemDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource codesBindingSource;
         public System.Windows.Forms.DataGridView dgvCodeSelector;
+        private System.Windows.Forms.BindingSource systemsBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn systemDataGridViewTextBoxColumn;
     }
 }
