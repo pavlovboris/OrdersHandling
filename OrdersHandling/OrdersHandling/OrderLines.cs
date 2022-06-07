@@ -35,6 +35,9 @@ namespace OrdersHandling
         public Nullable<double> Perimeter { get; set; }
         public Nullable<double> Weight { get; set; }
         public int MU { get; set; }
+        public Nullable<double> QtySqm { get; set; }
+        public Nullable<double> QtyKgr { get; set; }
+        public Nullable<double> QtyPcs { get; set; }
     
         public virtual Codes Codes { get; set; }
         public virtual Orders Orders { get; set; }

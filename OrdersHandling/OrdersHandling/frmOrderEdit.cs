@@ -446,28 +446,36 @@ namespace OrdersHandling
         private void dgvOrderLines_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
-            if (dgv.CurrentCell.ColumnIndex==6  & dgv.CurrentCell.RowIndex==dgv.RowCount-1 )
+            if (dgv.CurrentCell.RowIndex==dgv.RowCount-1)
             {
-                if(e.Modifiers!=Keys.Shift & e.KeyValue==13)
+                if(e.Modifiers!=Keys.Shift & e.KeyValue== 13 | e.KeyValue==40 && dgv.CurrentRow.Cells[5].Value.ToString() != "0")
                 {
                     e.IsInputKey = true;
                     btnEditLines.PerformClick();
-                } 
+                } else if (e.Modifiers != Keys.Shift & e.KeyValue == 13) 
+                { 
+                    dgv.CurrentCell = dgv.CurrentRow.Cells[5]; 
+                }
             } else if (dgv.CurrentCell.ColumnIndex == dgv.ColumnCount - 1 & dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
             {
-                if (e.Modifiers!=Keys.Shift & e.KeyValue==13 | e.KeyValue==9)
+                if (e.Modifiers!=Keys.Shift & e.KeyValue==9)
                 {
                     e.IsInputKey = true;
                     btnEditLines.PerformClick();
                    
                 }
-            } else if (dgv.CurrentCell.RowIndex==dgv.RowCount-1)
+            } 
+        }
+
+        private void dgvOrderLines_CurrentCellChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+
+            if (dgv.CurrentRow!=null )
             {
-                if (e.Modifiers!=Keys.Shift & e.KeyValue == 40)
-                {
-                    e.IsInputKey = true;
-                    btnEditLines.PerformClick();
-                }
+                OrderLines orderline1 = dgv.CurrentRow.DataBoundItem as OrderLines;
+                lblCurrentSqmValue.Text = Math.Round((double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating),2).ToString();
+                lblCurrentRowKgrValue.Text = Math.Round((double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating),2).ToString();
             }
         }
     }

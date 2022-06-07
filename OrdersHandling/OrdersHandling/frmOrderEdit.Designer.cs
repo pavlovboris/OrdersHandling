@@ -103,10 +103,10 @@ namespace OrdersHandling
             this.uploadFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.grpCurrentRowInfo = new System.Windows.Forms.GroupBox();
-            this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
-            this.lblCurrentSqmValue = new System.Windows.Forms.Label();
             this.lblCurrentRowKgrValue = new System.Windows.Forms.Label();
             this.lblCurrentRowKgrLabel = new System.Windows.Forms.Label();
+            this.lblCurrentSqmValue = new System.Windows.Forms.Label();
+            this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -452,6 +452,7 @@ namespace OrdersHandling
             this.dgvOrderLines.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseClick);
             this.dgvOrderLines.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseDown);
             this.dgvOrderLines.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellValueChanged);
+            this.dgvOrderLines.CurrentCellChanged += new System.EventHandler(this.dgvOrderLines_CurrentCellChanged);
             this.dgvOrderLines.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_RowEnter);
             this.dgvOrderLines.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dgvOrderLines_PreviewKeyDown);
             // 
@@ -845,24 +846,6 @@ namespace OrdersHandling
             this.grpCurrentRowInfo.TabStop = false;
             this.grpCurrentRowInfo.Text = "Current Row Information Panel";
             // 
-            // lblCurrentRowSqmLabel
-            // 
-            this.lblCurrentRowSqmLabel.AutoSize = true;
-            this.lblCurrentRowSqmLabel.Location = new System.Drawing.Point(7, 20);
-            this.lblCurrentRowSqmLabel.Name = "lblCurrentRowSqmLabel";
-            this.lblCurrentRowSqmLabel.Size = new System.Drawing.Size(84, 13);
-            this.lblCurrentRowSqmLabel.TabIndex = 0;
-            this.lblCurrentRowSqmLabel.Text = "Square meters : ";
-            // 
-            // lblCurrentSqmValue
-            // 
-            this.lblCurrentSqmValue.AutoSize = true;
-            this.lblCurrentSqmValue.Location = new System.Drawing.Point(93, 20);
-            this.lblCurrentSqmValue.Name = "lblCurrentSqmValue";
-            this.lblCurrentSqmValue.Size = new System.Drawing.Size(13, 13);
-            this.lblCurrentSqmValue.TabIndex = 1;
-            this.lblCurrentSqmValue.Text = "?";
-            // 
             // lblCurrentRowKgrValue
             // 
             this.lblCurrentRowKgrValue.AutoSize = true;
@@ -880,6 +863,24 @@ namespace OrdersHandling
             this.lblCurrentRowKgrLabel.Size = new System.Drawing.Size(61, 13);
             this.lblCurrentRowKgrLabel.TabIndex = 2;
             this.lblCurrentRowKgrLabel.Text = "Kilograms : ";
+            // 
+            // lblCurrentSqmValue
+            // 
+            this.lblCurrentSqmValue.AutoSize = true;
+            this.lblCurrentSqmValue.Location = new System.Drawing.Point(93, 20);
+            this.lblCurrentSqmValue.Name = "lblCurrentSqmValue";
+            this.lblCurrentSqmValue.Size = new System.Drawing.Size(13, 13);
+            this.lblCurrentSqmValue.TabIndex = 1;
+            this.lblCurrentSqmValue.Text = "?";
+            // 
+            // lblCurrentRowSqmLabel
+            // 
+            this.lblCurrentRowSqmLabel.AutoSize = true;
+            this.lblCurrentRowSqmLabel.Location = new System.Drawing.Point(7, 20);
+            this.lblCurrentRowSqmLabel.Name = "lblCurrentRowSqmLabel";
+            this.lblCurrentRowSqmLabel.Size = new System.Drawing.Size(84, 13);
+            this.lblCurrentRowSqmLabel.TabIndex = 0;
+            this.lblCurrentRowSqmLabel.Text = "Square meters : ";
             // 
             // frmOrderEdit
             // 

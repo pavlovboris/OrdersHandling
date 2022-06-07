@@ -83,6 +83,9 @@
           <Property Name="Perimeter" Type="float" />
           <Property Name="Weight" Type="float" />
           <Property Name="MU" Type="int" Nullable="false" />
+          <Property Name="QtySqm" Type="float" />
+          <Property Name="QtyKgr" Type="float" />
+          <Property Name="QtyPcs" Type="float" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -596,6 +599,9 @@
           <NavigationProperty Name="Orders" Relationship="Self.FK_OrderLines_OrderID" FromRole="OrderLines" ToRole="Orders" />
           <NavigationProperty Name="Surface" Relationship="Self.FK_OrderLines_SurfaceID" FromRole="OrderLines" ToRole="Surface" />
           <Property Name="MU" Type="Int32" Nullable="false" />
+          <Property Name="QtySqm" Type="Double" />
+          <Property Name="QtyKgr" Type="Double" />
+          <Property Name="QtyPcs" Type="Double" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -1105,6 +1111,9 @@
           <EntitySetMapping Name="OrderLines">
             <EntityTypeMapping TypeName="OrdersHandlingModel.OrderLines">
               <MappingFragment StoreEntitySet="OrderLines">
+                <ScalarProperty Name="QtyPcs" ColumnName="QtyPcs" />
+                <ScalarProperty Name="QtyKgr" ColumnName="QtyKgr" />
+                <ScalarProperty Name="QtySqm" ColumnName="QtySqm" />
                 <ScalarProperty Name="MU" ColumnName="MU" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
