@@ -42,5 +42,6 @@ namespace OrdersHandling
         public virtual Codes Codes { get; set; }
         public virtual Orders Orders { get; set; }
         public virtual Surface Surface { get; set; }
+        public virtual MU MU1 { get; set; }
     }
 }

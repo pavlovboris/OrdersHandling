@@ -202,7 +202,7 @@ namespace OrdersHandling
             this.grpColorPowder.Controls.Add(this.lblColor);
             this.grpColorPowder.Location = new System.Drawing.Point(214, 13);
             this.grpColorPowder.Name = "grpColorPowder";
-            this.grpColorPowder.Size = new System.Drawing.Size(295, 80);
+            this.grpColorPowder.Size = new System.Drawing.Size(328, 80);
             this.grpColorPowder.TabIndex = 6;
             this.grpColorPowder.TabStop = false;
             this.grpColorPowder.Text = "Color-Powder";
@@ -213,9 +213,9 @@ namespace OrdersHandling
             this.cmbPowder.DataSource = this.codesBindingSource;
             this.cmbPowder.DisplayMember = "Code";
             this.cmbPowder.FormattingEnabled = true;
-            this.cmbPowder.Location = new System.Drawing.Point(154, 39);
+            this.cmbPowder.Location = new System.Drawing.Point(151, 39);
             this.cmbPowder.Name = "cmbPowder";
-            this.cmbPowder.Size = new System.Drawing.Size(131, 21);
+            this.cmbPowder.Size = new System.Drawing.Size(171, 21);
             this.cmbPowder.TabIndex = 4;
             this.cmbPowder.ValueMember = "ID";
             // 
@@ -226,7 +226,7 @@ namespace OrdersHandling
             // lblPowder
             // 
             this.lblPowder.AutoSize = true;
-            this.lblPowder.Location = new System.Drawing.Point(151, 23);
+            this.lblPowder.Location = new System.Drawing.Point(151, 22);
             this.lblPowder.Name = "lblPowder";
             this.lblPowder.Size = new System.Drawing.Size(71, 13);
             this.lblPowder.TabIndex = 3;
@@ -234,11 +234,13 @@ namespace OrdersHandling
             // 
             // cmbColor
             // 
+            this.cmbColor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbColor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbColor.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.ordersBindingSource, "RALID", true));
             this.cmbColor.DataSource = this.colorsBindingSource;
             this.cmbColor.DisplayMember = "ColorName";
             this.cmbColor.FormattingEnabled = true;
-            this.cmbColor.Location = new System.Drawing.Point(6, 40);
+            this.cmbColor.Location = new System.Drawing.Point(6, 39);
             this.cmbColor.Name = "cmbColor";
             this.cmbColor.Size = new System.Drawing.Size(139, 21);
             this.cmbColor.TabIndex = 2;
@@ -251,11 +253,12 @@ namespace OrdersHandling
             // lblColor
             // 
             this.lblColor.AutoSize = true;
-            this.lblColor.Location = new System.Drawing.Point(6, 23);
+            this.lblColor.Location = new System.Drawing.Point(7, 23);
             this.lblColor.Name = "lblColor";
             this.lblColor.Size = new System.Drawing.Size(31, 13);
             this.lblColor.TabIndex = 1;
             this.lblColor.Text = "Color";
+            this.lblColor.DoubleClick += new System.EventHandler(this.lblColor_DoubleClick);
             // 
             // grpSaveCancel
             // 
@@ -376,7 +379,7 @@ namespace OrdersHandling
             this.grpDates.Controls.Add(this.lblReqDate);
             this.grpDates.Location = new System.Drawing.Point(214, 99);
             this.grpDates.Name = "grpDates";
-            this.grpDates.Size = new System.Drawing.Size(295, 63);
+            this.grpDates.Size = new System.Drawing.Size(328, 63);
             this.grpDates.TabIndex = 15;
             this.grpDates.TabStop = false;
             this.grpDates.Text = "Dates";
@@ -385,7 +388,7 @@ namespace OrdersHandling
             // 
             this.dateTimeExpectedDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.ordersBindingSource, "ExpectedMatDate", true));
             this.dateTimeExpectedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeExpectedDate.Location = new System.Drawing.Point(155, 30);
+            this.dateTimeExpectedDate.Location = new System.Drawing.Point(169, 30);
             this.dateTimeExpectedDate.Name = "dateTimeExpectedDate";
             this.dateTimeExpectedDate.Size = new System.Drawing.Size(130, 20);
             this.dateTimeExpectedDate.TabIndex = 3;
@@ -395,7 +398,7 @@ namespace OrdersHandling
             // lblExpectedMatDate
             // 
             this.lblExpectedMatDate.AutoSize = true;
-            this.lblExpectedMatDate.Location = new System.Drawing.Point(152, 14);
+            this.lblExpectedMatDate.Location = new System.Drawing.Point(166, 14);
             this.lblExpectedMatDate.Name = "lblExpectedMatDate";
             this.lblExpectedMatDate.Size = new System.Drawing.Size(133, 13);
             this.lblExpectedMatDate.TabIndex = 2;
@@ -424,6 +427,9 @@ namespace OrdersHandling
             // 
             this.dgvOrderLines.AllowUserToAddRows = false;
             this.dgvOrderLines.AllowUserToDeleteRows = false;
+            this.dgvOrderLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvOrderLines.AutoGenerateColumns = false;
             this.dgvOrderLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -453,10 +459,10 @@ namespace OrdersHandling
             this.QtyKgr});
             this.dgvOrderLines.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvOrderLines.DataSource = this.orderLinesBindingSource;
-            this.dgvOrderLines.Location = new System.Drawing.Point(12, 310);
+            this.dgvOrderLines.Location = new System.Drawing.Point(12, 327);
             this.dgvOrderLines.Name = "dgvOrderLines";
             this.dgvOrderLines.RowHeadersWidth = 20;
-            this.dgvOrderLines.Size = new System.Drawing.Size(1322, 351);
+            this.dgvOrderLines.Size = new System.Drawing.Size(1322, 334);
             this.dgvOrderLines.TabIndex = 16;
             this.dgvOrderLines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellDoubleClick);
             this.dgvOrderLines.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseClick);
@@ -738,7 +744,7 @@ namespace OrdersHandling
             // 
             // btnEditLines
             // 
-            this.btnEditLines.Location = new System.Drawing.Point(12, 281);
+            this.btnEditLines.Location = new System.Drawing.Point(12, 298);
             this.btnEditLines.Name = "btnEditLines";
             this.btnEditLines.Size = new System.Drawing.Size(75, 23);
             this.btnEditLines.TabIndex = 17;
@@ -816,17 +822,18 @@ namespace OrdersHandling
             // 
             this.dgvAttachments.AllowUserToAddRows = false;
             this.dgvAttachments.AllowUserToDeleteRows = false;
+            this.dgvAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAttachments.AutoGenerateColumns = false;
             this.dgvAttachments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNameDataGridViewTextBoxColumn});
             this.dgvAttachments.DataSource = this.uploadedFilesBindingSource;
-            this.dgvAttachments.Location = new System.Drawing.Point(1160, 101);
+            this.dgvAttachments.Location = new System.Drawing.Point(1057, 57);
             this.dgvAttachments.Name = "dgvAttachments";
             this.dgvAttachments.ReadOnly = true;
             this.dgvAttachments.RowHeadersWidth = 20;
             this.dgvAttachments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAttachments.Size = new System.Drawing.Size(174, 150);
+            this.dgvAttachments.Size = new System.Drawing.Size(277, 194);
             this.dgvAttachments.TabIndex = 20;
             this.dgvAttachments.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAttachments_CellDoubleClick);
             // 
@@ -837,7 +844,7 @@ namespace OrdersHandling
             this.fileNameDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
             this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fileNameDataGridViewTextBoxColumn.Width = 150;
+            this.fileNameDataGridViewTextBoxColumn.Width = 300;
             // 
             // uploadedFilesBindingSource
             // 
@@ -845,7 +852,8 @@ namespace OrdersHandling
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(1160, 258);
+            this.btnUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpload.Location = new System.Drawing.Point(1057, 257);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 23);
             this.btnUpload.TabIndex = 21;
@@ -872,9 +880,9 @@ namespace OrdersHandling
             this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowKgrLabel);
             this.grpCurrentRowInfo.Controls.Add(this.lblCurrentSqmValue);
             this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowSqmLabel);
-            this.grpCurrentRowInfo.Location = new System.Drawing.Point(118, 258);
+            this.grpCurrentRowInfo.Location = new System.Drawing.Point(93, 258);
             this.grpCurrentRowInfo.Name = "grpCurrentRowInfo";
-            this.grpCurrentRowInfo.Size = new System.Drawing.Size(432, 46);
+            this.grpCurrentRowInfo.Size = new System.Drawing.Size(379, 63);
             this.grpCurrentRowInfo.TabIndex = 22;
             this.grpCurrentRowInfo.TabStop = false;
             this.grpCurrentRowInfo.Text = "Current Row Information Panel";
@@ -882,25 +890,25 @@ namespace OrdersHandling
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(142, 20);
+            this.label1.Location = new System.Drawing.Point(7, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "Sum :";
+            this.label1.Text = "Sum of Square meters :";
             // 
             // lblSumSelectedKgr
             // 
             this.lblSumSelectedKgr.AutoSize = true;
-            this.lblSumSelectedKgr.Location = new System.Drawing.Point(341, 20);
+            this.lblSumSelectedKgr.Location = new System.Drawing.Point(199, 40);
             this.lblSumSelectedKgr.Name = "lblSumSelectedKgr";
-            this.lblSumSelectedKgr.Size = new System.Drawing.Size(34, 13);
+            this.lblSumSelectedKgr.Size = new System.Drawing.Size(94, 13);
             this.lblSumSelectedKgr.TabIndex = 6;
-            this.lblSumSelectedKgr.Text = "Sum :";
+            this.lblSumSelectedKgr.Text = "Sum of Kilograms :";
             // 
             // lblSqmSelectedSum
             // 
             this.lblSqmSelectedSum.AutoSize = true;
-            this.lblSqmSelectedSum.Location = new System.Drawing.Point(175, 20);
+            this.lblSqmSelectedSum.Location = new System.Drawing.Point(126, 40);
             this.lblSqmSelectedSum.Name = "lblSqmSelectedSum";
             this.lblSqmSelectedSum.Size = new System.Drawing.Size(13, 13);
             this.lblSqmSelectedSum.TabIndex = 5;
@@ -910,7 +918,7 @@ namespace OrdersHandling
             // lblKgrSelectedSum
             // 
             this.lblKgrSelectedSum.AutoSize = true;
-            this.lblKgrSelectedSum.Location = new System.Drawing.Point(374, 20);
+            this.lblKgrSelectedSum.Location = new System.Drawing.Point(295, 41);
             this.lblKgrSelectedSum.Name = "lblKgrSelectedSum";
             this.lblKgrSelectedSum.Size = new System.Drawing.Size(13, 13);
             this.lblKgrSelectedSum.TabIndex = 4;
@@ -919,7 +927,7 @@ namespace OrdersHandling
             // lblCurrentRowKgrValue
             // 
             this.lblCurrentRowKgrValue.AutoSize = true;
-            this.lblCurrentRowKgrValue.Location = new System.Drawing.Point(282, 20);
+            this.lblCurrentRowKgrValue.Location = new System.Drawing.Point(295, 21);
             this.lblCurrentRowKgrValue.Name = "lblCurrentRowKgrValue";
             this.lblCurrentRowKgrValue.Size = new System.Drawing.Size(13, 13);
             this.lblCurrentRowKgrValue.TabIndex = 3;
@@ -928,7 +936,7 @@ namespace OrdersHandling
             // lblCurrentRowKgrLabel
             // 
             this.lblCurrentRowKgrLabel.AutoSize = true;
-            this.lblCurrentRowKgrLabel.Location = new System.Drawing.Point(228, 20);
+            this.lblCurrentRowKgrLabel.Location = new System.Drawing.Point(235, 20);
             this.lblCurrentRowKgrLabel.Name = "lblCurrentRowKgrLabel";
             this.lblCurrentRowKgrLabel.Size = new System.Drawing.Size(61, 13);
             this.lblCurrentRowKgrLabel.TabIndex = 2;
@@ -937,7 +945,7 @@ namespace OrdersHandling
             // lblCurrentSqmValue
             // 
             this.lblCurrentSqmValue.AutoSize = true;
-            this.lblCurrentSqmValue.Location = new System.Drawing.Point(84, 20);
+            this.lblCurrentSqmValue.Location = new System.Drawing.Point(126, 22);
             this.lblCurrentSqmValue.Name = "lblCurrentSqmValue";
             this.lblCurrentSqmValue.Size = new System.Drawing.Size(13, 13);
             this.lblCurrentSqmValue.TabIndex = 1;
@@ -946,7 +954,7 @@ namespace OrdersHandling
             // lblCurrentRowSqmLabel
             // 
             this.lblCurrentRowSqmLabel.AutoSize = true;
-            this.lblCurrentRowSqmLabel.Location = new System.Drawing.Point(7, 20);
+            this.lblCurrentRowSqmLabel.Location = new System.Drawing.Point(43, 20);
             this.lblCurrentRowSqmLabel.Name = "lblCurrentRowSqmLabel";
             this.lblCurrentRowSqmLabel.Size = new System.Drawing.Size(84, 13);
             this.lblCurrentRowSqmLabel.TabIndex = 0;
@@ -954,6 +962,7 @@ namespace OrdersHandling
             // 
             // btnAttachmentRemove
             // 
+            this.btnAttachmentRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAttachmentRemove.Location = new System.Drawing.Point(1259, 258);
             this.btnAttachmentRemove.Name = "btnAttachmentRemove";
             this.btnAttachmentRemove.Size = new System.Drawing.Size(75, 23);
@@ -964,7 +973,7 @@ namespace OrdersHandling
             // 
             // btnExportExel
             // 
-            this.btnExportExel.Location = new System.Drawing.Point(557, 280);
+            this.btnExportExel.Location = new System.Drawing.Point(478, 298);
             this.btnExportExel.Name = "btnExportExel";
             this.btnExportExel.Size = new System.Drawing.Size(83, 23);
             this.btnExportExel.TabIndex = 24;
@@ -976,7 +985,7 @@ namespace OrdersHandling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1347, 669);
+            this.ClientSize = new System.Drawing.Size(1351, 676);
             this.Controls.Add(this.btnExportExel);
             this.Controls.Add(this.btnAttachmentRemove);
             this.Controls.Add(this.grpCurrentRowInfo);
@@ -1080,7 +1089,6 @@ namespace OrdersHandling
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.DataGridView dgvAttachments;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource uploadedFilesBindingSource;
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.OpenFileDialog uploadFileDialog;
@@ -1120,5 +1128,6 @@ namespace OrdersHandling
         private System.Windows.Forms.Label lblSumSelectedKgr;
         private System.Windows.Forms.Button btnAttachmentRemove;
         private System.Windows.Forms.Button btnExportExel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
     }
 }

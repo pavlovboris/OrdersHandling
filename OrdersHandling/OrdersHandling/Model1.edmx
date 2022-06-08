@@ -307,6 +307,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderLines_MU">
+          <End Role="MU" Type="Self.MU" Multiplicity="1" />
+          <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MU">
+              <PropertyRef Name="MuID" />
+            </Principal>
+            <Dependent Role="OrderLines">
+              <PropertyRef Name="MU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OrderLines_OrderID">
           <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
           <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
@@ -471,6 +483,10 @@
             <End Role="Codes" EntitySet="Codes" />
             <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderLines_MU" Association="Self.FK_OrderLines_MU">
+            <End Role="MU" EntitySet="MU" />
+            <End Role="OrderLines" EntitySet="OrderLines" />
+          </AssociationSet>
           <AssociationSet Name="FK_OrderLines_OrderID" Association="Self.FK_OrderLines_OrderID">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderLines" EntitySet="OrderLines" />
@@ -570,6 +586,7 @@
           <Property Name="MuCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Codes" Relationship="Self.FK_Codes_DefaultMU" FromRole="MU" ToRole="Codes" />
+          <NavigationProperty Name="OrderLines" Relationship="OrdersHandlingModel.FK_OrderLines_MU" FromRole="MU" ToRole="OrderLines" />
         </EntityType>
         <EntityType Name="OrderLines">
           <Key>
@@ -602,6 +619,7 @@
           <Property Name="QtySqm" Type="Double" />
           <Property Name="QtyKgr" Type="Double" />
           <Property Name="QtyPcs" Type="Double" />
+          <NavigationProperty Name="MU1" Relationship="OrdersHandlingModel.FK_OrderLines_MU" FromRole="OrderLines" ToRole="MU" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -971,6 +989,10 @@
             <End Role="Orders" EntitySet="Orders" />
             <End Role="UploadedFiles" EntitySet="UploadedFiles" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderLines_MU" Association="OrdersHandlingModel.FK_OrderLines_MU">
+            <End Role="MU" EntitySet="MU" />
+            <End Role="OrderLines" EntitySet="OrderLines" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Colors">
           <Key>
@@ -1050,6 +1072,18 @@
             </Principal>
             <Dependent Role="UploadedFiles">
               <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLines_MU">
+          <End Type="OrdersHandlingModel.MU" Role="MU" Multiplicity="1" />
+          <End Type="OrdersHandlingModel.OrderLines" Role="OrderLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MU">
+              <PropertyRef Name="MuID" />
+            </Principal>
+            <Dependent Role="OrderLines">
+              <PropertyRef Name="MU" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

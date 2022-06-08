@@ -24,19 +24,20 @@ namespace OrdersHandling
         public OrdersHandlingEntities db;
         private void frmOrderEdit_Load(object sender, EventArgs e)
         {
-            if (frmLogin.Instance.UserInfo.RoleID==1)
+            if (frmLogin.Instance.UserInfo.RoleID == 1)
             {
                 cmbPartnerName.Enabled = true;
                 chkboxOffer.Enabled = true;
                 chkBoxCompleated.Enabled = true;
-            } else
+            }
+            else
             {
                 cmbPartnerName.Enabled = false;
             }
             //db = new OrdersHandlingEntities();
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
 
-            uploadedFilesBindingSource.DataSource = db.UploadedFiles.Where(u => u.OrderID==order.ID).ToList();
+            uploadedFilesBindingSource.DataSource = db.UploadedFiles.Where(u => u.OrderID == order.ID).ToList();
             partnersBindingSource.DataSource = db.Partners.ToList();
             codesBindingSource.DataSource = db.Codes.Where(c => c.Type == 5).ToList();
             colorsBindingSource.DataSource = db.Colors.ToList();
@@ -95,14 +96,14 @@ namespace OrdersHandling
             {
                 try
                 {
-                    order.OrderSQM =Convert.ToDouble( lblSqmSum.Text);
+                    order.OrderSQM = Convert.ToDouble(lblSqmSum.Text);
                     order.Orderkgr = Convert.ToDouble(lblKgrSum.Text);
-                    
+
                     ordersBindingSource.EndEdit();
                     orderLinesBindingSource.EndEdit();
                     dgvOrderLines.EndEdit();
                     await db.SaveChangesAsync();
-                    
+
                     MessageBox.Show("Промените са успешно запаметени.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -114,15 +115,15 @@ namespace OrdersHandling
                 }
             }
         }
-       
+
         private void dgvOrderLines_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvOrderLines.Rows[e.RowIndex].Cells[1].Value==null)
-            {
-                dgvOrderLines.Rows[e.RowIndex].Cells[1].Value = order.ID;
-                dgvOrderLines.Rows[e.RowIndex].Cells[2].Value = 6;
-            }
-           
+            /* if (dgvOrderLines.Rows[e.RowIndex].Cells[1].Value==null)
+             {
+                 dgvOrderLines.Rows[e.RowIndex].Cells[1].Value = order.ID;
+                 dgvOrderLines.Rows[e.RowIndex].Cells[2].Value = 6;
+             }*/
+
         }
 
         private void dgvOrderLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -141,8 +142,8 @@ namespace OrdersHandling
             orderline.SurfaceID = (int)code.DefaultSurface;
             orderline.Perimeter = code.Perimeter;
             orderline.Weight = code.Weigth;
-            orderline.ProtectiveFilm = partner.DefaultPF*code.PF;
-            if (orderline.SurfaceID.ToString()==null)
+            orderline.ProtectiveFilm = partner.DefaultPF * code.PF;
+            if (orderline.SurfaceID.ToString() == null)
             {
                 orderline.SurfaceID = 1;
             }
@@ -164,26 +165,32 @@ namespace OrdersHandling
         {
             frmCodeSelector frmcodeselector = (frmCodeSelector)sender;
             Enabled = true;
-            if(frmcodeselector.dgvCodeSelector.CurrentRow!=null & frmcodeselector.cancel==false)
+
+            if (frmcodeselector.dgvCodeSelector.CurrentRow != null & frmcodeselector.cancel == false)
             {
-                if (frmcodeselector.xclicked!=true)
+                if (frmcodeselector.xclicked != true)
                 {
                     Codes code = frmcodeselector.dgvCodeSelector.CurrentRow.DataBoundItem as Codes;
-                    
+                    dgvOrderLines.Focus();
                     dgvOrderLines.CurrentCell = dgvOrderLines.CurrentRow.Cells[2];
+
+
                     dgvOrderLines.CurrentCell.Value = code.ID;
-                } else if (dgvOrderLines.CurrentRow.Index==dgvOrderLines.RowCount-1 && dgvOrderLines.Rows[dgvOrderLines.CurrentRow.Index].Cells[5].Value.ToString() == "0")
+                }
+                else if (dgvOrderLines.CurrentRow.Index == dgvOrderLines.RowCount - 1 && dgvOrderLines.Rows[dgvOrderLines.CurrentRow.Index].Cells[5].Value.ToString() == "0")
                 {
                     OrderLines line = dgvOrderLines.CurrentRow.DataBoundItem as OrderLines;
                     orderLinesBindingSource.Remove(line);
                     db.OrderLines.Remove(line);
                 }
-            } else if (frmcodeselector.dgvCodeSelector.CurrentRow!=null && dgvOrderLines.CurrentRow.Index == dgvOrderLines.RowCount - 1 && dgvOrderLines.Rows[dgvOrderLines.CurrentRow.Index].Cells[5].Value.ToString()=="0")
+            }
+            else if (frmcodeselector.dgvCodeSelector.CurrentRow != null && dgvOrderLines.CurrentRow.Index == dgvOrderLines.RowCount - 1 && dgvOrderLines.Rows[dgvOrderLines.CurrentRow.Index].Cells[5].Value.ToString() == "0")
             {
                 OrderLines line = dgvOrderLines.CurrentRow.DataBoundItem as OrderLines;
                 orderLinesBindingSource.Remove(line);
                 db.OrderLines.Remove(line);
             }
+
         }
 
         private void dgvOrderLines_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -262,12 +269,13 @@ namespace OrdersHandling
                     lblKgrSum.Text = Math.Round(kgr, 2).ToString();
                     //Update order info panel ends here
                 }
-            } catch { }
+            }
+            catch { }
         }
 
         private void dgvOrderLines_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.ColumnIndex==21)
+            if (e.ColumnIndex == 21)
             {
                 frmDatePicker frmdatepicker = new frmDatePicker();
                 frmdatepicker.Show();
@@ -279,7 +287,7 @@ namespace OrdersHandling
         {
             frmDatePicker datepicker = (frmDatePicker)sender;
 
-            if (datepicker.isClosed==0)
+            if (datepicker.isClosed == 0)
             {
                 dgvOrderLines.CurrentCell.Value = datepicker.cldrDatePick.SelectionStart;
             }
@@ -292,13 +300,13 @@ namespace OrdersHandling
             foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
             {
                 OrderLines orderLines = dgvr.DataBoundItem as OrderLines;
-                orderLines.DeliveryDate = datetime.Value; 
+                orderLines.DeliveryDate = datetime.Value;
             }
         }
 
         private void dgvOrderLines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 2 || e.ColumnIndex==3)
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
             {
                 frmCodeSelector frmcodeselector = new frmCodeSelector();
                 frmcodeselector.FormClosing += Frmcodeselector_FormClosing;
@@ -308,9 +316,9 @@ namespace OrdersHandling
 
         private void dgvOrderLines_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button==MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
-                if (e.RowIndex != -1 && dgvOrderLines.Rows[e.RowIndex].DataBoundItem!=null  )
+                if (e.RowIndex != -1 && dgvOrderLines.Rows[e.RowIndex].DataBoundItem != null)
                 {
                     dgvOrderLines.Rows[e.RowIndex].Selected = true;
                 }
@@ -326,16 +334,16 @@ namespace OrdersHandling
                     
                 }*/
 
-                foreach(DataGridViewRow dr in dgvOrderLines.Rows)
+                foreach (DataGridViewRow dr in dgvOrderLines.Rows)
                 {
-                    if (dr.DataBoundItem!=null && dr.Selected==true)
+                    if (dr.DataBoundItem != null && dr.Selected == true)
                     {
-                        if(MessageBox.Show("Сигурни ли сте, че искате да изтриете избраните редове?","",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show("Сигурни ли сте, че искате да изтриете избраните редове?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             OrderLines orders = new OrderLines();
                             orders = dr.DataBoundItem as OrderLines;
                             dgvOrderLines.Rows.Remove(dr);
-                            orderLinesBindingSource.Remove(orders);                            
+                            orderLinesBindingSource.Remove(orders);
                             db.OrderLines.Remove(orders);
                         }
                     }
@@ -377,8 +385,8 @@ namespace OrdersHandling
 
         private void uploadFileDialog_FileOk(object sender, CancelEventArgs e)
         {
-           /* OrdersHandlingEntities db = new OrdersHandlingEntities();
-            db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";*/
+            /* OrdersHandlingEntities db = new OrdersHandlingEntities();
+             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";*/
             FileDialog dialog = (FileDialog)sender;
 
             if (dialog.CheckFileExists == true)
@@ -395,7 +403,7 @@ namespace OrdersHandling
                     uploadedFilesBindingSource.Add(uploadedFiles);
                     db.UploadedFiles.Add(uploadedFiles);
 
-                    MessageBox.Show("Файлът е качен успешно","",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Файлът е качен успешно", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
                 {
@@ -413,11 +421,11 @@ namespace OrdersHandling
             UploadedFiles uploadedFiles = new UploadedFiles();
             uploadedFiles = dgvAttachments.Rows[e.RowIndex].DataBoundItem as UploadedFiles;
             byte[] bytes = uploadedFiles.File;
-           
+
             saveFileDialog1 = new SaveFileDialog();
 
             saveFileDialog1.FileName = uploadedFiles.FileName;
-            if(saveFileDialog1.ShowDialog()==DialogResult.OK)
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 saveFileDialog1.FileName = saveFileDialog1.FileName;
                 try
@@ -433,7 +441,8 @@ namespace OrdersHandling
                         {
                             Process.Start(saveFileDialog1.FileName);
                             MessageBox.Show("Файла е успешно записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        } catch
+                        }
+                        catch
                         {
                             MessageBox.Show("Възникна грешка при записшане на файла, файла не записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -452,25 +461,27 @@ namespace OrdersHandling
         private void dgvOrderLines_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
-            if (dgv.CurrentCell.RowIndex==dgv.RowCount-1)
+            if (dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
             {
-                if(e.Modifiers!=Keys.Shift & e.KeyValue== 13 | e.KeyValue==40 && dgv.CurrentRow.Cells[5].Value.ToString() != "0")
+                if (e.Modifiers != Keys.Shift & e.KeyValue == 13 | e.KeyValue == 40 && dgv.CurrentRow.Cells[5].Value.ToString() != "0")
                 {
                     e.IsInputKey = true;
                     btnEditLines.PerformClick();
-                } else if (e.Modifiers != Keys.Shift & e.KeyValue == 13) 
-                { 
-                    dgv.CurrentCell = dgv.CurrentRow.Cells[5]; 
                 }
-            } else if (dgv.CurrentCell.ColumnIndex == dgv.ColumnCount - 1 & dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
+                else if (e.Modifiers != Keys.Shift & e.KeyValue == 13)
+                {
+                    dgv.CurrentCell = dgv.CurrentRow.Cells[5];
+                }
+            }
+            else if (dgv.CurrentCell.ColumnIndex == dgv.ColumnCount - 1 & dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
             {
-                if (e.Modifiers!=Keys.Shift & e.KeyValue==9)
+                if (e.Modifiers != Keys.Shift & e.KeyValue == 9)
                 {
                     e.IsInputKey = true;
                     btnEditLines.PerformClick();
-                   
+
                 }
-            } 
+            }
         }
 
         private void dgvOrderLines_CurrentCellChanged(object sender, EventArgs e)
@@ -479,9 +490,9 @@ namespace OrdersHandling
             double selectedSqm = 0;
             double selectedKgr = 0;
 
-            if (dgv.CurrentRow!=null )
+            if (dgv.CurrentRow != null)
             {
-   
+
                 OrderLines orderline1 = dgv.CurrentRow.DataBoundItem as OrderLines;
                 try
                 {
@@ -489,25 +500,26 @@ namespace OrdersHandling
                     lblCurrentRowKgrValue.Text = Math.Round((double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating), 2).ToString();
                     orderline1.QtySqm = Convert.ToDouble(lblCurrentSqmValue.Text);
                     orderline1.QtyKgr = Convert.ToDouble(lblCurrentRowKgrValue.Text);
-                } catch
+                }
+                catch
                 {
                     lblCurrentSqmValue.Text = "0";
                     lblCurrentRowKgrValue.Text = "0";
                     orderline1.QtySqm = Convert.ToDouble(lblCurrentSqmValue.Text);
                     orderline1.QtyKgr = Convert.ToDouble(lblCurrentRowKgrValue.Text);
                 }
-              /*  foreach (DataGridViewRow row in dgvOrderLines.Rows)
-                {
-                    try
-                    {
-                        if (row.Selected == true && row.DataBoundItem != null)
-                        {
-                            OrderLines ordline1 = row.DataBoundItem as OrderLines;
-                            selectedSqm += (double)ordline1.QtySqm;
-                            selectedKgr += (double)ordline1.QtyKgr;
-                        }
-                    } catch { }
-                } */
+                /*  foreach (DataGridViewRow row in dgvOrderLines.Rows)
+                  {
+                      try
+                      {
+                          if (row.Selected == true && row.DataBoundItem != null)
+                          {
+                              OrderLines ordline1 = row.DataBoundItem as OrderLines;
+                              selectedSqm += (double)ordline1.QtySqm;
+                              selectedKgr += (double)ordline1.QtyKgr;
+                          }
+                      } catch { }
+                  } */
             }
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
@@ -520,15 +532,16 @@ namespace OrdersHandling
                         {
                             try
                             {
-                                if (dgv.Rows[i].Index !=-1 & dgv.Rows[i].DataBoundItem!=null)
+                                if (dgv.Rows[i].Index != -1 & dgv.Rows[i].DataBoundItem != null)
                                 {
-                                
+
                                     OrderLines ordln = dgv.Rows[i].DataBoundItem as OrderLines;
                                     selectedSqm += (double)ordln.QtySqm;
                                     selectedKgr += (double)ordln.QtyKgr;
                                     rowIsAdded = true;
                                 }
-                            } catch { }
+                            }
+                            catch { }
                         }
                     }
                 }
@@ -544,7 +557,7 @@ namespace OrdersHandling
 
         private void btnAttachmentRemove_Click(object sender, EventArgs e)
         {
-            if (dgvAttachments.CurrentRow.Index!=-1 & dgvAttachments.CurrentRow.DataBoundItem!=null)
+            if (dgvAttachments.CurrentRow.Index != -1 & dgvAttachments.CurrentRow.DataBoundItem != null)
             {
                 if (MessageBox.Show("Сигурни ли сте, че искате да изтриете файл :" + dgvAttachments.CurrentRow.Cells[0].Value.ToString(), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -566,21 +579,21 @@ namespace OrdersHandling
             Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
             int StartCol = 0;
             int StartRow = 1;
-            for(int j = 1; j < dgvOrderLines.Columns.Count; j++)
+            for (int j = 1; j < dgvOrderLines.Columns.Count; j++)
             {
                 Range myRange = (Range)sheet1.Cells[StartRow, StartCol + j];
                 myRange.Value2 = dgvOrderLines.Columns[j].HeaderText;
             }
             StartRow++;
-            for(int i = 0; i < dgvOrderLines.Rows.Count; i++)
+            for (int i = 0; i < dgvOrderLines.Rows.Count; i++)
             {
-                for(int j=1; j< dgvOrderLines.Columns.Count; j++)
+                for (int j = 1; j < dgvOrderLines.Columns.Count; j++)
                 {
                     Range myRange = (Range)sheet1.Cells[StartRow + i, StartCol + j];
                     string vle = "";
                     OrderLines ordline = dgvOrderLines.Rows[i].DataBoundItem as OrderLines;
 
-                    switch (StartCol+j)
+                    switch (StartCol + j)
                     {
                         case 1:
                             vle = dgvOrderLines[j, i].Value == null ? "" : dgvOrderLines[j, i].Value.ToString();
@@ -597,11 +610,45 @@ namespace OrdersHandling
                         case 5:
                             vle = ordline.Pcs.ToString();
                             break;
+                        case 6:
+                            vle = ordline.Length.ToString();
+                            break;
+                        case 7:
+                            vle = ordline.QTY.ToString();
+                            break;
+                        case 8:
+                            vle = ordline.MU1.MuName.ToString();
+                            break;
                     }
 
                     myRange.Value2 = vle;
                 }
             }
+        }
+
+        private void FrmColorSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmColorSelector frmColorSelector = (frmColorSelector)sender;
+            Enabled = true;
+            if (frmColorSelector.dgvColorSelector.CurrentRow != null & frmColorSelector.cancel == false)
+            {
+                if (frmColorSelector.xclicked != true)
+                {
+                    Colors selectedcolor = frmColorSelector.dgvColorSelector.CurrentRow.DataBoundItem as Colors;
+                    cmbColor.SelectedIndex = -1;
+                    int selectedValue = selectedcolor.ID;
+                    cmbColor.SelectedValue = selectedValue;
+                }
+            }
+        }
+
+        private void lblColor_DoubleClick(object sender, EventArgs e)
+        {
+            frmColorSelector frmColorSelector = new frmColorSelector();
+            frmColorSelector.FormClosing += FrmColorSelector_FormClosing;
+            Enabled = false;
+            frmColorSelector.ShowDialog();
+
         }
     }
 }

@@ -18,6 +18,7 @@ namespace OrdersHandling
         public MU()
         {
             this.Codes = new HashSet<Codes>();
+            this.OrderLines = new HashSet<OrderLines>();
         }
     
         public int MuID { get; set; }
@@ -26,5 +27,7 @@ namespace OrdersHandling
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Codes> Codes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderLines> OrderLines { get; set; }
     }
 }
