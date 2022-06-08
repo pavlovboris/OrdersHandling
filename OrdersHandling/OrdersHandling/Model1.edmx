@@ -49,6 +49,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ColorName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DefaultMaterial" Type="int" />
+          <Property Name="ForeignID" Type="int" />
         </EntityType>
         <EntityType Name="MU">
           <Key>
@@ -1004,6 +1005,7 @@
           <NavigationProperty Name="Colors1" Relationship="OrdersHandlingModel.FK_Colors_Colors" FromRole="Colors" ToRole="Colors1" />
           <NavigationProperty Name="Colors2" Relationship="OrdersHandlingModel.FK_Colors_Colors" FromRole="Colors1" ToRole="Colors" />
           <NavigationProperty Name="Orders" Relationship="OrdersHandlingModel.FK_Orders_Colors" FromRole="Colors" ToRole="Orders" />
+          <Property Name="ForeignID" Type="Int32" />
         </EntityType>
         <Association Name="FK_Colors_Colors">
           <End Type="OrdersHandlingModel.Colors" Role="Colors" Multiplicity="1" />
@@ -1274,6 +1276,7 @@
           <EntitySetMapping Name="Colors">
             <EntityTypeMapping TypeName="OrdersHandlingModel.Colors">
               <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="ForeignID" ColumnName="ForeignID" />
                 <ScalarProperty Name="DefaultMaterial" ColumnName="DefaultMaterial" />
                 <ScalarProperty Name="ColorName" ColumnName="ColorName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

@@ -23,6 +23,7 @@ namespace OrdersHandling
         public int ID { get; set; }
         public string ColorName { get; set; }
         public Nullable<int> DefaultMaterial { get; set; }
+        public Nullable<int> ForeignID { get; set; }
     
         public virtual Colors Colors1 { get; set; }
         public virtual Colors Colors2 { get; set; }
