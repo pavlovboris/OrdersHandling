@@ -428,9 +428,16 @@ namespace OrdersHandling
 
                     fs.Close();
 
-                    if (MessageBox.Show("Файла е успешно запаметен в : " + saveFileDialog1.FileName, "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (MessageBox.Show("Сигурни ли сте, че искате да запаметите файл : " + saveFileDialog1.FileName, "", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        Process.Start(saveFileDialog1.FileName);
+                        try
+                        {
+                            Process.Start(saveFileDialog1.FileName);
+                            MessageBox.Show("Файла е успешно записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        } catch
+                        {
+                            MessageBox.Show("Възникна грешка при записшане на файла, файла не", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 catch
@@ -514,13 +521,18 @@ namespace OrdersHandling
                     {
                         if (dgv.Rows[i].Cells[j].Selected == true)
                         {
-                            if (dgv.Rows[i].Index !=-1 & dgv.Rows[i].DataBoundItem!=null)
+                            try
                             {
-                                OrderLines ordln = dgv.Rows[i].DataBoundItem as OrderLines;
-                                selectedSqm += (double)ordln.QtySqm;
-                                selectedKgr += (double)ordln.QtyKgr;
-                                rowIsAdded = true;
-                            }
+                                if (dgv.Rows[i].Index !=-1 & dgv.Rows[i].DataBoundItem!=null)
+                                {
+                                
+                                    OrderLines ordln = dgv.Rows[i].DataBoundItem as OrderLines;
+                                    selectedSqm += (double)ordln.QtySqm;
+                                    selectedKgr += (double)ordln.QtyKgr;
+                                    rowIsAdded = true;
+                                
+                                }
+                            } catch { }
                         }
                     }
                 }
