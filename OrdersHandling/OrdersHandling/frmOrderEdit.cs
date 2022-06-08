@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Exel = Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Excel;
 
 namespace OrdersHandling
 {
@@ -470,12 +472,105 @@ namespace OrdersHandling
         private void dgvOrderLines_CurrentCellChanged(object sender, EventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
+            double selectedSqm = 0;
+            double selectedKgr = 0;
 
             if (dgv.CurrentRow!=null )
             {
+   
                 OrderLines orderline1 = dgv.CurrentRow.DataBoundItem as OrderLines;
-                lblCurrentSqmValue.Text = Math.Round((double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating),2).ToString();
-                lblCurrentRowKgrValue.Text = Math.Round((double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating),2).ToString();
+                try
+                {
+                    lblCurrentSqmValue.Text = Math.Round((double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating), 2).ToString();
+                    lblCurrentRowKgrValue.Text = Math.Round((double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating), 2).ToString();
+                    orderline1.QtySqm = Convert.ToDouble(lblCurrentSqmValue.Text);
+                    orderline1.QtyKgr = Convert.ToDouble(lblCurrentRowKgrValue.Text);
+                } catch
+                {
+                    lblCurrentSqmValue.Text = "0";
+                    lblCurrentRowKgrValue.Text = "0";
+                    orderline1.QtySqm = Convert.ToDouble(lblCurrentSqmValue.Text);
+                    orderline1.QtyKgr = Convert.ToDouble(lblCurrentRowKgrValue.Text);
+                }
+              /*  foreach (DataGridViewRow row in dgvOrderLines.Rows)
+                {
+                    try
+                    {
+                        if (row.Selected == true && row.DataBoundItem != null)
+                        {
+                            OrderLines ordline1 = row.DataBoundItem as OrderLines;
+                            selectedSqm += (double)ordline1.QtySqm;
+                            selectedKgr += (double)ordline1.QtyKgr;
+                        }
+                    } catch { }
+                } */
+            }
+            for (int i = 0; i < dgv.Rows.Count; i++)
+            {
+                bool rowIsAdded = false;
+                for (int j = 0; j < dgv.Columns.Count; j++)
+                {
+                    if (rowIsAdded == false)
+                    {
+                        if (dgv.Rows[i].Cells[j].Selected == true)
+                        {
+                            if (dgv.Rows[i].Index !=-1 & dgv.Rows[i].DataBoundItem!=null)
+                            {
+                                OrderLines ordln = dgv.Rows[i].DataBoundItem as OrderLines;
+                                selectedSqm += (double)ordln.QtySqm;
+                                selectedKgr += (double)ordln.QtyKgr;
+                                rowIsAdded = true;
+                            }
+                        }
+                    }
+                }
+            }
+            lblSqmSelectedSum.Text = selectedSqm.ToString();
+            lblKgrSelectedSum.Text = selectedKgr.ToString();
+        }
+
+        private void lblSelectedSum_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAttachmentRemove_Click(object sender, EventArgs e)
+        {
+            if (dgvAttachments.CurrentRow.Index!=-1 & dgvAttachments.CurrentRow.DataBoundItem!=null)
+            {
+                if (MessageBox.Show("Сигурни ли сте, че искате да изтриете файл :" + dgvAttachments.CurrentRow.Cells[0].Value.ToString(), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    UploadedFiles uploadedFile = dgvAttachments.CurrentRow.DataBoundItem as UploadedFiles;
+                    uploadedFilesBindingSource.Remove(uploadedFile);
+                    db.UploadedFiles.Remove(uploadedFile);
+                }
+            }
+        }
+
+        private void btnExportExel_Click(object sender, EventArgs e)
+        {
+            Exel.Application exel = new Exel.Application();
+            exel.Visible = true;
+
+            object Missing = Type.Missing;
+
+            Workbook workbook = exel.Workbooks.Add(Missing);
+            Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
+            int StartCol = 0;
+            int StartRow = 1;
+            for(int j = 1; j < dgvOrderLines.Columns.Count; j++)
+            {
+                Range myRange = (Range)sheet1.Cells[StartRow, StartCol + j];
+                myRange.Value2 = dgvOrderLines.Columns[j].HeaderText;
+            }
+            StartRow++;
+            for(int i = 0; i < dgvOrderLines.Rows.Count; i++)
+            {
+                for(int j=1; j< dgvOrderLines.Columns.Count; j++)
+                {
+                    Range myRange = (Range)sheet1.Cells[StartRow + i, StartCol + j];
+                    myRange.Value2 = dgvOrderLines.Rows[i].Cells[j].Value == null ? "" : dgvOrderLines[j, i].Value;
+                }
             }
         }
     }

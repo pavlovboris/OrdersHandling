@@ -85,6 +85,8 @@ namespace OrdersHandling
             this.perimeterDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weightDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deliveryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtySqm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QtyKgr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.orderLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -103,10 +105,16 @@ namespace OrdersHandling
             this.uploadFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.grpCurrentRowInfo = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSumSelectedKgr = new System.Windows.Forms.Label();
+            this.lblSqmSelectedSum = new System.Windows.Forms.Label();
+            this.lblKgrSelectedSum = new System.Windows.Forms.Label();
             this.lblCurrentRowKgrValue = new System.Windows.Forms.Label();
             this.lblCurrentRowKgrLabel = new System.Windows.Forms.Label();
             this.lblCurrentSqmValue = new System.Windows.Forms.Label();
             this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
+            this.btnAttachmentRemove = new System.Windows.Forms.Button();
+            this.btnExportExel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -440,7 +448,9 @@ namespace OrdersHandling
             this.protectionFilmPriceDataGridViewTextBoxColumn,
             this.perimeterDataGridViewTextBoxColumn,
             this.weightDataGridViewTextBoxColumn,
-            this.deliveryDateDataGridViewTextBoxColumn});
+            this.deliveryDateDataGridViewTextBoxColumn,
+            this.QtySqm,
+            this.QtyKgr});
             this.dgvOrderLines.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvOrderLines.DataSource = this.orderLinesBindingSource;
             this.dgvOrderLines.Location = new System.Drawing.Point(12, 310);
@@ -487,6 +497,7 @@ namespace OrdersHandling
             this.codeIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.codeIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.codeIDDataGridViewTextBoxColumn.ValueMember = "ID";
+            this.codeIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // codesBindingSource1
             // 
@@ -688,6 +699,23 @@ namespace OrdersHandling
             this.deliveryDateDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.deliveryDateDataGridViewTextBoxColumn.Name = "deliveryDateDataGridViewTextBoxColumn";
             this.deliveryDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.deliveryDateDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // QtySqm
+            // 
+            this.QtySqm.DataPropertyName = "QtySqm";
+            this.QtySqm.HeaderText = "QtySqm";
+            this.QtySqm.MinimumWidth = 10;
+            this.QtySqm.Name = "QtySqm";
+            this.QtySqm.Width = 200;
+            // 
+            // QtyKgr
+            // 
+            this.QtyKgr.DataPropertyName = "QtyKgr";
+            this.QtyKgr.HeaderText = "QtyKgr";
+            this.QtyKgr.MinimumWidth = 10;
+            this.QtyKgr.Name = "QtyKgr";
+            this.QtyKgr.Width = 200;
             // 
             // contextMenuStrip1
             // 
@@ -806,6 +834,7 @@ namespace OrdersHandling
             // 
             this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "FileName";
             this.fileNameDataGridViewTextBoxColumn.HeaderText = "FileName";
+            this.fileNameDataGridViewTextBoxColumn.MinimumWidth = 10;
             this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
             this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fileNameDataGridViewTextBoxColumn.Width = 150;
@@ -835,21 +864,62 @@ namespace OrdersHandling
             // 
             // grpCurrentRowInfo
             // 
+            this.grpCurrentRowInfo.Controls.Add(this.label1);
+            this.grpCurrentRowInfo.Controls.Add(this.lblSumSelectedKgr);
+            this.grpCurrentRowInfo.Controls.Add(this.lblSqmSelectedSum);
+            this.grpCurrentRowInfo.Controls.Add(this.lblKgrSelectedSum);
             this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowKgrValue);
             this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowKgrLabel);
             this.grpCurrentRowInfo.Controls.Add(this.lblCurrentSqmValue);
             this.grpCurrentRowInfo.Controls.Add(this.lblCurrentRowSqmLabel);
             this.grpCurrentRowInfo.Location = new System.Drawing.Point(118, 258);
             this.grpCurrentRowInfo.Name = "grpCurrentRowInfo";
-            this.grpCurrentRowInfo.Size = new System.Drawing.Size(354, 46);
+            this.grpCurrentRowInfo.Size = new System.Drawing.Size(432, 46);
             this.grpCurrentRowInfo.TabIndex = 22;
             this.grpCurrentRowInfo.TabStop = false;
             this.grpCurrentRowInfo.Text = "Current Row Information Panel";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(142, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Sum :";
+            // 
+            // lblSumSelectedKgr
+            // 
+            this.lblSumSelectedKgr.AutoSize = true;
+            this.lblSumSelectedKgr.Location = new System.Drawing.Point(341, 20);
+            this.lblSumSelectedKgr.Name = "lblSumSelectedKgr";
+            this.lblSumSelectedKgr.Size = new System.Drawing.Size(34, 13);
+            this.lblSumSelectedKgr.TabIndex = 6;
+            this.lblSumSelectedKgr.Text = "Sum :";
+            // 
+            // lblSqmSelectedSum
+            // 
+            this.lblSqmSelectedSum.AutoSize = true;
+            this.lblSqmSelectedSum.Location = new System.Drawing.Point(175, 20);
+            this.lblSqmSelectedSum.Name = "lblSqmSelectedSum";
+            this.lblSqmSelectedSum.Size = new System.Drawing.Size(13, 13);
+            this.lblSqmSelectedSum.TabIndex = 5;
+            this.lblSqmSelectedSum.Text = "?";
+            this.lblSqmSelectedSum.Click += new System.EventHandler(this.lblSelectedSum_Click);
+            // 
+            // lblKgrSelectedSum
+            // 
+            this.lblKgrSelectedSum.AutoSize = true;
+            this.lblKgrSelectedSum.Location = new System.Drawing.Point(374, 20);
+            this.lblKgrSelectedSum.Name = "lblKgrSelectedSum";
+            this.lblKgrSelectedSum.Size = new System.Drawing.Size(13, 13);
+            this.lblKgrSelectedSum.TabIndex = 4;
+            this.lblKgrSelectedSum.Text = "?";
+            // 
             // lblCurrentRowKgrValue
             // 
             this.lblCurrentRowKgrValue.AutoSize = true;
-            this.lblCurrentRowKgrValue.Location = new System.Drawing.Point(224, 20);
+            this.lblCurrentRowKgrValue.Location = new System.Drawing.Point(282, 20);
             this.lblCurrentRowKgrValue.Name = "lblCurrentRowKgrValue";
             this.lblCurrentRowKgrValue.Size = new System.Drawing.Size(13, 13);
             this.lblCurrentRowKgrValue.TabIndex = 3;
@@ -858,7 +928,7 @@ namespace OrdersHandling
             // lblCurrentRowKgrLabel
             // 
             this.lblCurrentRowKgrLabel.AutoSize = true;
-            this.lblCurrentRowKgrLabel.Location = new System.Drawing.Point(157, 20);
+            this.lblCurrentRowKgrLabel.Location = new System.Drawing.Point(228, 20);
             this.lblCurrentRowKgrLabel.Name = "lblCurrentRowKgrLabel";
             this.lblCurrentRowKgrLabel.Size = new System.Drawing.Size(61, 13);
             this.lblCurrentRowKgrLabel.TabIndex = 2;
@@ -867,7 +937,7 @@ namespace OrdersHandling
             // lblCurrentSqmValue
             // 
             this.lblCurrentSqmValue.AutoSize = true;
-            this.lblCurrentSqmValue.Location = new System.Drawing.Point(93, 20);
+            this.lblCurrentSqmValue.Location = new System.Drawing.Point(84, 20);
             this.lblCurrentSqmValue.Name = "lblCurrentSqmValue";
             this.lblCurrentSqmValue.Size = new System.Drawing.Size(13, 13);
             this.lblCurrentSqmValue.TabIndex = 1;
@@ -882,11 +952,33 @@ namespace OrdersHandling
             this.lblCurrentRowSqmLabel.TabIndex = 0;
             this.lblCurrentRowSqmLabel.Text = "Square meters : ";
             // 
+            // btnAttachmentRemove
+            // 
+            this.btnAttachmentRemove.Location = new System.Drawing.Point(1259, 258);
+            this.btnAttachmentRemove.Name = "btnAttachmentRemove";
+            this.btnAttachmentRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnAttachmentRemove.TabIndex = 23;
+            this.btnAttachmentRemove.Text = "Remove";
+            this.btnAttachmentRemove.UseVisualStyleBackColor = true;
+            this.btnAttachmentRemove.Click += new System.EventHandler(this.btnAttachmentRemove_Click);
+            // 
+            // btnExportExel
+            // 
+            this.btnExportExel.Location = new System.Drawing.Point(557, 280);
+            this.btnExportExel.Name = "btnExportExel";
+            this.btnExportExel.Size = new System.Drawing.Size(83, 23);
+            this.btnExportExel.TabIndex = 24;
+            this.btnExportExel.Text = "Export to Exel";
+            this.btnExportExel.UseVisualStyleBackColor = true;
+            this.btnExportExel.Click += new System.EventHandler(this.btnExportExel_Click);
+            // 
             // frmOrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1345, 693);
+            this.ClientSize = new System.Drawing.Size(1347, 669);
+            this.Controls.Add(this.btnExportExel);
+            this.Controls.Add(this.btnAttachmentRemove);
             this.Controls.Add(this.grpCurrentRowInfo);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.dgvAttachments);
@@ -987,6 +1079,17 @@ namespace OrdersHandling
         private System.Windows.Forms.Label lblKgr;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.DataGridView dgvAttachments;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource uploadedFilesBindingSource;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.OpenFileDialog uploadFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.GroupBox grpCurrentRowInfo;
+        private System.Windows.Forms.Label lblCurrentRowKgrValue;
+        private System.Windows.Forms.Label lblCurrentRowKgrLabel;
+        private System.Windows.Forms.Label lblCurrentSqmValue;
+        private System.Windows.Forms.Label lblCurrentRowSqmLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn codeIDDataGridViewTextBoxColumn;
@@ -1009,16 +1112,13 @@ namespace OrdersHandling
         private System.Windows.Forms.DataGridViewTextBoxColumn perimeterDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn weightDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deliveryDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridView dgvAttachments;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource uploadedFilesBindingSource;
-        private System.Windows.Forms.Button btnUpload;
-        private System.Windows.Forms.OpenFileDialog uploadFileDialog;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.GroupBox grpCurrentRowInfo;
-        private System.Windows.Forms.Label lblCurrentRowKgrValue;
-        private System.Windows.Forms.Label lblCurrentRowKgrLabel;
-        private System.Windows.Forms.Label lblCurrentSqmValue;
-        private System.Windows.Forms.Label lblCurrentRowSqmLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QtySqm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QtyKgr;
+        private System.Windows.Forms.Label lblSqmSelectedSum;
+        private System.Windows.Forms.Label lblKgrSelectedSum;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSumSelectedKgr;
+        private System.Windows.Forms.Button btnAttachmentRemove;
+        private System.Windows.Forms.Button btnExportExel;
     }
 }
