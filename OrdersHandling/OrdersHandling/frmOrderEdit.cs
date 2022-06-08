@@ -399,7 +399,6 @@ namespace OrdersHandling
                 }
                 catch
                 {
-
                 }
             }
         }
@@ -436,16 +435,14 @@ namespace OrdersHandling
                             MessageBox.Show("Файла е успешно записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         } catch
                         {
-                            MessageBox.Show("Възникна грешка при записшане на файла, файла не", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Възникна грешка при записшане на файла, файла не записан", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
                 catch
                 {
-
                 }
             }
-            
         }
 
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -530,7 +527,6 @@ namespace OrdersHandling
                                     selectedSqm += (double)ordln.QtySqm;
                                     selectedKgr += (double)ordln.QtyKgr;
                                     rowIsAdded = true;
-                                
                                 }
                             } catch { }
                         }
@@ -581,7 +577,29 @@ namespace OrdersHandling
                 for(int j=1; j< dgvOrderLines.Columns.Count; j++)
                 {
                     Range myRange = (Range)sheet1.Cells[StartRow + i, StartCol + j];
-                    myRange.Value2 = dgvOrderLines.Rows[i].Cells[j].Value == null ? "" : dgvOrderLines[j, i].Value;
+                    string vle = "";
+                    OrderLines ordline = dgvOrderLines.Rows[i].DataBoundItem as OrderLines;
+
+                    switch (StartCol+j)
+                    {
+                        case 1:
+                            vle = dgvOrderLines[j, i].Value == null ? "" : dgvOrderLines[j, i].Value.ToString();
+                            break;
+                        case 2:
+                            vle = ordline.Codes.Code.ToString();
+                            break;
+                        case 3:
+                            vle = ordline.Codes.Description.ToString();
+                            break;
+                        case 4:
+                            vle = ordline.Surface.Name.ToString();
+                            break;
+                        case 5:
+                            vle = ordline.Pcs.ToString();
+                            break;
+                    }
+
+                    myRange.Value2 = vle;
                 }
             }
         }
