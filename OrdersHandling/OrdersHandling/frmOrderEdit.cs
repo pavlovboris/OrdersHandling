@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Exel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Interop.Excel;
+using System.Text.RegularExpressions;
 
 namespace OrdersHandling
 {
@@ -47,6 +48,7 @@ namespace OrdersHandling
             surfaceBindingSource.DataSource = db.Surface.ToList();
             mUBindingSource.DataSource = db.MU.ToList();
             orderLinesBindingSource.DataSource = db.OrderLines.Where(o => o.OrderID == order.ID).ToList();
+            cmbPartnerName.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //Update order infor panel starts here 
             double sqm = 0;
@@ -381,6 +383,121 @@ namespace OrdersHandling
                 lblSqmSum.Text = Math.Round(sqm, 2).ToString();
                 lblKgrSum.Text = Math.Round(kgr, 2).ToString();
                 //Update order info panel ends here
+            } else if (e.ClickedItem.Text=="Paste")
+            {
+                
+                try
+                {
+                    Partners partner = cmbPartnerName.SelectedItem as Partners;
+                    DataObject dataObject = (DataObject)Clipboard.GetDataObject();
+                    if (dataObject.GetDataPresent(DataFormats.Text))
+                    {
+
+                        string[] pastedRows = Regex.Split(dataObject.GetData(DataFormats.Text).ToString().TrimEnd("\r\n".ToCharArray()), "\r\n");
+
+                        if (MessageBox.Show("Сигурни ли сте, че искате да въведете автоматично следните данни : \n " + dataObject.GetData(DataFormats.Text).ToString(), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            foreach (string row in pastedRows)
+                            {
+                                OrderLines newOrderLine = new OrderLines();
+                                string[] pastedRowCells = row.Split(new char[] { '\t' });
+
+                                string codeofPasted = pastedRowCells[0];
+
+                                Codes code = (from pastedCode in db.Codes where pastedCode.Code == codeofPasted select pastedCode).SingleOrDefault();
+
+                                if (code != null)
+                                {
+                                    newOrderLine.CodeID = code.ID;
+                                    newOrderLine.Pcs = Convert.ToInt32(pastedRowCells[1]);
+
+                                    //newOrderLine.SurfaceID = (int)code.DefaultSurface;
+                                    //newOrderLine.Length = code.DefaultLength;
+                                    //newOrderLine.QTY = Math.Round((double)(newOrderLine.Pcs * newOrderLine.Length),2);
+                                    // newOrderLine.SqmCorrections = 1;
+                                    //newOrderLine.MU = code.DefaultMU;
+                                    //newOrderLine.Perimeter = code.Perimeter;
+                                    // newOrderLine.Weight = code.Weigth;
+
+                                    orderLinesBindingSource.Add(newOrderLine);
+                                    db.OrderLines.Add(newOrderLine);
+
+
+
+                                    newOrderLine.MU = code.DefaultMU;
+                                    newOrderLine.Length = code.DefaultLength;
+                                    newOrderLine.Perimeter = code.Perimeter;
+                                    newOrderLine.Weight = code.Weigth;
+                                    newOrderLine.ProtectiveFilm = partner.DefaultPF * code.PF;
+                                    newOrderLine.DeliveryDate = dateTimeExpectedDate.Value;
+                                    newOrderLine.OrderID = order.ID;
+
+                                    if (code.DefaultSurface != null)
+                                    {
+                                        newOrderLine.SurfaceID = (int)code.DefaultSurface;
+                                    }
+                                    else
+                                    {
+                                        newOrderLine.SurfaceID = 1;
+                                    }
+
+                                    Types type = db.Types.Where(t => t.TypeID == code.Type).SingleOrDefault();
+
+                                    newOrderLine.IsForCoating = type.IsForCoating;
+                                    newOrderLine.SqmCorrections = 1;
+
+                                    if (newOrderLine.Length == null)
+                                    {
+                                        newOrderLine.Length = 1;
+                                    }
+
+                                    newOrderLine.QTY = Math.Round((double)(newOrderLine.Pcs * newOrderLine.Length), 2);
+
+                                    //Update order infor panel starts here 
+                                    double sqm = 0;
+                                    double kgr = 0;
+
+                                    foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
+                                    {
+                                        if (dgvr != null)
+                                        {
+                                            OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
+                                            double tmpsqm = 0;
+                                            double tmpkgr = 0;
+                                            try
+                                            {
+                                                tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                                                tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                                            }
+                                            catch
+                                            {
+                                            }
+                                            if (tmpsqm.ToString() != "")
+                                            {
+                                                sqm += tmpsqm;
+                                            }
+                                            if (tmpkgr.ToString() != "")
+                                            {
+                                                kgr += tmpkgr;
+                                            }
+                                        }
+                                    }
+                                    lblSqmSum.Text = Math.Round(sqm, 2).ToString();
+                                    lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+                                    //Update order info panel ends here
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (MessageBox.Show("Грешка при автоматично въвеждане на данни. За да въведете автоматично данните на всеки ред трябва да имате само две копирани полета - Код и количество", "", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
             }
         }
 

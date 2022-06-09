@@ -115,6 +115,7 @@ namespace OrdersHandling
             this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
             this.btnAttachmentRemove = new System.Windows.Forms.Button();
             this.btnExportExel = new System.Windows.Forms.Button();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -735,9 +736,10 @@ namespace OrdersHandling
             // 
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 48);
             this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.dgvContextMenu_ItemClicked);
             // 
             // toolStripMenuItem1
@@ -762,6 +764,8 @@ namespace OrdersHandling
             // 
             // cmbPartnerName
             // 
+            this.cmbPartnerName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbPartnerName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbPartnerName.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.ordersBindingSource, "Customer_ID", true));
             this.cmbPartnerName.DataSource = this.partnersBindingSource;
             this.cmbPartnerName.DisplayMember = "Partner_name";
@@ -992,6 +996,12 @@ namespace OrdersHandling
             this.btnExportExel.UseVisualStyleBackColor = true;
             this.btnExportExel.Click += new System.EventHandler(this.btnExportExel_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem2.Text = "Paste";
+            // 
             // frmOrderEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1141,5 +1151,6 @@ namespace OrdersHandling
         private System.Windows.Forms.Button btnAttachmentRemove;
         private System.Windows.Forms.Button btnExportExel;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
