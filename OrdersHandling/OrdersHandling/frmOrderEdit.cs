@@ -86,10 +86,7 @@ namespace OrdersHandling
 
             //Update order info panel ends here
 
-            dgvOrderLines.Columns[2].Frozen = true;
-
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-
+            dgvOrderLines.Columns[2].Frozen = true;            
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
