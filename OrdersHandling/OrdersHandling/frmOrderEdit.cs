@@ -88,6 +88,8 @@ namespace OrdersHandling
 
             dgvOrderLines.Columns[2].Frozen = true;
 
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -320,6 +322,8 @@ namespace OrdersHandling
             {
                 if (e.RowIndex != -1 && dgvOrderLines.Rows[e.RowIndex].DataBoundItem != null)
                 {
+
+                    dgvOrderLines.ClearSelection();
                     dgvOrderLines.Rows[e.RowIndex].Selected = true;
                 }
             }
@@ -385,8 +389,6 @@ namespace OrdersHandling
 
         private void uploadFileDialog_FileOk(object sender, CancelEventArgs e)
         {
-            /* OrdersHandlingEntities db = new OrdersHandlingEntities();
-             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";*/
             FileDialog dialog = (FileDialog)sender;
 
             if (dialog.CheckFileExists == true)
@@ -557,7 +559,7 @@ namespace OrdersHandling
 
         private void btnAttachmentRemove_Click(object sender, EventArgs e)
         {
-            if (dgvAttachments.CurrentRow.Index != -1 & dgvAttachments.CurrentRow.DataBoundItem != null)
+            if (dgvAttachments.CurrentRow != null && dgvAttachments.CurrentRow.Index != -1 & dgvAttachments.CurrentRow.DataBoundItem != null )
             {
                 if (MessageBox.Show("Сигурни ли сте, че искате да изтриете файл :" + dgvAttachments.CurrentRow.Cells[0].Value.ToString(), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -620,7 +622,6 @@ namespace OrdersHandling
                             vle = ordline.MU1.MuName.ToString();
                             break;
                     }
-
                     myRange.Value2 = vle;
                 }
             }
@@ -648,6 +649,35 @@ namespace OrdersHandling
             frmColorSelector.FormClosing += FrmColorSelector_FormClosing;
             Enabled = false;
             frmColorSelector.ShowDialog();
+
+        }
+
+        private void lblPowder_DoubleClick(object sender, EventArgs e)
+        {
+            frmPowderCodeSelector frmPowderCodeSelector = new frmPowderCodeSelector();
+            frmPowderCodeSelector.FormClosing += FrmPowderCodeSelector_FormClosing;
+            Enabled = false;
+            frmPowderCodeSelector.ShowDialog();
+        }
+
+        private void FrmPowderCodeSelector_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            frmPowderCodeSelector frmPowderCodeSelector = (frmPowderCodeSelector)sender;
+            Enabled = true;
+            if (frmPowderCodeSelector.dgvCodeSelector.CurrentRow != null & frmPowderCodeSelector.cancel == false)
+            {
+                if (frmPowderCodeSelector.xclicked != true)
+                {
+                    Codes selectedPowder = frmPowderCodeSelector.dgvCodeSelector.CurrentRow.DataBoundItem as Codes;
+                    cmbPowder.SelectedIndex = -1;
+                    int selectedValue = selectedPowder.ID;
+                    cmbPowder.SelectedValue = selectedValue;
+                }
+            }
+        }
+
+        private void dgvOrderLines_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

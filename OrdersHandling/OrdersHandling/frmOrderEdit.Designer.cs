@@ -209,6 +209,8 @@ namespace OrdersHandling
             // 
             // cmbPowder
             // 
+            this.cmbPowder.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbPowder.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbPowder.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.ordersBindingSource, "Powder_Code", true));
             this.cmbPowder.DataSource = this.codesBindingSource;
             this.cmbPowder.DisplayMember = "Code";
@@ -231,6 +233,7 @@ namespace OrdersHandling
             this.lblPowder.Size = new System.Drawing.Size(71, 13);
             this.lblPowder.TabIndex = 3;
             this.lblPowder.Text = "Powder Code";
+            this.lblPowder.DoubleClick += new System.EventHandler(this.lblPowder_DoubleClick);
             // 
             // cmbColor
             // 
@@ -431,6 +434,10 @@ namespace OrdersHandling
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvOrderLines.AutoGenerateColumns = false;
+            this.dgvOrderLines.BackgroundColor = System.Drawing.Color.White;
+            this.dgvOrderLines.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvOrderLines.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dgvOrderLines.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvOrderLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderLines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
@@ -464,6 +471,7 @@ namespace OrdersHandling
             this.dgvOrderLines.RowHeadersWidth = 20;
             this.dgvOrderLines.Size = new System.Drawing.Size(1322, 334);
             this.dgvOrderLines.TabIndex = 16;
+            this.dgvOrderLines.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellContentClick);
             this.dgvOrderLines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellDoubleClick);
             this.dgvOrderLines.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseClick);
             this.dgvOrderLines.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseDown);
@@ -824,6 +832,9 @@ namespace OrdersHandling
             this.dgvAttachments.AllowUserToDeleteRows = false;
             this.dgvAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAttachments.AutoGenerateColumns = false;
+            this.dgvAttachments.BackgroundColor = System.Drawing.Color.White;
+            this.dgvAttachments.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvAttachments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvAttachments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNameDataGridViewTextBoxColumn});
@@ -985,6 +996,7 @@ namespace OrdersHandling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1351, 676);
             this.Controls.Add(this.btnExportExel);
             this.Controls.Add(this.btnAttachmentRemove);

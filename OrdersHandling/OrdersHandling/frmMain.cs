@@ -323,5 +323,20 @@ namespace OrdersHandling
         {
 
         }
+
+        private void frmMain_Paint(object sender, PaintEventArgs e)
+        {
+            /*
+            Image image = new Image();
+            image = Image.FromFile("C:\\Source\\Repos\\OrdersHandling\\OrdersHandling\\OrdersHandling\\Resources\\logo_apello.png");
+            
+            TextureBrush mybrush = new TextureBrush(image);
+            Graphics graphics;
+            graphics = CreateGraphics();
+            graphics.FillEllipse(mybrush, new System.Drawing.RectangleF(20, 50, 200, 300));
+            mybrush.Dispose();
+            graphics.Dispose();
+            */
+        }
     }
 }

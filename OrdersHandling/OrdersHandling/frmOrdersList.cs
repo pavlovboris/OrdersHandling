@@ -205,6 +205,7 @@ namespace OrdersHandling
             {
                 if (e.RowIndex != -1 && dgvOrdersList.Rows[e.RowIndex].DataBoundItem != null)
                 {
+                    dgvOrdersList.ClearSelection();  
                     dgvOrdersList.Rows[e.RowIndex].Selected = true;
                 }
             }
@@ -231,6 +232,12 @@ namespace OrdersHandling
                             if (orders != null && orders.IsOffer!=0)
                             {
                                 var list = (from orderline in db.OrderLines where orderline.OrderID == orders.ID select orderline).ToList();
+                                var attachments = (from uploaded in db.UploadedFiles where uploaded.OrderID == orders.ID select uploaded).ToList();
+
+                                foreach (UploadedFiles upld in attachments)
+                                {
+                                    db.UploadedFiles.Remove(upld);
+                                }
 
                                 foreach (OrderLines ordl in list)
                                 {

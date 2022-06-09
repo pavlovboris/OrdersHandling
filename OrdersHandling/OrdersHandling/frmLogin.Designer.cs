@@ -33,14 +33,19 @@ namespace OrdersHandling
             this.lblUserName = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.lblApelloOrdersHandlingTool = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPassword.Location = new System.Drawing.Point(40, 113);
+            this.lblPassword.Location = new System.Drawing.Point(164, 139);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(54, 17);
             this.lblPassword.TabIndex = 6;
@@ -50,7 +55,7 @@ namespace OrdersHandling
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblUserName.Location = new System.Drawing.Point(15, 82);
+            this.lblUserName.Location = new System.Drawing.Point(139, 108);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(79, 17);
             this.lblUserName.TabIndex = 7;
@@ -59,7 +64,7 @@ namespace OrdersHandling
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtPassword.Location = new System.Drawing.Point(100, 113);
+            this.txtPassword.Location = new System.Drawing.Point(224, 139);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(163, 25);
@@ -72,7 +77,7 @@ namespace OrdersHandling
             // txtUserName
             // 
             this.txtUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.txtUserName.Location = new System.Drawing.Point(100, 79);
+            this.txtUserName.Location = new System.Drawing.Point(224, 105);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(163, 25);
             this.txtUserName.TabIndex = 4;
@@ -80,11 +85,35 @@ namespace OrdersHandling
             this.txtUserName.Enter += new System.EventHandler(this.txtUserName_Enter);
             this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::OrdersHandling.Properties.Resources.Defined_Solutions_LOGO_03;
+            this.pictureBox2.Location = new System.Drawing.Point(68, -13);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(385, 65);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 10;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.pictureBox1.Image = global::OrdersHandling.Properties.Resources.httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png;
+            this.pictureBox1.InitialImage = global::OrdersHandling.Properties.Resources.httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 81);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(120, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnLogin.Image = global::OrdersHandling.Properties.Resources.User;
             this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogin.Location = new System.Drawing.Point(275, 90);
+            this.btnLogin.Location = new System.Drawing.Point(399, 116);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(85, 40);
             this.btnLogin.TabIndex = 8;
@@ -93,21 +122,38 @@ namespace OrdersHandling
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // lblApelloOrdersHandlingTool
+            // 
+            this.lblApelloOrdersHandlingTool.AutoSize = true;
+            this.lblApelloOrdersHandlingTool.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApelloOrdersHandlingTool.Location = new System.Drawing.Point(104, 55);
+            this.lblApelloOrdersHandlingTool.Name = "lblApelloOrdersHandlingTool";
+            this.lblApelloOrdersHandlingTool.Size = new System.Drawing.Size(332, 16);
+            this.lblApelloOrdersHandlingTool.TabIndex = 11;
+            this.lblApelloOrdersHandlingTool.Text = "Apello Bulgaria Ltd ® ™ Orders Handling Tools \"1.0.0.1\"";
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 166);
+            this.ClientSize = new System.Drawing.Size(509, 200);
+            this.Controls.Add(this.lblApelloOrdersHandlingTool);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,6 +166,9 @@ namespace OrdersHandling
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Button btnLogin;
         public System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label lblApelloOrdersHandlingTool;
     }
 }
 

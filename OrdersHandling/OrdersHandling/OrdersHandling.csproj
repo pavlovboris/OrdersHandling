@@ -73,6 +73,12 @@
     <Compile Include="frmCategory.Designer.cs">
       <DependentUpon>frmCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPowderCodeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPowderCodeSelector.Designer.cs">
+      <DependentUpon>frmPowderCodeSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmColorSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     <EmbeddedResource Include="frmCategory.resx">
       <DependentUpon>frmCategory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPowderCodeSelector.resx">
+      <DependentUpon>frmPowderCodeSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmColorSelector.resx">
       <DependentUpon>frmColorSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +284,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="frmSurfaces.resx">
       <DependentUpon>frmSurfaces.cs</DependentUpon>
@@ -325,6 +335,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\DSlogo\Defined Solutions_LOGO-03.png" />
+    <None Include="Resources\icons\Ico\httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png.png" />
+    <None Include="Resources\icons\Ico\User.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
