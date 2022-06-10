@@ -62,7 +62,7 @@ namespace OrdersHandling
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.ExitThread();
         }
 
         private void codesTypesToolStripMenuItem_Click(object sender, EventArgs e)

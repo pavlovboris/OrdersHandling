@@ -89,5 +89,13 @@ namespace OrdersHandling
         {
             txtPassword.SelectAll();
         }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Сигурни ли сте, че искате да затворите OrdersHandling?", "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+        }
     }
 }

@@ -335,6 +335,16 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_48.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_48.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_48.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_64.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_64.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_063_Icon_128.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_120_Icon_256.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_48.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_delete_Icon_32.png" />
+    <None Include="Resources\icons\Ico\Delete_Icon_16.png" />
     <None Include="Resources\DSlogo\Defined Solutions_LOGO-03.png" />
     <None Include="Resources\icons\Ico\httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png.png" />
     <None Include="Resources\icons\Ico\User.ico" />

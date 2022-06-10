@@ -33,10 +33,14 @@ namespace OrdersHandling
             this.lblUserName = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
+            this.lblApelloOrdersHandlingTool = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.lblApelloOrdersHandlingTool = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +89,38 @@ namespace OrdersHandling
             this.txtUserName.Enter += new System.EventHandler(this.txtUserName_Enter);
             this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
             // 
+            // lblApelloOrdersHandlingTool
+            // 
+            this.lblApelloOrdersHandlingTool.AutoSize = true;
+            this.lblApelloOrdersHandlingTool.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApelloOrdersHandlingTool.Location = new System.Drawing.Point(104, 55);
+            this.lblApelloOrdersHandlingTool.Name = "lblApelloOrdersHandlingTool";
+            this.lblApelloOrdersHandlingTool.Size = new System.Drawing.Size(332, 16);
+            this.lblApelloOrdersHandlingTool.TabIndex = 11;
+            this.lblApelloOrdersHandlingTool.Text = "Apello Bulgaria Ltd ® ™ Orders Handling Tools \"1.0.0.1\"";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_orbs2_120_Icon_256;
+            this.pictureBox4.Location = new System.Drawing.Point(393, 90);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(91, 83);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 14;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
+            this.pictureBox3.Location = new System.Drawing.Point(2, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(60, 49);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 13;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::OrdersHandling.Properties.Resources.Defined_Solutions_LOGO_03;
@@ -122,21 +158,13 @@ namespace OrdersHandling
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // lblApelloOrdersHandlingTool
-            // 
-            this.lblApelloOrdersHandlingTool.AutoSize = true;
-            this.lblApelloOrdersHandlingTool.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApelloOrdersHandlingTool.Location = new System.Drawing.Point(104, 55);
-            this.lblApelloOrdersHandlingTool.Name = "lblApelloOrdersHandlingTool";
-            this.lblApelloOrdersHandlingTool.Size = new System.Drawing.Size(332, 16);
-            this.lblApelloOrdersHandlingTool.TabIndex = 11;
-            this.lblApelloOrdersHandlingTool.Text = "Apello Bulgaria Ltd ® ™ Orders Handling Tools \"1.0.0.1\"";
-            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(509, 200);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.lblApelloOrdersHandlingTool);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -145,13 +173,15 @@ namespace OrdersHandling
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -169,6 +199,8 @@ namespace OrdersHandling
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lblApelloOrdersHandlingTool;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 

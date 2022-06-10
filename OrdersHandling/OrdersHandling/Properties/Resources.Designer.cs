@@ -73,6 +73,116 @@ namespace OrdersHandling.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Delete_Icon_16 {
+            get {
+                object obj = ResourceManager.GetObject("Delete_Icon_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_delete_Icon_32 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_delete_Icon_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_delete_Icon_48 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_delete_Icon_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_051_Icon_48 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_051_Icon_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_051_Icon_64 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_051_Icon_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_063_Icon_128 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_063_Icon_128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_063_Icon_1281 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_063_Icon_1281", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_063_Icon_64 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_063_Icon_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_093_Icon_48 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_093_Icon_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_103_Icon_48 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_103_Icon_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_120_Icon_256 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_120_Icon_256", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png {
             get {
                 object obj = ResourceManager.GetObject("httpzcoolcomcnpicpng4002Antares_Complete_Pack_046png", resourceCulture);
