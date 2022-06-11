@@ -139,10 +139,24 @@ namespace OrdersHandling
             orderline.OrderID = order.ID;
             orderline.CodeID = 6;
             Codes code = (from codes in db.Codes where codes.ID == orderline.CodeID select codes).SingleOrDefault();
-           // Partners partner = cmbPartnerName.SelectedItem as Partners;
-            orderline.MU = code.DefaultMU;
-            orderline.Length = code.DefaultLength;
+            // Partners partner = cmbPartnerName.SelectedItem as Partners;
+
             orderline.SurfaceID = (int)code.DefaultSurface;
+
+            if (partnerCoatingGroup != null && partnerCoatingGroup.DefaultMu != null && orderline.SurfaceID != 1)
+            {
+
+                orderline.MU = (int)partnerCoatingGroup.DefaultMu;
+
+            }
+            else
+            {
+                orderline.MU = code.DefaultMU;
+            }
+
+
+            //orderline.MU = code.DefaultMU;
+            orderline.Length = code.DefaultLength;
             orderline.Perimeter = code.Perimeter;
             orderline.Weight = code.Weigth;
             orderline.ProtectiveFilm = partner.DefaultPF * code.PF;
@@ -216,8 +230,19 @@ namespace OrdersHandling
 
                     if (e.ColumnIndex == 2 | e.ColumnIndex == 3)
                     {
-                        if (partnerCoatingGroup!=null && partnerCoatingGroup.DefaultMu!=null)
+                        if (code.DefaultSurface != null)
                         {
+                            orderline.SurfaceID = (int)code.DefaultSurface;
+                        }
+                        else
+                        {
+                            orderline.SurfaceID = 1;
+                        }
+
+
+                        if (partnerCoatingGroup!=null && partnerCoatingGroup.DefaultMu!=null && orderline.SurfaceID != 1)
+                        {
+                            
                             orderline.MU = (int)partnerCoatingGroup.DefaultMu;
 
                         } else
@@ -229,14 +254,7 @@ namespace OrdersHandling
                         orderline.Weight = code.Weigth;
                         orderline.ProtectiveFilm = partner.DefaultPF * code.PF;
 
-                        if (code.DefaultSurface != null)
-                        {
-                            orderline.SurfaceID = (int)code.DefaultSurface;
-                        }
-                        else
-                        {
-                            orderline.SurfaceID = 1;
-                        }
+                        
 
                         orderline.IsForCoating = type.IsForCoating;
                         orderline.SqmCorrections = 1;
@@ -262,6 +280,8 @@ namespace OrdersHandling
 
                     if (coatingGroup!=null & powderCode!=null & partnerCoatingGroup!=null)
                     {
+
+
                         coatingPrices = (from cp in db.CoatingPrices where cp.PartnerCoatingGrpID == partnerCoatingGroup.ID & cp.CoatingGroupID == coatingGroup.ID & cp.MuID == orderline.MU select cp).SingleOrDefault();
 
                         if (coatingPrices !=null)
@@ -445,7 +465,18 @@ namespace OrdersHandling
                                     orderLinesBindingSource.Add(newOrderLine);
                                     db.OrderLines.Add(newOrderLine);
 
-                                    newOrderLine.MU = code.DefaultMU;
+                                    if (partnerCoatingGroup != null && partnerCoatingGroup.DefaultMu != null && newOrderLine.SurfaceID != 1)
+                                    {
+
+                                        newOrderLine.MU = (int)partnerCoatingGroup.DefaultMu;
+
+                                    }
+                                    else
+                                    {
+                                        newOrderLine.MU = code.DefaultMU;
+                                    }
+
+                                   // newOrderLine.MU = code.DefaultMU;
                                     newOrderLine.Length = code.DefaultLength;
                                     newOrderLine.Perimeter = code.Perimeter;
                                     newOrderLine.Weight = code.Weigth;
@@ -822,7 +853,6 @@ namespace OrdersHandling
                             coatingGroup = (from cg in db.CoatingGroup where cg.ID == powderCode.CoatingGroup select cg).SingleOrDefault();
                         }
 
-
                         if (coatingGroup != null & powderCode != null & partnerCoatingGroup != null)
                         {
                             coatingPrices = (from cp in db.CoatingPrices where cp.PartnerCoatingGrpID == partnerCoatingGroup.ID & cp.CoatingGroupID == coatingGroup.ID & cp.MuID == orderLines.MU select cp).SingleOrDefault();
@@ -835,13 +865,11 @@ namespace OrdersHandling
                             }
 
                         }
-
                     }
                 } catch
                 {
 
                 }
-              
             }
         }
     }
