@@ -26,12 +26,13 @@ namespace OrdersHandling
             db = new OrdersHandlingEntities();
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
 
-            codesBindingSource.DataSource = db.Codes.Where(c=> c.Type==5).ToList();
+            codesBindingSource.DataSource = db.Codes.Where(c=> c.Type==5 && c.Code.Contains(txtFilter.Text) | c.Description.Contains(txtFilter.Text)).ToList();
+            txtFilter.Text = frmOrderEdit.Instance.cmbColor.Text;
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
-            codesBindingSource.DataSource = db.Codes.Where(c => c.Code.Contains(txtFilter.Text) | c.Description.Contains(txtFilter.Text)).ToList();
+            codesBindingSource.DataSource = db.Codes.Where(c => c.Type == 5 & c.Code.Contains(txtFilter.Text) | c.Description.Contains(txtFilter.Text)).ToList();
         }
 
         private void dgvCodeSelector_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

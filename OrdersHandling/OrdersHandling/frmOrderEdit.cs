@@ -21,10 +21,24 @@ namespace OrdersHandling
         {
             InitializeComponent();
         }
+
+        private static frmOrderEdit _instance;
+        public static frmOrderEdit Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new frmOrderEdit();
+                return _instance;
+            }
+        }
+
         public Orders order = new Orders();
         public OrdersHandlingEntities db;
         private void frmOrderEdit_Load(object sender, EventArgs e)
         {
+            _instance = this;
+
             if (frmLogin.Instance.UserInfo.RoleID == 1)
             {
                 cmbPartnerName.Enabled = true;
@@ -34,8 +48,10 @@ namespace OrdersHandling
             else
             {
                 cmbPartnerName.Enabled = false;
+                chkboxOffer.Enabled = false;
+                chkBoxCompleated.Enabled= false;
             }
-            //db = new OrdersHandlingEntities();
+
             db.Database.Connection.ConnectionString = "data source=definedsolutions-sql-server.database.windows.net;initial catalog=OrdersHandling;persist security info=True;user id=CstmDBDefSol;Password=uncloak-TAIWAN-peccary-listless; MultipleActiveResultSets=True;App=EntityFramework;";
 
             uploadedFilesBindingSource.DataSource = db.UploadedFiles.Where(u => u.OrderID == order.ID).ToList();
@@ -117,27 +133,13 @@ namespace OrdersHandling
             }
         }
 
-        private void dgvOrderLines_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            /* if (dgvOrderLines.Rows[e.RowIndex].Cells[1].Value==null)
-             {
-                 dgvOrderLines.Rows[e.RowIndex].Cells[1].Value = order.ID;
-                 dgvOrderLines.Rows[e.RowIndex].Cells[2].Value = 6;
-             }*/
-
-        }
-
-        private void dgvOrderLines_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-        }
-
         private void btnEditLines_Click(object sender, EventArgs e)
         {
             OrderLines orderline = new OrderLines();
             orderline.OrderID = order.ID;
             orderline.CodeID = 6;
             Codes code = (from codes in db.Codes where codes.ID == orderline.CodeID select codes).SingleOrDefault();
-            Partners partner = cmbPartnerName.SelectedItem as Partners;
+           // Partners partner = cmbPartnerName.SelectedItem as Partners;
             orderline.MU = code.DefaultMU;
             orderline.Length = code.DefaultLength;
             orderline.SurfaceID = (int)code.DefaultSurface;
@@ -194,6 +196,12 @@ namespace OrdersHandling
 
         }
 
+        PartnerCoatingGroup partnerCoatingGroup;
+        CoatingGroup coatingGroup;
+        Codes powderCode;
+        CoatingPrices coatingPrices;
+        Partners partner;
+
         private void dgvOrderLines_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -203,11 +211,19 @@ namespace OrdersHandling
                     OrderLines orderline = dgvOrderLines.Rows[e.RowIndex].DataBoundItem as OrderLines;
                     Codes code = (from codes in db.Codes where codes.ID == orderline.CodeID select codes).SingleOrDefault();
                     Types type = (from types in db.Types where types.TypeID == code.Type select types).SingleOrDefault();
-                    Partners partner = cmbPartnerName.SelectedItem as Partners;
+
+
 
                     if (e.ColumnIndex == 2 | e.ColumnIndex == 3)
                     {
-                        orderline.MU = code.DefaultMU;
+                        if (partnerCoatingGroup!=null && partnerCoatingGroup.DefaultMu!=null)
+                        {
+                            orderline.MU = (int)partnerCoatingGroup.DefaultMu;
+
+                        } else
+                        {
+                            orderline.MU = code.DefaultMU;
+                        }
                         orderline.Length = code.DefaultLength;
                         orderline.Perimeter = code.Perimeter;
                         orderline.Weight = code.Weigth;
@@ -236,6 +252,26 @@ namespace OrdersHandling
                     {
                         orderline.QTY = Math.Round((double)(orderline.Pcs * orderline.Length), 2);
                     }
+
+                    if (partner.CoatingGroup != null & cmbPowder.SelectedValue != null )
+                    {
+                        powderCode = (from pc in db.Codes where pc.ID == (int)cmbPowder.SelectedValue select pc).SingleOrDefault();
+                        coatingGroup = (from cg in db.CoatingGroup where cg.ID == powderCode.CoatingGroup select cg).SingleOrDefault();
+                    } 
+                   
+
+                    if (coatingGroup!=null & powderCode!=null & partnerCoatingGroup!=null)
+                    {
+                        coatingPrices = (from cp in db.CoatingPrices where cp.PartnerCoatingGrpID == partnerCoatingGroup.ID & cp.CoatingGroupID == coatingGroup.ID & cp.MuID == orderline.MU select cp).SingleOrDefault();
+
+                        if (coatingPrices !=null)
+                        {
+                            orderline.Price = coatingPrices.Price;
+
+                        }
+
+                    }
+
 
                     //Update order infor panel starts here 
                     double sqm = 0;
@@ -307,7 +343,7 @@ namespace OrdersHandling
 
         private void dgvOrderLines_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+            if (e.RowIndex!=-1 & e.ColumnIndex == 2 || e.ColumnIndex == 3)
             {
                 frmCodeSelector frmcodeselector = new frmCodeSelector();
                 frmcodeselector.FormClosing += Frmcodeselector_FormClosing;
@@ -332,11 +368,6 @@ namespace OrdersHandling
         {
             if (e.ClickedItem.Text == "Delete")
             {
-                /*if (MessageBox.Show("Сигурни ли сте, че искате да изтриете маркираните изцяло редове?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    
-                }*/
-
                 foreach (DataGridViewRow dr in dgvOrderLines.Rows)
                 {
                     if (dr.DataBoundItem != null && dr.Selected == true)
@@ -388,7 +419,7 @@ namespace OrdersHandling
                 
                 try
                 {
-                    Partners partner = cmbPartnerName.SelectedItem as Partners;
+                   // Partners partner = cmbPartnerName.SelectedItem as Partners;
                     DataObject dataObject = (DataObject)Clipboard.GetDataObject();
                     if (dataObject.GetDataPresent(DataFormats.Text))
                     {
@@ -411,18 +442,8 @@ namespace OrdersHandling
                                     newOrderLine.CodeID = code.ID;
                                     newOrderLine.Pcs = Convert.ToInt32(pastedRowCells[1]);
 
-                                    //newOrderLine.SurfaceID = (int)code.DefaultSurface;
-                                    //newOrderLine.Length = code.DefaultLength;
-                                    //newOrderLine.QTY = Math.Round((double)(newOrderLine.Pcs * newOrderLine.Length),2);
-                                    // newOrderLine.SqmCorrections = 1;
-                                    //newOrderLine.MU = code.DefaultMU;
-                                    //newOrderLine.Perimeter = code.Perimeter;
-                                    // newOrderLine.Weight = code.Weigth;
-
                                     orderLinesBindingSource.Add(newOrderLine);
                                     db.OrderLines.Add(newOrderLine);
-
-
 
                                     newOrderLine.MU = code.DefaultMU;
                                     newOrderLine.Length = code.DefaultLength;
@@ -496,7 +517,6 @@ namespace OrdersHandling
                     {
                         MessageBox.Show(ex.Message);
                     }
-
                 }
             }
         }
@@ -624,18 +644,6 @@ namespace OrdersHandling
                     orderline1.QtySqm = Convert.ToDouble(lblCurrentSqmValue.Text);
                     orderline1.QtyKgr = Convert.ToDouble(lblCurrentRowKgrValue.Text);
                 }
-                /*  foreach (DataGridViewRow row in dgvOrderLines.Rows)
-                  {
-                      try
-                      {
-                          if (row.Selected == true && row.DataBoundItem != null)
-                          {
-                              OrderLines ordline1 = row.DataBoundItem as OrderLines;
-                              selectedSqm += (double)ordline1.QtySqm;
-                              selectedKgr += (double)ordline1.QtyKgr;
-                          }
-                      } catch { }
-                  } */
             }
             for (int i = 0; i < dgv.Rows.Count; i++)
             {
@@ -664,11 +672,6 @@ namespace OrdersHandling
             }
             lblSqmSelectedSum.Text = selectedSqm.ToString();
             lblKgrSelectedSum.Text = selectedKgr.ToString();
-        }
-
-        private void lblSelectedSum_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAttachmentRemove_Click(object sender, EventArgs e)
@@ -790,9 +793,56 @@ namespace OrdersHandling
             }
         }
 
-        private void dgvOrderLines_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void cmbPartnerName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+            ComboBox cmbPartnerName = (ComboBox)sender;
 
+            if (cmbPartnerName.SelectedIndex != -1)
+            {
+                partner = cmbPartnerName.SelectedItem as Partners;
+
+                partnerCoatingGroup = (from pcg in db.PartnerCoatingGroup where pcg.ID == partner.CoatingGroup select pcg).SingleOrDefault();
+
+            }
+        }
+
+        private void cmbPowder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
+            {
+                try
+                {
+                    if (dgvr.Index != -1 & dgvr.DataBoundItem != null)
+                    {
+                        OrderLines orderLines = dgvr.DataBoundItem as OrderLines;
+                        if (partner.CoatingGroup != null & cmbPowder.SelectedValue != null)
+                        {
+                            powderCode = (from pc in db.Codes where pc.ID == (int)cmbPowder.SelectedValue select pc).SingleOrDefault();
+                            coatingGroup = (from cg in db.CoatingGroup where cg.ID == powderCode.CoatingGroup select cg).SingleOrDefault();
+                        }
+
+
+                        if (coatingGroup != null & powderCode != null & partnerCoatingGroup != null)
+                        {
+                            coatingPrices = (from cp in db.CoatingPrices where cp.PartnerCoatingGrpID == partnerCoatingGroup.ID & cp.CoatingGroupID == coatingGroup.ID & cp.MuID == orderLines.MU select cp).SingleOrDefault();
+
+                            if (coatingPrices != null)
+                            {
+
+                                orderLines.Price = coatingPrices.Price;
+
+                            }
+
+                        }
+
+                    }
+                } catch
+                {
+
+                }
+              
+            }
         }
     }
 }

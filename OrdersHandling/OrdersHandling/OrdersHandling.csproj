@@ -61,6 +61,9 @@
     <Compile Include="CoatingGroup.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CoatingPrices.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Codes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -191,6 +194,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Orders.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerCoatingGroup.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Partners.cs">
@@ -335,6 +341,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_shield_Icon_64.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_fontsize_Icon_64.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_64.png" />
+    <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_power_Icon_48.png" />
+    <None Include="Resources\icons\Ico\48\glossy-3d-blue-orbs2-037-icon.png" />
+    <None Include="Resources\icons\Ico\glossy-3d-blue-orbs2-135.ico" />
+    <None Include="Resources\icons\blue3d\blue_3d\glossy-3d-blue-orbs2-083-icon.png" />
     <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_103_Icon_48.png" />
     <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_093_Icon_48.png" />
     <None Include="Resources\icons\blue3d\blue_3d\Glossy_3d_blue_orbs2_051_Icon_48.png" />

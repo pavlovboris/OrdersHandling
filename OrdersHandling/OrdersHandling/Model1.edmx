@@ -19,6 +19,16 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="CoatingPrices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartnerCoatingGrpID" Type="int" Nullable="false" />
+          <Property Name="CoatingGroupID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="MuID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Codes">
           <Key>
             <PropertyRef Name="ID" />
@@ -115,6 +125,16 @@
           <Property Name="MatDate2" Type="date" />
           <Property Name="ExpectedMatDate" Type="date" />
         </EntityType>
+        <EntityType Name="PartnerCoatingGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CoatingGroupName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinimumQTY" Type="float" />
+          <Property Name="ExpenseQTY" Type="float" />
+          <Property Name="DefaultMu" Type="int" />
+        </EntityType>
         <EntityType Name="Partners">
           <Key>
             <PropertyRef Name="ID" />
@@ -188,6 +208,42 @@
           <Property Name="RoleID" Type="int" />
           <Property Name="PartnerID" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CoatingPrices_CoatingPrices">
+          <End Role="CoatingPrices" Type="Self.CoatingPrices" Multiplicity="1" />
+          <End Role="CoatingPrices1" Type="Self.CoatingPrices" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CoatingPrices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CoatingPrices1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoatingPrices_MU">
+          <End Role="MU" Type="Self.MU" Multiplicity="1" />
+          <End Role="CoatingPrices" Type="Self.CoatingPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MU">
+              <PropertyRef Name="MuID" />
+            </Principal>
+            <Dependent Role="CoatingPrices">
+              <PropertyRef Name="MuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoatingPrices_PartnerCoatingGroup">
+          <End Role="PartnerCoatingGroup" Type="Self.PartnerCoatingGroup" Multiplicity="1" />
+          <End Role="CoatingPrices" Type="Self.CoatingPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartnerCoatingGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CoatingPrices">
+              <PropertyRef Name="PartnerCoatingGrpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Codes_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Codes" Type="Self.Codes" Multiplicity="*" />
@@ -380,6 +436,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PartnerCoatingGroup_PartnerCoatingGroup">
+          <End Role="MU" Type="Self.MU" Multiplicity="0..1" />
+          <End Role="PartnerCoatingGroup" Type="Self.PartnerCoatingGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MU">
+              <PropertyRef Name="MuID" />
+            </Principal>
+            <Dependent Role="PartnerCoatingGroup">
+              <PropertyRef Name="DefaultMu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partners_PartnerCoatingGroup">
+          <End Role="PartnerCoatingGroup" Type="Self.PartnerCoatingGroup" Multiplicity="0..1" />
+          <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartnerCoatingGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Partners">
+              <PropertyRef Name="CoatingGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Surface_ItemCode">
           <End Role="Codes" Type="Self.Codes" Multiplicity="0..1" />
           <End Role="Surface" Type="Self.Surface" Multiplicity="*" />
@@ -431,11 +511,13 @@
         <EntityContainer Name="OrdersHandlingModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoatingGroup" EntityType="Self.CoatingGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoatingPrices" EntityType="Self.CoatingPrices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Codes" EntityType="Self.Codes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MU" EntityType="Self.MU" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartnerCoatingGroup" EntityType="Self.PartnerCoatingGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partners" EntityType="Self.Partners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubTypes" EntityType="Self.SubTypes" Schema="dbo" store:Type="Tables" />
@@ -444,6 +526,18 @@
           <EntitySet Name="Types" EntityType="Self.Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UploadedFiles" EntityType="Self.UploadedFiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CoatingPrices_CoatingPrices" Association="Self.FK_CoatingPrices_CoatingPrices">
+            <End Role="CoatingPrices" EntitySet="CoatingPrices" />
+            <End Role="CoatingPrices1" EntitySet="CoatingPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoatingPrices_MU" Association="Self.FK_CoatingPrices_MU">
+            <End Role="MU" EntitySet="MU" />
+            <End Role="CoatingPrices" EntitySet="CoatingPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoatingPrices_PartnerCoatingGroup" Association="Self.FK_CoatingPrices_PartnerCoatingGroup">
+            <End Role="PartnerCoatingGroup" EntitySet="PartnerCoatingGroup" />
+            <End Role="CoatingPrices" EntitySet="CoatingPrices" />
+          </AssociationSet>
           <AssociationSet Name="FK_Codes_Category" Association="Self.FK_Codes_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Codes" EntitySet="Codes" />
@@ -507,6 +601,14 @@
           <AssociationSet Name="FK_Orders_Customer_ID" Association="Self.FK_Orders_Customer_ID">
             <End Role="Partners" EntitySet="Partners" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartnerCoatingGroup_PartnerCoatingGroup" Association="Self.FK_PartnerCoatingGroup_PartnerCoatingGroup">
+            <End Role="MU" EntitySet="MU" />
+            <End Role="PartnerCoatingGroup" EntitySet="PartnerCoatingGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partners_PartnerCoatingGroup" Association="Self.FK_Partners_PartnerCoatingGroup">
+            <End Role="PartnerCoatingGroup" EntitySet="PartnerCoatingGroup" />
+            <End Role="Partners" EntitySet="Partners" />
           </AssociationSet>
           <AssociationSet Name="FK_Surface_ItemCode" Association="Self.FK_Surface_ItemCode">
             <End Role="Codes" EntitySet="Codes" />
@@ -588,6 +690,8 @@
           <Property Name="MuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Codes" Relationship="Self.FK_Codes_DefaultMU" FromRole="MU" ToRole="Codes" />
           <NavigationProperty Name="OrderLines" Relationship="OrdersHandlingModel.FK_OrderLines_MU" FromRole="MU" ToRole="OrderLines" />
+          <NavigationProperty Name="CoatingPrices" Relationship="OrdersHandlingModel.FK_CoatingPrices_MU" FromRole="MU" ToRole="CoatingPrices" />
+          <NavigationProperty Name="PartnerCoatingGroup" Relationship="OrdersHandlingModel.FK_PartnerCoatingGroup_PartnerCoatingGroup" FromRole="MU" ToRole="PartnerCoatingGroup" />
         </EntityType>
         <EntityType Name="OrderLines">
           <Key>
@@ -673,6 +777,7 @@
           <NavigationProperty Name="Codes" Relationship="Self.FK_Codes_DefaultSupplier" FromRole="Partners" ToRole="Codes" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customer_ID" FromRole="Partners" ToRole="Orders" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_PartnerID" FromRole="Partners" ToRole="Users" />
+          <NavigationProperty Name="PartnerCoatingGroup" Relationship="OrdersHandlingModel.FK_Partners_PartnerCoatingGroup" FromRole="Partners" ToRole="PartnerCoatingGroup" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -994,6 +1099,28 @@
             <End Role="MU" EntitySet="MU" />
             <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
+          <EntitySet Name="CoatingPrices" EntityType="OrdersHandlingModel.CoatingPrices" />
+          <EntitySet Name="PartnerCoatingGroup" EntityType="OrdersHandlingModel.PartnerCoatingGroup" />
+          <AssociationSet Name="FK_CoatingPrices_CoatingPrices" Association="OrdersHandlingModel.FK_CoatingPrices_CoatingPrices">
+            <End Role="CoatingPrices" EntitySet="CoatingPrices" />
+            <End Role="CoatingPrices1" EntitySet="CoatingPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoatingPrices_MU" Association="OrdersHandlingModel.FK_CoatingPrices_MU">
+            <End Role="MU" EntitySet="MU" />
+            <End Role="CoatingPrices" EntitySet="CoatingPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CoatingPrices_PartnerCoatingGroup" Association="OrdersHandlingModel.FK_CoatingPrices_PartnerCoatingGroup">
+            <End Role="PartnerCoatingGroup" EntitySet="PartnerCoatingGroup" />
+            <End Role="CoatingPrices" EntitySet="CoatingPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartnerCoatingGroup_PartnerCoatingGroup" Association="OrdersHandlingModel.FK_PartnerCoatingGroup_PartnerCoatingGroup">
+            <End Role="MU" EntitySet="MU" />
+            <End Role="PartnerCoatingGroup" EntitySet="PartnerCoatingGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partners_PartnerCoatingGroup" Association="OrdersHandlingModel.FK_Partners_PartnerCoatingGroup">
+            <End Role="PartnerCoatingGroup" EntitySet="PartnerCoatingGroup" />
+            <End Role="Partners" EntitySet="Partners" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Colors">
           <Key>
@@ -1086,6 +1213,93 @@
             </Principal>
             <Dependent Role="OrderLines">
               <PropertyRef Name="MU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CoatingPrices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartnerCoatingGrpID" Type="Int32" Nullable="false" />
+          <Property Name="CoatingGroupID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="MuID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CoatingPrices1" Relationship="OrdersHandlingModel.FK_CoatingPrices_CoatingPrices" FromRole="CoatingPrices" ToRole="CoatingPrices1" />
+          <NavigationProperty Name="CoatingPrices2" Relationship="OrdersHandlingModel.FK_CoatingPrices_CoatingPrices" FromRole="CoatingPrices1" ToRole="CoatingPrices" />
+          <NavigationProperty Name="MU" Relationship="OrdersHandlingModel.FK_CoatingPrices_MU" FromRole="CoatingPrices" ToRole="MU" />
+          <NavigationProperty Name="PartnerCoatingGroup" Relationship="OrdersHandlingModel.FK_CoatingPrices_PartnerCoatingGroup" FromRole="CoatingPrices" ToRole="PartnerCoatingGroup" />
+        </EntityType>
+        <EntityType Name="PartnerCoatingGroup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CoatingGroupName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MinimumQTY" Type="Double" />
+          <Property Name="ExpenseQTY" Type="Double" />
+          <Property Name="DefaultMu" Type="Int32" />
+          <NavigationProperty Name="CoatingPrices" Relationship="OrdersHandlingModel.FK_CoatingPrices_PartnerCoatingGroup" FromRole="PartnerCoatingGroup" ToRole="CoatingPrices" />
+          <NavigationProperty Name="MU" Relationship="OrdersHandlingModel.FK_PartnerCoatingGroup_PartnerCoatingGroup" FromRole="PartnerCoatingGroup" ToRole="MU" />
+          <NavigationProperty Name="Partners" Relationship="OrdersHandlingModel.FK_Partners_PartnerCoatingGroup" FromRole="PartnerCoatingGroup" ToRole="Partners" />
+        </EntityType>
+        <Association Name="FK_CoatingPrices_CoatingPrices">
+          <End Type="OrdersHandlingModel.CoatingPrices" Role="CoatingPrices" Multiplicity="1" />
+          <End Type="OrdersHandlingModel.CoatingPrices" Role="CoatingPrices1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CoatingPrices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CoatingPrices1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoatingPrices_MU">
+          <End Type="OrdersHandlingModel.MU" Role="MU" Multiplicity="1" />
+          <End Type="OrdersHandlingModel.CoatingPrices" Role="CoatingPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MU">
+              <PropertyRef Name="MuID" />
+            </Principal>
+            <Dependent Role="CoatingPrices">
+              <PropertyRef Name="MuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CoatingPrices_PartnerCoatingGroup">
+          <End Type="OrdersHandlingModel.PartnerCoatingGroup" Role="PartnerCoatingGroup" Multiplicity="1" />
+          <End Type="OrdersHandlingModel.CoatingPrices" Role="CoatingPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartnerCoatingGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CoatingPrices">
+              <PropertyRef Name="PartnerCoatingGrpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartnerCoatingGroup_PartnerCoatingGroup">
+          <End Type="OrdersHandlingModel.MU" Role="MU" Multiplicity="0..1" />
+          <End Type="OrdersHandlingModel.PartnerCoatingGroup" Role="PartnerCoatingGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MU">
+              <PropertyRef Name="MuID" />
+            </Principal>
+            <Dependent Role="PartnerCoatingGroup">
+              <PropertyRef Name="DefaultMu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partners_PartnerCoatingGroup">
+          <End Type="OrdersHandlingModel.PartnerCoatingGroup" Role="PartnerCoatingGroup" Multiplicity="0..1" />
+          <End Type="OrdersHandlingModel.Partners" Role="Partners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartnerCoatingGroup">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Partners">
+              <PropertyRef Name="CoatingGroup" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1289,6 +1503,28 @@
                 <ScalarProperty Name="File" ColumnName="File" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoatingPrices">
+            <EntityTypeMapping TypeName="OrdersHandlingModel.CoatingPrices">
+              <MappingFragment StoreEntitySet="CoatingPrices">
+                <ScalarProperty Name="MuID" ColumnName="MuID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CoatingGroupID" ColumnName="CoatingGroupID" />
+                <ScalarProperty Name="PartnerCoatingGrpID" ColumnName="PartnerCoatingGrpID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartnerCoatingGroup">
+            <EntityTypeMapping TypeName="OrdersHandlingModel.PartnerCoatingGroup">
+              <MappingFragment StoreEntitySet="PartnerCoatingGroup">
+                <ScalarProperty Name="DefaultMu" ColumnName="DefaultMu" />
+                <ScalarProperty Name="ExpenseQTY" ColumnName="ExpenseQTY" />
+                <ScalarProperty Name="MinimumQTY" ColumnName="MinimumQTY" />
+                <ScalarProperty Name="CoatingGroupName" ColumnName="CoatingGroupName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

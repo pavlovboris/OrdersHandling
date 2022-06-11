@@ -82,6 +82,10 @@ namespace OrdersHandling
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvOrdersList.AutoGenerateColumns = false;
+            this.dgvOrdersList.BackgroundColor = System.Drawing.Color.White;
+            this.dgvOrdersList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvOrdersList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.dgvOrdersList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvOrdersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrdersList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDDataGridViewTextBoxColumn,
@@ -324,13 +328,13 @@ namespace OrdersHandling
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contextMenuDelete});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
             this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
             // 
             // contextMenuDelete
             // 
             this.contextMenuDelete.Name = "contextMenuDelete";
-            this.contextMenuDelete.Size = new System.Drawing.Size(180, 22);
+            this.contextMenuDelete.Size = new System.Drawing.Size(107, 22);
             this.contextMenuDelete.Text = "Delete";
             // 
             // ordersBindingSource
@@ -365,6 +369,7 @@ namespace OrdersHandling
             // 
             // lstFilterCompleted
             // 
+            this.lstFilterCompleted.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstFilterCompleted.FormattingEnabled = true;
             this.lstFilterCompleted.Items.AddRange(new object[] {
             "Completed",
@@ -372,7 +377,7 @@ namespace OrdersHandling
             "All"});
             this.lstFilterCompleted.Location = new System.Drawing.Point(1167, 12);
             this.lstFilterCompleted.Name = "lstFilterCompleted";
-            this.lstFilterCompleted.Size = new System.Drawing.Size(120, 43);
+            this.lstFilterCompleted.Size = new System.Drawing.Size(120, 39);
             this.lstFilterCompleted.TabIndex = 3;
             this.lstFilterCompleted.SelectedIndexChanged += new System.EventHandler(this.lblFilterCompleted_SelectedIndexChanged);
             // 
@@ -388,6 +393,7 @@ namespace OrdersHandling
             // cmbFilter
             // 
             this.cmbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFilter.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmbFilter.FormattingEnabled = true;
             this.cmbFilter.Items.AddRange(new object[] {
             "Orders",
@@ -402,6 +408,7 @@ namespace OrdersHandling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1303, 564);
             this.Controls.Add(this.cmbFilter);
             this.Controls.Add(this.lblFilter);

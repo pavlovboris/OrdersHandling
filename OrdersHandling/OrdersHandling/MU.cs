@@ -19,6 +19,8 @@ namespace OrdersHandling
         {
             this.Codes = new HashSet<Codes>();
             this.OrderLines = new HashSet<OrderLines>();
+            this.CoatingPrices = new HashSet<CoatingPrices>();
+            this.PartnerCoatingGroup = new HashSet<PartnerCoatingGroup>();
         }
     
         public int MuID { get; set; }
@@ -29,5 +31,9 @@ namespace OrdersHandling
         public virtual ICollection<Codes> Codes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLines> OrderLines { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CoatingPrices> CoatingPrices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PartnerCoatingGroup> PartnerCoatingGroup { get; set; }
     }
 }

@@ -89,6 +89,7 @@ namespace OrdersHandling
             this.QtyKgr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.orderLinesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnEditLines = new System.Windows.Forms.Button();
             this.cmbPartnerName = new System.Windows.Forms.ComboBox();
@@ -115,7 +116,6 @@ namespace OrdersHandling
             this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
             this.btnAttachmentRemove = new System.Windows.Forms.Button();
             this.btnExportExel = new System.Windows.Forms.Button();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -221,6 +221,7 @@ namespace OrdersHandling
             this.cmbPowder.Size = new System.Drawing.Size(171, 21);
             this.cmbPowder.TabIndex = 4;
             this.cmbPowder.ValueMember = "ID";
+            this.cmbPowder.SelectedIndexChanged += new System.EventHandler(this.cmbPowder_SelectedIndexChanged);
             // 
             // codesBindingSource
             // 
@@ -301,6 +302,7 @@ namespace OrdersHandling
             // 
             // txtComment
             // 
+            this.txtComment.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtComment.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.ordersBindingSource, "Comment", true));
             this.txtComment.Location = new System.Drawing.Point(12, 188);
             this.txtComment.Multiline = true;
@@ -319,10 +321,11 @@ namespace OrdersHandling
             // 
             // txtProject
             // 
+            this.txtProject.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProject.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.ordersBindingSource, "Project", true));
             this.txtProject.Location = new System.Drawing.Point(482, 188);
             this.txtProject.Name = "txtProject";
-            this.txtProject.Size = new System.Drawing.Size(306, 20);
+            this.txtProject.Size = new System.Drawing.Size(306, 13);
             this.txtProject.TabIndex = 11;
             // 
             // chkboxOffer
@@ -436,7 +439,7 @@ namespace OrdersHandling
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvOrderLines.AutoGenerateColumns = false;
             this.dgvOrderLines.BackgroundColor = System.Drawing.Color.White;
-            this.dgvOrderLines.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvOrderLines.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvOrderLines.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dgvOrderLines.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.dgvOrderLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -472,13 +475,11 @@ namespace OrdersHandling
             this.dgvOrderLines.RowHeadersWidth = 20;
             this.dgvOrderLines.Size = new System.Drawing.Size(1322, 334);
             this.dgvOrderLines.TabIndex = 16;
-            this.dgvOrderLines.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellContentClick);
             this.dgvOrderLines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellDoubleClick);
             this.dgvOrderLines.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseClick);
             this.dgvOrderLines.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvOrderLines_CellMouseDown);
             this.dgvOrderLines.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_CellValueChanged);
             this.dgvOrderLines.CurrentCellChanged += new System.EventHandler(this.dgvOrderLines_CurrentCellChanged);
-            this.dgvOrderLines.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderLines_RowEnter);
             this.dgvOrderLines.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.dgvOrderLines_PreviewKeyDown);
             // 
             // iDDataGridViewTextBoxColumn
@@ -748,6 +749,12 @@ namespace OrdersHandling
             this.toolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.toolStripMenuItem1.Text = "Delete";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
+            this.toolStripMenuItem2.Text = "Paste";
+            // 
             // orderLinesBindingSource
             // 
             this.orderLinesBindingSource.DataSource = typeof(OrdersHandling.OrderLines);
@@ -776,6 +783,7 @@ namespace OrdersHandling
             this.cmbPartnerName.Size = new System.Drawing.Size(277, 21);
             this.cmbPartnerName.TabIndex = 18;
             this.cmbPartnerName.ValueMember = "ID";
+            this.cmbPartnerName.SelectedIndexChanged += new System.EventHandler(this.cmbPartnerName_SelectedIndexChanged);
             // 
             // partnersBindingSource
             // 
@@ -837,7 +845,7 @@ namespace OrdersHandling
             this.dgvAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAttachments.AutoGenerateColumns = false;
             this.dgvAttachments.BackgroundColor = System.Drawing.Color.White;
-            this.dgvAttachments.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvAttachments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAttachments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvAttachments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -928,7 +936,6 @@ namespace OrdersHandling
             this.lblSqmSelectedSum.Size = new System.Drawing.Size(13, 13);
             this.lblSqmSelectedSum.TabIndex = 5;
             this.lblSqmSelectedSum.Text = "?";
-            this.lblSqmSelectedSum.Click += new System.EventHandler(this.lblSelectedSum_Click);
             // 
             // lblKgrSelectedSum
             // 
@@ -995,12 +1002,6 @@ namespace OrdersHandling
             this.btnExportExel.Text = "Export to Exel";
             this.btnExportExel.UseVisualStyleBackColor = true;
             this.btnExportExel.Click += new System.EventHandler(this.btnExportExel_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(107, 22);
-            this.toolStripMenuItem2.Text = "Paste";
             // 
             // frmOrderEdit
             // 
@@ -1074,7 +1075,6 @@ namespace OrdersHandling
         private System.Windows.Forms.Label lblOrderRealNumber;
         private System.Windows.Forms.Label lblForeignID;
         private System.Windows.Forms.GroupBox grpColorPowder;
-        private System.Windows.Forms.ComboBox cmbColor;
         private System.Windows.Forms.BindingSource colorsBindingSource;
         private System.Windows.Forms.Label lblColor;
         private System.Windows.Forms.GroupBox grpSaveCancel;
@@ -1152,5 +1152,6 @@ namespace OrdersHandling
         private System.Windows.Forms.Button btnExportExel;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        public System.Windows.Forms.ComboBox cmbColor;
     }
 }

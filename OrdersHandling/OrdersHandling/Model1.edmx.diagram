@@ -40,6 +40,13 @@
         <EntityTypeShape EntityType="OrdersHandlingModel.UploadedFiles" Width="1.5" PointX="5.25" PointY="18" />
         <AssociationConnector Association="OrdersHandlingModel.FK_UploadedFiles_Orders" />
         <AssociationConnector Association="OrdersHandlingModel.FK_OrderLines_MU" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.CoatingPrices" Width="1.5" PointX="8.25" PointY="18.125" />
+        <EntityTypeShape EntityType="OrdersHandlingModel.PartnerCoatingGroup" Width="1.5" PointX="3" PointY="20.875" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_CoatingPrices_CoatingPrices" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_CoatingPrices_MU" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_CoatingPrices_PartnerCoatingGroup" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_PartnerCoatingGroup_PartnerCoatingGroup" />
+        <AssociationConnector Association="OrdersHandlingModel.FK_Partners_PartnerCoatingGroup" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

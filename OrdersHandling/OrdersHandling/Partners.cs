@@ -41,5 +41,6 @@ namespace OrdersHandling
         public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        public virtual PartnerCoatingGroup PartnerCoatingGroup { get; set; }
     }
 }

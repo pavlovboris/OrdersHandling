@@ -32,9 +32,9 @@ namespace OrdersHandling
             this.components = new System.ComponentModel.Container();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.dgvCodeSelector = new System.Windows.Forms.DataGridView();
-            this.codesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCodeSelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -69,10 +69,6 @@ namespace OrdersHandling
             this.dgvCodeSelector.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCodeSelector_CellDoubleClick);
             this.dgvCodeSelector.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCodeSelector_KeyDown);
             // 
-            // codesBindingSource
-            // 
-            this.codesBindingSource.DataSource = typeof(OrdersHandling.Codes);
-            // 
             // codeDataGridViewTextBoxColumn
             // 
             this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
@@ -87,6 +83,10 @@ namespace OrdersHandling
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
             this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             this.descriptionDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // codesBindingSource
+            // 
+            this.codesBindingSource.DataSource = typeof(OrdersHandling.Codes);
             // 
             // frmPowderCodeSelector
             // 
@@ -111,11 +111,10 @@ namespace OrdersHandling
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.BindingSource codesBindingSource;
         public System.Windows.Forms.DataGridView dgvCodeSelector;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        public System.Windows.Forms.TextBox txtFilter;
     }
 }

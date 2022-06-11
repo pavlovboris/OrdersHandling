@@ -40,5 +40,7 @@ namespace OrdersHandling
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Colors> Colors { get; set; }
         public virtual DbSet<UploadedFiles> UploadedFiles { get; set; }
+        public virtual DbSet<CoatingPrices> CoatingPrices { get; set; }
+        public virtual DbSet<PartnerCoatingGroup> PartnerCoatingGroup { get; set; }
     }
 }
