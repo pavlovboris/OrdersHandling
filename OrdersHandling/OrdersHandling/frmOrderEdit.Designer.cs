@@ -116,6 +116,8 @@ namespace OrdersHandling
             this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
             this.btnAttachmentRemove = new System.Windows.Forms.Button();
             this.btnExportExel = new System.Windows.Forms.Button();
+            this.lblValue = new System.Windows.Forms.Label();
+            this.lblValueSum = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -791,6 +793,8 @@ namespace OrdersHandling
             // 
             // grpInfo
             // 
+            this.grpInfo.Controls.Add(this.lblValueSum);
+            this.grpInfo.Controls.Add(this.lblValue);
             this.grpInfo.Controls.Add(this.lblKgrSum);
             this.grpInfo.Controls.Add(this.lblKgr);
             this.grpInfo.Controls.Add(this.lblSqmSum);
@@ -805,7 +809,7 @@ namespace OrdersHandling
             // lblKgrSum
             // 
             this.lblKgrSum.AutoSize = true;
-            this.lblKgrSum.Location = new System.Drawing.Point(71, 44);
+            this.lblKgrSum.Location = new System.Drawing.Point(95, 44);
             this.lblKgrSum.Name = "lblKgrSum";
             this.lblKgrSum.Size = new System.Drawing.Size(13, 13);
             this.lblKgrSum.TabIndex = 3;
@@ -814,7 +818,7 @@ namespace OrdersHandling
             // lblKgr
             // 
             this.lblKgr.AutoSize = true;
-            this.lblKgr.Location = new System.Drawing.Point(7, 43);
+            this.lblKgr.Location = new System.Drawing.Point(31, 43);
             this.lblKgr.Name = "lblKgr";
             this.lblKgr.Size = new System.Drawing.Size(58, 13);
             this.lblKgr.TabIndex = 2;
@@ -888,10 +892,6 @@ namespace OrdersHandling
             // 
             this.uploadFileDialog.FileName = "openFileDialog1";
             this.uploadFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.uploadFileDialog_FileOk);
-            // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // grpCurrentRowInfo
             // 
@@ -1002,6 +1002,24 @@ namespace OrdersHandling
             this.btnExportExel.Text = "Export to Exel";
             this.btnExportExel.UseVisualStyleBackColor = true;
             this.btnExportExel.Click += new System.EventHandler(this.btnExportExel_Click);
+            // 
+            // lblValue
+            // 
+            this.lblValue.AutoSize = true;
+            this.lblValue.Location = new System.Drawing.Point(49, 67);
+            this.lblValue.Name = "lblValue";
+            this.lblValue.Size = new System.Drawing.Size(40, 13);
+            this.lblValue.TabIndex = 4;
+            this.lblValue.Text = "Value :";
+            // 
+            // lblValueSum
+            // 
+            this.lblValueSum.AutoSize = true;
+            this.lblValueSum.Location = new System.Drawing.Point(95, 67);
+            this.lblValueSum.Name = "lblValueSum";
+            this.lblValueSum.Size = new System.Drawing.Size(13, 13);
+            this.lblValueSum.TabIndex = 5;
+            this.lblValueSum.Text = "?";
             // 
             // frmOrderEdit
             // 
@@ -1153,5 +1171,7 @@ namespace OrdersHandling
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         public System.Windows.Forms.ComboBox cmbColor;
+        private System.Windows.Forms.Label lblValueSum;
+        private System.Windows.Forms.Label lblValue;
     }
 }

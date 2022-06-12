@@ -69,38 +69,46 @@ namespace OrdersHandling
             //Update order infor panel starts here 
             double sqm = 0;
             double kgr = 0;
+            double value = 0;
 
             foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
             {
-                if (dgvr != null)
+                try
                 {
-                    OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
-                    double tmpsqm = 0;
-                    double tmpkgr = 0;
-                    try
+                    if (dgvr != null)
                     {
-                        tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
-                        tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
-                    }
-                    catch
-                    {
-
-                    }
-
-
-
-                    if (tmpsqm.ToString() != "")
-                    {
-                        sqm += tmpsqm;
-                    }
-                    if (tmpkgr.ToString() != "")
-                    {
-                        kgr += tmpkgr;
+                        OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
+                        double tmpsqm = 0;
+                        double tmpkgr = 0;
+                        double tmpvalue = 0;
+                        try
+                        {
+                            tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                            tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                            tmpvalue = (double)(orderline1.Value);
+                        }
+                        catch
+                        {
+                        }
+                        if (tmpsqm.ToString() != "")
+                        {
+                            sqm += tmpsqm;
+                        }
+                        if (tmpkgr.ToString() != "")
+                        {
+                            kgr += tmpkgr;
+                        }
+                        if (tmpvalue.ToString() != "")
+                        {
+                            value += tmpvalue;
+                        }
                     }
                 }
+                catch { };
             }
             lblSqmSum.Text = Math.Round(sqm, 2).ToString();
             lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+            lblValueSum.Text = Math.Round(value, 2).ToString();
 
             //Update order info panel ends here
 
@@ -115,6 +123,7 @@ namespace OrdersHandling
                 {
                     order.OrderSQM = Convert.ToDouble(lblSqmSum.Text);
                     order.Orderkgr = Convert.ToDouble(lblKgrSum.Text);
+                    order.OrderValue = Convert.ToDouble(lblValueSum.Text);
 
                     ordersBindingSource.EndEdit();
                     orderLinesBindingSource.EndEdit();
@@ -226,8 +235,6 @@ namespace OrdersHandling
                     Codes code = (from codes in db.Codes where codes.ID == orderline.CodeID select codes).SingleOrDefault();
                     Types type = (from types in db.Types where types.TypeID == code.Type select types).SingleOrDefault();
 
-
-
                     if (e.ColumnIndex == 2 | e.ColumnIndex == 3)
                     {
                         if (code.DefaultSurface != null)
@@ -275,8 +282,26 @@ namespace OrdersHandling
                     {
                         powderCode = (from pc in db.Codes where pc.ID == (int)cmbPowder.SelectedValue select pc).SingleOrDefault();
                         coatingGroup = (from cg in db.CoatingGroup where cg.ID == powderCode.CoatingGroup select cg).SingleOrDefault();
-                    } 
-                   
+                    }
+
+
+                    try
+                    {
+                        lblCurrentSqmValue.Text = Math.Round((double)(orderline.QTY * (orderline.Perimeter / 1000) * orderline.SqmCorrections * orderline.IsForCoating), 2).ToString();
+                        lblCurrentRowKgrValue.Text = Math.Round((double)(orderline.QTY * (orderline.Weight / 1000) * orderline.SqmCorrections * orderline.IsForCoating), 2).ToString();
+                        orderline.QtySqm = Convert.ToDouble(lblCurrentSqmValue.Text);
+                        orderline.QtyKgr = Convert.ToDouble(lblCurrentRowKgrValue.Text);
+                    }
+                    catch
+                    {
+                        lblCurrentSqmValue.Text = "0";
+                        lblCurrentRowKgrValue.Text = "0";
+                        orderline.QtySqm = Convert.ToDouble(lblCurrentSqmValue.Text);
+                        orderline.QtyKgr = Convert.ToDouble(lblCurrentRowKgrValue.Text);
+                    }
+
+
+
 
                     if (coatingGroup!=null & powderCode!=null & partnerCoatingGroup!=null)
                     {
@@ -288,14 +313,30 @@ namespace OrdersHandling
                         {
                             orderline.Price = coatingPrices.Price;
 
+                            switch (orderline.MU)
+                            {
+                                case 1:
+                                    orderline.Value = Math.Round((double)orderline.QtySqm * (double)orderline.Price, 2);
+                                    break;
+                                case 2:
+                                    orderline.Value = Math.Round((double)orderline.QtyKgr * (double)orderline.Price, 2);
+                                    break;
+                                case 4:
+                                    orderline.Value = Math.Round((double)orderline.QTY * (double)orderline.Price, 2);
+                                    break;
+
+                                default:
+                                    orderline.Value = 0;
+                                    break;
+                            }
+                            dgvOrderLines.Refresh();
                         }
-
                     }
-
 
                     //Update order infor panel starts here 
                     double sqm = 0;
                     double kgr = 0;
+                    double value = 0;
 
                     foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
                     {
@@ -304,10 +345,12 @@ namespace OrdersHandling
                             OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
                             double tmpsqm = 0;
                             double tmpkgr = 0;
+                            double tmpvalue = 0;
                             try
                             {
                                 tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
                                 tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                                tmpvalue = (double)(orderline1.Value);
                             }
                             catch
                             {
@@ -320,10 +363,15 @@ namespace OrdersHandling
                             {
                                 kgr += tmpkgr;
                             }
+                            if (tmpvalue.ToString() != "")
+                            {
+                                value += tmpvalue;
+                            }
                         }
                     }
                     lblSqmSum.Text = Math.Round(sqm, 2).ToString();
                     lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+                    lblValueSum.Text = Math.Round(value, 2).ToString();
                     //Update order info panel ends here
                 }
             }
@@ -405,6 +453,7 @@ namespace OrdersHandling
                 //Update order infor panel starts here 
                 double sqm = 0;
                 double kgr = 0;
+                double value = 0;
 
                 foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
                 {
@@ -413,10 +462,12 @@ namespace OrdersHandling
                         OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
                         double tmpsqm = 0;
                         double tmpkgr = 0;
+                        double tmpvalue = 0;
                         try
                         {
                             tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
                             tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                            tmpvalue = (double)(orderline1.Value);
                         }
                         catch
                         {
@@ -429,14 +480,19 @@ namespace OrdersHandling
                         {
                             kgr += tmpkgr;
                         }
+                        if (tmpvalue.ToString() != "")
+                        {
+                            value += tmpvalue;
+                        }
                     }
                 }
                 lblSqmSum.Text = Math.Round(sqm, 2).ToString();
                 lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+                lblValueSum.Text = Math.Round(value, 2).ToString();
                 //Update order info panel ends here
-            } else if (e.ClickedItem.Text=="Paste")
+            }
+            else if (e.ClickedItem.Text=="Paste")
             {
-                
                 try
                 {
                    // Partners partner = cmbPartnerName.SelectedItem as Partners;
@@ -476,7 +532,6 @@ namespace OrdersHandling
                                         newOrderLine.MU = code.DefaultMU;
                                     }
 
-                                   // newOrderLine.MU = code.DefaultMU;
                                     newOrderLine.Length = code.DefaultLength;
                                     newOrderLine.Perimeter = code.Perimeter;
                                     newOrderLine.Weight = code.Weigth;
@@ -508,6 +563,7 @@ namespace OrdersHandling
                                     //Update order infor panel starts here 
                                     double sqm = 0;
                                     double kgr = 0;
+                                    double value = 0;
 
                                     foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
                                     {
@@ -516,10 +572,12 @@ namespace OrdersHandling
                                             OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
                                             double tmpsqm = 0;
                                             double tmpkgr = 0;
+                                            double tmpvalue = 0;
                                             try
                                             {
                                                 tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
                                                 tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                                                tmpvalue = (double)(orderline1.Value);
                                             }
                                             catch
                                             {
@@ -532,10 +590,16 @@ namespace OrdersHandling
                                             {
                                                 kgr += tmpkgr;
                                             }
+                                            if (tmpvalue.ToString() != "")
+                                            {
+                                                value += tmpvalue;
+                                            }
                                         }
                                     }
                                     lblSqmSum.Text = Math.Round(sqm, 2).ToString();
                                     lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+                                    lblValueSum.Text = Math.Round(value, 2).ToString();
+
                                     //Update order info panel ends here
                                 }
                             }
@@ -619,10 +683,6 @@ namespace OrdersHandling
                 {
                 }
             }
-        }
-
-        private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
         }
 
         private void dgvOrderLines_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -851,6 +911,10 @@ namespace OrdersHandling
                         {
                             powderCode = (from pc in db.Codes where pc.ID == (int)cmbPowder.SelectedValue select pc).SingleOrDefault();
                             coatingGroup = (from cg in db.CoatingGroup where cg.ID == powderCode.CoatingGroup select cg).SingleOrDefault();
+                        } else
+                        {
+                            orderLines.Price = 0;
+                            dgvOrderLines.Refresh();
                         }
 
                         if (coatingGroup != null & powderCode != null & partnerCoatingGroup != null)
@@ -861,16 +925,82 @@ namespace OrdersHandling
                             {
 
                                 orderLines.Price = coatingPrices.Price;
+                                switch (orderLines.MU)
+                                {
+                                    case 1:
+                                        orderLines.Value = Math.Round(  (double)orderLines.QtySqm*(double)orderLines.Price, 2);
+                                        break;
+                                    case 2:
+                                        orderLines.Value = Math.Round((double)orderLines.QtyKgr * (double)orderLines.Price, 2);
+                                        break;
+                                    case 4:
+                                        orderLines.Value = Math.Round((double)orderLines.QTY*(double)orderLines.Price, 2);
+                                        break;
+
+                                    default:
+                                        orderLines.Value = 0;
+                                        break;
+                                }
+                                dgvOrderLines.Refresh();
 
                             }
-
+                        } else
+                        {
+                            orderLines.Price = 0;
+                            orderLines.Value = 0;
+                            dgvOrderLines.Refresh();
                         }
+
+
                     }
                 } catch
                 {
 
                 }
             }
+            //Update order infor panel starts here 
+            double sqm = 0;
+            double kgr = 0;
+            double value = 0;
+
+            foreach (DataGridViewRow dgvr in dgvOrderLines.Rows)
+            {
+                try
+                {
+                    if (dgvr != null)
+                    {
+                        OrderLines orderline1 = dgvr.DataBoundItem as OrderLines;
+                        double tmpsqm = 0;
+                        double tmpkgr = 0;
+                        double tmpvalue = 0;
+                        try
+                        {
+                            tmpsqm = (double)(orderline1.QTY * (orderline1.Perimeter / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                            tmpkgr = (double)(orderline1.QTY * (orderline1.Weight / 1000) * orderline1.SqmCorrections * orderline1.IsForCoating);
+                            tmpvalue = (double)(orderline1.Value);
+                        }
+                        catch
+                        {
+                        }
+                        if (tmpsqm.ToString() != "")
+                        {
+                            sqm += tmpsqm;
+                        }
+                        if (tmpkgr.ToString() != "")
+                        {
+                            kgr += tmpkgr;
+                        }
+                        if (tmpvalue.ToString() != "")
+                        {
+                            value += tmpvalue;
+                        }
+                    }
+                } catch { };
+            }
+            lblSqmSum.Text = Math.Round(sqm, 2).ToString();
+            lblKgrSum.Text = Math.Round(kgr, 2).ToString();
+            lblValueSum.Text = Math.Round(value, 2).ToString();
+            //Update order info panel ends here
         }
     }
 }

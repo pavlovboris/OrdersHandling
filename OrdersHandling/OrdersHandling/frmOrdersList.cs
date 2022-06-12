@@ -90,8 +90,14 @@ namespace OrdersHandling
                 frmOrderEdit frmorderedit = new frmOrderEdit();
                 frmorderedit.order = order;
                 frmorderedit.db = db;
+                frmorderedit.FormClosed += Frmorderedit_FormClosed;
                 frmorderedit.Show();
             }
+        }
+
+        private void Frmorderedit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Refresh();
         }
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
