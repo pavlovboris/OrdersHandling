@@ -221,11 +221,6 @@ namespace OrdersHandling
         {
             if (e.ClickedItem.Text == "Delete")
             {
-                /*if (MessageBox.Show("Сигурни ли сте, че искате да изтриете маркираните изцяло редове?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    
-                }*/
-
                 foreach (DataGridViewRow dr in dgvOrdersList.Rows)
                 {
                     if (dr.DataBoundItem != null && dr.Selected == true)

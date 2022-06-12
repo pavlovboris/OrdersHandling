@@ -29,8 +29,13 @@ namespace OrdersHandling
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.lblLogin = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.picMinimaze = new System.Windows.Forms.PictureBox();
+            this.picClose = new System.Windows.Forms.PictureBox();
+            this.btnOrdersList = new System.Windows.Forms.Button();
+            this.btnNewOrder = new System.Windows.Forms.Button();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,14 +56,18 @@ namespace OrdersHandling
             this.adminSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.grpBoxOrders = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimaze)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picClose)).BeginInit();
+            this.grpBoxOrders.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblLogin
             // 
             this.lblLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(12, 670);
+            this.lblLogin.Location = new System.Drawing.Point(12, 275);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(39, 13);
             this.lblLogin.TabIndex = 0;
@@ -66,17 +75,75 @@ namespace OrdersHandling
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.ordersToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.adminSettingsToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(2, 2);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1003, 72);
+            this.menuStrip1.Size = new System.Drawing.Size(327, 72);
+            this.menuStrip1.Stretch = false;
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // picMinimaze
+            // 
+            this.picMinimaze.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picMinimaze.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_96;
+            this.picMinimaze.Location = new System.Drawing.Point(574, 12);
+            this.picMinimaze.Name = "picMinimaze";
+            this.picMinimaze.Size = new System.Drawing.Size(60, 49);
+            this.picMinimaze.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picMinimaze.TabIndex = 15;
+            this.picMinimaze.TabStop = false;
+            this.picMinimaze.Click += new System.EventHandler(this.picMinimaze_Click);
+            // 
+            // picClose
+            // 
+            this.picClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picClose.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_delete_Icon_48;
+            this.picClose.Location = new System.Drawing.Point(640, 12);
+            this.picClose.Name = "picClose";
+            this.picClose.Size = new System.Drawing.Size(60, 49);
+            this.picClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picClose.TabIndex = 14;
+            this.picClose.TabStop = false;
+            this.picClose.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // btnOrdersList
+            // 
+            this.btnOrdersList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrdersList.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnOrdersList.ForeColor = System.Drawing.Color.DimGray;
+            this.btnOrdersList.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_orbs2_051_Icon_48;
+            this.btnOrdersList.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnOrdersList.Location = new System.Drawing.Point(112, 24);
+            this.btnOrdersList.Name = "btnOrdersList";
+            this.btnOrdersList.Size = new System.Drawing.Size(92, 75);
+            this.btnOrdersList.TabIndex = 3;
+            this.btnOrdersList.Text = "Orders List";
+            this.btnOrdersList.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOrdersList.UseVisualStyleBackColor = true;
+            this.btnOrdersList.Click += new System.EventHandler(this.ordersListToolStripMenuItem_Click);
+            // 
+            // btnNewOrder
+            // 
+            this.btnNewOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewOrder.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNewOrder.ForeColor = System.Drawing.Color.DimGray;
+            this.btnNewOrder.Image = global::OrdersHandling.Properties.Resources.glossy_3d_blue_orbs2_037_icon;
+            this.btnNewOrder.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnNewOrder.Location = new System.Drawing.Point(14, 24);
+            this.btnNewOrder.Name = "btnNewOrder";
+            this.btnNewOrder.Size = new System.Drawing.Size(92, 75);
+            this.btnNewOrder.TabIndex = 2;
+            this.btnNewOrder.Text = "New Order";
+            this.btnNewOrder.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNewOrder.UseVisualStyleBackColor = true;
+            this.btnNewOrder.Click += new System.EventHandler(this.newOrderToolStripMenuItem_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -90,10 +157,10 @@ namespace OrdersHandling
             // 
             // logoutToolStripMenuItem
             // 
-            this.logoutToolStripMenuItem.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_orbs2_093_Icon_48;
+            this.logoutToolStripMenuItem.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_orbs2_053_Icon_48;
             this.logoutToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(144, 54);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(212, 54);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -102,7 +169,7 @@ namespace OrdersHandling
             this.exitToolStripMenuItem.Image = global::OrdersHandling.Properties.Resources.Glossy_3d_blue_orbs2_103_Icon_48;
             this.exitToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 54);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(212, 54);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -239,33 +306,53 @@ namespace OrdersHandling
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // rolesToolStripMenuItem
             // 
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.rolesToolStripMenuItem.Text = "Roles";
             this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
+            // 
+            // grpBoxOrders
+            // 
+            this.grpBoxOrders.Controls.Add(this.btnOrdersList);
+            this.grpBoxOrders.Controls.Add(this.btnNewOrder);
+            this.grpBoxOrders.Location = new System.Drawing.Point(12, 121);
+            this.grpBoxOrders.Name = "grpBoxOrders";
+            this.grpBoxOrders.Size = new System.Drawing.Size(218, 118);
+            this.grpBoxOrders.TabIndex = 16;
+            this.grpBoxOrders.TabStop = false;
+            this.grpBoxOrders.Text = "Orders";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1003, 692);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(712, 297);
+            this.Controls.Add(this.grpBoxOrders);
+            this.Controls.Add(this.picMinimaze);
+            this.Controls.Add(this.picClose);
             this.Controls.Add(this.lblLogin);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(712, 297);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.frmMain_Paint);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picMinimaze)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picClose)).EndInit();
+            this.grpBoxOrders.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +382,10 @@ namespace OrdersHandling
         private System.Windows.Forms.ToolStripMenuItem adminSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
+        private System.Windows.Forms.Button btnNewOrder;
+        private System.Windows.Forms.Button btnOrdersList;
+        private System.Windows.Forms.PictureBox picClose;
+        private System.Windows.Forms.PictureBox picMinimaze;
+        private System.Windows.Forms.GroupBox grpBoxOrders;
     }
 }

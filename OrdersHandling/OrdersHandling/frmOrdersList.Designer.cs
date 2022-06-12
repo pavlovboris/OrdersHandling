@@ -347,6 +347,7 @@ namespace OrdersHandling
             this.cmbCustomer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCustomer.DataSource = this.partnersBindingSource1;
             this.cmbCustomer.DisplayMember = "Partner_name";
+            this.cmbCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbCustomer.FormattingEnabled = true;
             this.cmbCustomer.Location = new System.Drawing.Point(12, 13);
             this.cmbCustomer.Name = "cmbCustomer";

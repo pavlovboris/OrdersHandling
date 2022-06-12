@@ -143,6 +143,16 @@ namespace OrdersHandling.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_053_Icon_48 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_053_Icon_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_063_Icon_128 {
             get {
                 object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_063_Icon_128", resourceCulture);
@@ -186,6 +196,16 @@ namespace OrdersHandling.Properties {
         internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_093_Icon_48 {
             get {
                 object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_093_Icon_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Glossy_3d_blue_orbs2_093_Icon_96 {
+            get {
+                object obj = ResourceManager.GetObject("Glossy_3d_blue_orbs2_093_Icon_96", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
