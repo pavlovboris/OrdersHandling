@@ -360,7 +360,16 @@ namespace OrdersHandling
 
         private void newCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SecurityServices security = new SecurityServices();
 
+            if (security.isAvailable(frmLogin.Instance.UserInfo))
+            {
+                MessageBox.Show("will Open");
+            } else
+            {
+                MessageBox.Show("will not open");
+            }
+            
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)

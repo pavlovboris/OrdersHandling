@@ -207,6 +207,7 @@
     <Compile Include="Roles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="SecurityServices.cs" />
     <Compile Include="SubTypes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
