@@ -95,6 +95,8 @@ namespace OrdersHandling
             this.cmbPartnerName = new System.Windows.Forms.ComboBox();
             this.partnersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.grpInfo = new System.Windows.Forms.GroupBox();
+            this.lblValueSum = new System.Windows.Forms.Label();
+            this.lblValue = new System.Windows.Forms.Label();
             this.lblKgrSum = new System.Windows.Forms.Label();
             this.lblKgr = new System.Windows.Forms.Label();
             this.lblSqmSum = new System.Windows.Forms.Label();
@@ -116,8 +118,6 @@ namespace OrdersHandling
             this.lblCurrentRowSqmLabel = new System.Windows.Forms.Label();
             this.btnAttachmentRemove = new System.Windows.Forms.Button();
             this.btnExportExel = new System.Windows.Forms.Button();
-            this.lblValue = new System.Windows.Forms.Label();
-            this.lblValueSum = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.grpColorPowder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.codesBindingSource)).BeginInit();
@@ -806,6 +806,24 @@ namespace OrdersHandling
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Information Panel";
             // 
+            // lblValueSum
+            // 
+            this.lblValueSum.AutoSize = true;
+            this.lblValueSum.Location = new System.Drawing.Point(95, 67);
+            this.lblValueSum.Name = "lblValueSum";
+            this.lblValueSum.Size = new System.Drawing.Size(13, 13);
+            this.lblValueSum.TabIndex = 5;
+            this.lblValueSum.Text = "?";
+            // 
+            // lblValue
+            // 
+            this.lblValue.AutoSize = true;
+            this.lblValue.Location = new System.Drawing.Point(49, 67);
+            this.lblValue.Name = "lblValue";
+            this.lblValue.Size = new System.Drawing.Size(40, 13);
+            this.lblValue.TabIndex = 4;
+            this.lblValue.Text = "Value :";
+            // 
             // lblKgrSum
             // 
             this.lblKgrSum.AutoSize = true;
@@ -1002,24 +1020,6 @@ namespace OrdersHandling
             this.btnExportExel.Text = "Export to Exel";
             this.btnExportExel.UseVisualStyleBackColor = true;
             this.btnExportExel.Click += new System.EventHandler(this.btnExportExel_Click);
-            // 
-            // lblValue
-            // 
-            this.lblValue.AutoSize = true;
-            this.lblValue.Location = new System.Drawing.Point(49, 67);
-            this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(40, 13);
-            this.lblValue.TabIndex = 4;
-            this.lblValue.Text = "Value :";
-            // 
-            // lblValueSum
-            // 
-            this.lblValueSum.AutoSize = true;
-            this.lblValueSum.Location = new System.Drawing.Point(95, 67);
-            this.lblValueSum.Name = "lblValueSum";
-            this.lblValueSum.Size = new System.Drawing.Size(13, 13);
-            this.lblValueSum.TabIndex = 5;
-            this.lblValueSum.Text = "?";
             // 
             // frmOrderEdit
             // 
